@@ -1,17 +1,19 @@
-NEW RECIPE FORM
+<html>
+<head>
+	<title></title>
+</head>
+<body>
 
-<!-- User must be logged in, if not alert -->
+		<form action="/recipes/create" method="post">
 
-<form action="/recipes/create" method="post">
+	    <label name="name">Recipe Name</label>
+	    <input type="text" name="name" value=""/>
 
-    <label name="name">Recipe Name</label>
-    <input type="text" name="name" value=""/>
+	    <label name="description">Description</label>
+	    <input type="text" name="description" value=""/>    
 
-    <label name="description">Description</label>
-    <input type="text" name="description" value=""/>    
-
-    <label name="video_url">Video URL</label>
-    <input type="text" name="video_url" value=""/>
+	    <label name="video_url">Video URL</label>
+	    <input type="text" name="video_url" value=""/>
 
 	    <label name="steps.title">Title</label>
 	    <input type="text" name="steps.title" value=""/>
@@ -22,8 +24,19 @@ NEW RECIPE FORM
 	    <label name="steps.image_url">Image URL</label>
 	    <input type="text" name="steps.image_url" value=""/>
 
-	<label name="categories">Categories</label>
-    <input type="text" name="categories" value=""/>
+		<label name="categories">Categories</label>
+	    <input type="text" name="categories" value=""/>
 
-    <input type="submit" value="Share the Recipe">
-</form>
+	    <input type="submit" value="Share the Recipe">
+
+	</form>
+
+
+</body>
+</html>
+
+
+
+
+
+
