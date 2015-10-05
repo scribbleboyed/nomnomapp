@@ -59,3 +59,4 @@ usersController.get('/logout', function(req, res) {
 });
 
 module.exports = usersController;
+
