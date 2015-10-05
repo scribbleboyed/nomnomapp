@@ -5,7 +5,6 @@ var Recipe = require('../models/recipe.js');
 
 recipesController.get('/', function(req, res) {
     Recipe.find({}).execAsync().then(function(recipes) {
-        console.log("recipes: "+ recipes);
             res.render('recipes/index.ejs',{
                 recipes: recipes,
             });
@@ -22,7 +21,7 @@ recipesController.get('/create', function(req, res) {
             user.saveAsync().then(function (recipes) {
                     res.render('recipes/new.ejs', {
                         recipes: recipes,
-                        curr_user: user.name
+                        curr_user: user.username
                     });
                 })
                 .catch(function (err) {
