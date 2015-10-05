@@ -52,8 +52,8 @@ usersController.post('/login', function(req, res) {
 });
 
 usersController.get('/logout', function(req, res) {
-	if (req.session && req.session.username) {
-		delete req.session.username;
+	if (req.session && req.session.email) {
+		delete req.session.email;
 		res.redirect(200, '/');
 	}
 });
