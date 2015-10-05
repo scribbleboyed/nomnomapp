@@ -4,9 +4,9 @@ $('#addStep').click(function() {
 	$('#stepForm').append('#stepForm');
 });
 
-var MOVIES = [];
+var STEPS = [];
 // search = $('#search-term').val();
-var moviesTemplate = _.template($('.movie-template').html());
+var stepsTemplate = _.template($('.step-template').html());
 
 $('#search-term').keyup(function() {
 	// Get dem donuts!
@@ -19,25 +19,24 @@ $('#search-term').keyup(function() {
 });
 
 var initPage = function() {
-	var moviesContainer = $('#results-container');
+	var stepsContainer = $('#results-container');
 
 	// This clears our movies container so that when we load new results, we remove the old ones first.
-	var emptyMovies = function() {
-		moviesContainer.empty();
+	var emptySteps = function() {
+		stepsContainer.empty();
 	};
 
 	// WE DO: Need to define a donutsTemplate that we can re-use.
 		// var donutsTemplate = _.template('<div class="donut-item"><h3>Id: <%= id %></h3><h4>Flavor: <%= flavor %></h4><p>Style: <%= style %></p></div></div>');
-	var showMovies = function(movies) {
+	var addStep = function(movies) {
 
-		movies.forEach(function(movie){
-			showMovie(movie);
-		});
+		stepsContainer.append(stepForm);
+
 	};
 
 	var showMovie = function(movie) {
 		
-		var compiled = moviesTemplate({
+		var stepForm = moviesTemplate({
 				title: movie.Title,
 				year: movie.Year,
 			});
@@ -124,14 +123,4 @@ var initPage = function() {
 		showMovies(resultsMovies);
 	});
 
-	// // YOU DO: Click listener that handles event by filtering donuts by other flavor and displaying results.
-	// $('#filter-other').click(function(e) {
-	// 	e.preventDefault();
-	// 	emptyMovies();
-
-	// 	var resultsMovies = _.filter(DONUTS, function(donut) {
-	// 		return _.contains(donut.flavor, 'berry');
-	// 	});
-	// });
-	
 };
