@@ -1,3 +1,9 @@
+	<% if (curr_user) { %>
+		Welcome <%= curr_user %>!
+	<% } else { %>
+		No user logged in
+	<% } %>
+
 	<div id="login">
 		<h3>Log In</h3>
 		<form action="/login" method="post">

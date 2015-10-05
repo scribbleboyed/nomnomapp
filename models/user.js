@@ -7,6 +7,10 @@ var userSchema = mongoose.Schema({
 	username: String,
 	email: String,
 	password: String,
+	profile: {
+		image_url: String,
+		summary: String,
+	}
 });
 
 userSchema.pre('save', function (next) {

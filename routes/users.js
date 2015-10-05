@@ -4,7 +4,19 @@ var User = require('../models/user.js');
 
 /* GET users listing. */
 usersController.get('/', function(req, res) {
-  res.render('index');
+	if (req.session && req.session.email) {
+		User.findOne({email: req.session.email}).then(function(user) {
+			res.render('index.ejs', {
+				curr_user: user.username
+			});
+		});
+	} else {
+		User.findAsync({}).then(function(users) {
+			res.render('index.ejs', {
+				curr_user: null
+			});
+		}).catch();
+	}
 });
 
 usersController.post('/create', function(req, res) {
@@ -14,7 +26,6 @@ usersController.post('/create', function(req, res) {
 			email: req.body.email,
 			password: req.body.password,
 		});
-		console.log('user save')
 		user.saveAsync()
 		.then(function() {
 			console.log("save successful");
@@ -27,23 +38,23 @@ usersController.post('/create', function(req, res) {
 });
 
 usersController.post('/login', function(req, res) {
-	User.findOneAsync({
+	User.findOne({
 		email: req.body.email
 	}).then(function(user) {
 		user.comparePasswordAsync(req.body.password).then(function(isMatch) {
 			if (isMatch) {
-				req.session.email = user.email;
 				console.log("Match: " + isMatch);
-				res.redirect(303, '/products');
+				req.session.email = user.email;
+				res.redirect(303, '/');
 			}
 		});
 	});
 });
 
 usersController.get('/logout', function(req, res) {
-	if (req.session && req.session.email) {
-		delete req.session.email;
-		res.redirect(303, '/');
+	if (req.session && req.session.username) {
+		delete req.session.username;
+		res.redirect(200, '/');
 	}
 });
 
