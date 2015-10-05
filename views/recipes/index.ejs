@@ -1,0 +1,16 @@
+ALL RECIPES
+
+<% if (recipes && recipes.length > 0 ){ %>
+    <table>
+        <tbody>
+            <% for(var i=0; i < recipes.length; i++) { %>
+                <tr>
+                    <td><%= recipes[i].name %></td> 
+                    <!-- Add link to specific recipe; ahref="'recipes/'+[i]" -->
+                    <td><%= recipes[i].url %></td>
+                    <td><%= recipes[i].details.color %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+<% } %>

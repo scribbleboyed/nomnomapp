@@ -1,0 +1,13 @@
+SINGLE RECIPE
+
+<% if (recipe) { %>
+    <table>
+        <tbody>
+            <tr>
+                <td><%= recipe.name %></td> 
+                <td><%= recipe.url %></td>
+                <td><%= recipe.details.color %></td>
+            </tr>
+        </tbody>
+    </table>
+<% } %>
