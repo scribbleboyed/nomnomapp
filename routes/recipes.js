@@ -44,17 +44,24 @@ recipesController.get('/:id', function(req, res) {
     });
 
 recipesController.post('/create', function(req, res) {
+    console.log('hello');
     if(req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
             user.saveAsync().then(function () {
             
                 var recipe = new Recipe({
                     name: req.body.name,
-                    user_name: user.name,
-                    desciprtion: req.body.description,
+                    user_name: user.username,
+                    description: req.body.description,
+                    main_image_url: req.body.main_image_url,
                     video_url: req.body.video_url,
+                    ingredients: [{
+                        name: req.body.ingredients[].name,
+                        serving_size: req.body.ingredients[].serving_size,
+                    }],
+                    prep_time: req.body.prep_time,
+                    cook_time: req.body.cook_time,
                     steps: [{
-                        title: req.body.title,
                         instruction: req.body.instruction,
                         image_url: req.body.image_url
                     }],

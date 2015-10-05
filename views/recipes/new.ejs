@@ -10,36 +10,79 @@
 	    <input type="text" name="description" value=""/>    
 	    </br>
 
-		<label name="categories">Categories</label>
-	    <input type="text" name="categories" value=""/>
-		</br>
-
 	    <label name="video_url">Video URL</label>
 	    <input type="text" name="video_url" value=""/>
 	    </br>
+
+		<label name="main_image_url">Main Image URL</label>
+	    <input type="text" name="main_image_url" value=""/>
+		</br>
 	    
-		<h2> Steps </h2>
-        <div class="container">
-            <div class="row" id="results-container">
-              <!-- Eventually we will want to be able to define our templates in our HTML, using the structure below -->
-              
-              <!-- LODASH TEMPLATE -->
-              <script type="text/template" class="step-template"> 
-                <div class="recipe-item">
-                  <h4><%= title %> (<%= year %>)</h4>
-                </div>
-              </script>
-            </div>
-        </div>
-        <button 
+		<label name="prep_time">Prep Time</label>
+	    <input type="text" name="prep_time" value=""/>
+		</br>
+
+		<label name="cook_time">Cook Time</label>
+	    <input type="text" name="cook_time" value=""/>
+		</br>
+
+		<h2>Ingredients</h2>
+		<div id="ingredient-container">
+			<div id="ingredient-form">
+				<label name="ingredients[i].serving_size">Serving Size</label>
+			    <input type="text" name="ingredients[i].serving_size" value=""/>
+				</br>
+				<label name="ingredients[i].name">Ingredient</label>
+			    <input type="text" name="ingredients[i].name" value=""/>
+				</br>
+			</div>
+		</div>
+		<button type="button" id="ingredients-button">Add Ingredients</button>
+
+		<h2>Steps</h2>
+		<div id="step-container">
+			<div id="step-form">
+	            <label name="steps[s].instruction">Step</label>
+			    <input type="text" name="steps[s].instruction" value=""/>
+				</br>
+				<label name="steps[s].image_url">Image_URL</label>
+			    <input type="text" name="steps[s].image_url" value=""/>
+				</br>
+			</div>
+		</div>
+		<button type="button" id="steps-button">Add Steps</button>
 
 		</br>
 	    <input type="submit" value="Share the Recipe">
-
 	</form>
 
-    <!-- Pssst you should probably hook up Lodash somewhere... here? -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
-    <script src="../../public/javascript/script.js"></script>
+<script>
+
+var i = 0;
+var s = 0;
+
+	$('#ingredients-button').click(function() {
+		console.log(i);
+		i += 1;
+
+		var ingredientForm = $('<div id="ingredient-form"><label name="ingredient[i].serving_size">Serving Size</label><input type="text" name="ingredient[i].serving_size" value=""/></br><label name="ingredient[i].name">Ingredient</label><input type="text" name="ingredient[i].name" value=""/></br></div>');
+
+		$('#ingredient-container').append(ingredientForm);
+
+		console.log(i);
+	});
+
+	$('#steps-button').click(function() {
+		console.log(s);
+		s += 1;
+
+		var stepForm = $('<div id="step-form"><label name="steps[s].instruction">Step</label><input type="text" name="steps[s].instruction" value=""/></br><label name="steps[s].image_url">Image_URL</label><input type="text" name="steps[s].image_url" value=""/></br></div>');
+		$('#step-container').append(stepForm);
+
+		console.log(s);
+	});
+
+</script>
+
 </body>
 </html>
