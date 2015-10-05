@@ -1,1 +1,11 @@
 <% include partials/header %>
+
+	<div class="container">
+		<% recipes.forEach(function(recipe) { %>
+			<h3><%= recipe.name %></h3>
+			<% var video_link = recipe.video_url.split('=')[1]; %>
+			<iframe width="560" height="315" src="http://www.youtube.com/embed/<%= video_link %>?autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+		<% }); %>
+	</div>
+
+<% include partials/footer %>

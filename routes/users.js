@@ -1,19 +1,26 @@
 var express = require('express');
 var usersController = express.Router();
 var User = require('../models/user.js');
+var Recipe = require('../models/recipe.js');
 
 /* GET users listing. */
 usersController.get('/', function(req, res) {
 	if (req.session && req.session.email) {
 		User.findOne({email: req.session.email}).then(function(user) {
-			res.render('index.ejs', {
-				curr_user: user.username
+			Recipe.find({}).then(function(recipes) {
+				res.render('index.ejs', {
+					recipes: recipes,
+					curr_user: user.username
+				});
 			});
 		});
 	} else {
 		User.findAsync({}).then(function(users) {
-			res.render('index.ejs', {
-				curr_user: null
+			Recipe.find({}).then(function(recipes) {
+				res.render('index.ejs', {
+					recipes: recipes,
+					curr_user: null
+				});
 			});
 		}).catch();
 	}
@@ -54,6 +61,8 @@ usersController.post('/login', function(req, res) {
 usersController.get('/logout', function(req, res) {
 	if (req.session && req.session.email) {
 		delete req.session.email;
+		res.redirect(200, '/');
+	} else {
 		res.redirect(200, '/');
 	}
 });
