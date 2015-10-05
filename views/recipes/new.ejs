@@ -1,42 +1,45 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+<% include ../partials/header %>
 
-		<form action="/recipes/create" method="post">
+	<form action="/recipes/create" method="post">
 
 	    <label name="name">Recipe Name</label>
 	    <input type="text" name="name" value=""/>
+		</br>
 
 	    <label name="description">Description</label>
 	    <input type="text" name="description" value=""/>    
-
-	    <label name="video_url">Video URL</label>
-	    <input type="text" name="video_url" value=""/>
-
-	    <label name="steps.title">Title</label>
-	    <input type="text" name="steps.title" value=""/>
-
-	    <label name="steps.instruction">Instruction</label>
-	    <input type="text" name="steps.instruction" value=""/>
-
-	    <label name="steps.image_url">Image URL</label>
-	    <input type="text" name="steps.image_url" value=""/>
+	    </br>
 
 		<label name="categories">Categories</label>
 	    <input type="text" name="categories" value=""/>
+		</br>
 
+	    <label name="video_url">Video URL</label>
+	    <input type="text" name="video_url" value=""/>
+	    </br>
+	    
+		<h2> Steps </h2>
+        <div class="container">
+            <div class="row" id="results-container">
+              <!-- Eventually we will want to be able to define our templates in our HTML, using the structure below -->
+              
+              <!-- LODASH TEMPLATE -->
+              <script type="text/template" class="step-template"> 
+                <div class="recipe-item">
+                  <h4><%= title %> (<%= year %>)</h4>
+                </div>
+              </script>
+            </div>
+        </div>
+        <button 
+
+		</br>
 	    <input type="submit" value="Share the Recipe">
 
 	</form>
 
-
+    <!-- Pssst you should probably hook up Lodash somewhere... here? -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="../../public/javascript/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
