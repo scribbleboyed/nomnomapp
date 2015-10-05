@@ -4,6 +4,7 @@ var recipeSchema = mongoose.Schema({
 	name: String,
 	user_name: [{type: String, ref: 'User'}],
 	description: String,
+	main_image_url: String,
 	video_url: String,
 	ingredients: [{
 		name: String,
