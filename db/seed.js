@@ -63,13 +63,17 @@ exports.seedRecipes = function seedRecipes () {
 
 exports.seedCookbooks = function seedCookbooks () {
 	
-	Cookbook.create({
-		name: "Pizza Pizazz",
-		description: "I want to swim in a pool of pizza",
-		image_url: "http://media-cdn.tripadvisor.com/media/photo-s/02/8f/3b/1c/happy-herb-pizza.jpg",
-		user_id: "",
-		recipes_ids: [""],
-		tags: ["pizza"]
+	Cookbook.find({}).exec(function (err, collection) {
+		if (collection.length === 0) {
+			Cookbook.create({
+				name: "Pizza Pizazz",
+				description: "I want to swim in a pool of pizza",
+				image_url: "http://media-cdn.tripadvisor.com/media/photo-s/02/8f/3b/1c/happy-herb-pizza.jpg",
+				user_id: "",
+				recipes_ids: [""],
+				tags: ["pizza"]
+			});
+		}
 	});
 
 };
