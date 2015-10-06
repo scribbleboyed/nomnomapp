@@ -47,7 +47,6 @@ recipesController.get('/create', function(req, res) {
 
 recipesController.get('/:name', function(req, res) {
 
-    // var downcase_name = req.params.name.toLowerCase();
     var processed_name = req.params.name.replace(/_/g, " ");
 
     if (req.session && req.session.email) {
@@ -75,7 +74,86 @@ recipesController.get('/:name', function(req, res) {
     }
 });
 
-recipesController.post  ('/create', function(req, res) {
+
+recipesController.post('/:name/update', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if(req.session && req.session.email) {
+       // User.findOne({email: req.session.email}).then(function(user) {
+            //Recipe.findOne({name: processed_name}).then(console.log('found'));
+            Recipe.updateAsync({name: processed_name},
+                {$set:
+                    {
+                        description: req.body.description,
+                        prep_time: req.body.prep_time,
+                        cook_time: req.body.cook_time,
+                    }
+                },{multi:true})
+                .then(function() {
+                    console.log("req.body.description: " + req.body.description);
+                    res.redirect(303, '/');
+                }).catch(function(err) {
+                    console.log("error: " + err);
+                    res.redirect(303, '/');
+                });
+    }
+});
+
+recipesController.post('/:name/update-ingredient', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if(req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user) {
+            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+                
+                recipe.ingredients.name.push(req.body.ingredient-name);
+                recipe.ingredients.quantity.push(req.body.ingredient-quantity);
+                
+                });
+
+                console.log(recipe);
+
+                console.log('recipe save');
+                recipe.saveAsync()
+                .then(function() {
+                    console.log("save successful");
+                    res.redirect(303, '/');
+                }).catch(function(err) {
+                    console.log("error: " + err);
+                    res.redirect(303, '/');
+                });
+                });
+            }
+        });
+
+recipesController.post('/:name/update-step', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if(req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user) {
+            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+                
+                recipe.steps.instruction.push(req.body.ingredient-name);
+                recipe.steps.image_url.push(req.body.ingredient-quantity);
+                
+                });
+
+                console.log(recipe);
+
+                console.log('recipe save');
+                recipe.saveAsync()
+                .then(function() {
+                    console.log("save successful");
+                    res.redirect(303, '/');
+                }).catch(function(err) {
+                    console.log("error: " + err);
+                    res.redirect(303, '/');
+                });
+                });
+            }
+        });
+
+recipesController.post('/create', function(req, res) {
     var new_recipe = req.body.name.replace(/ /g, "_");
     var new_recipe_url = "/recipes/" + new_recipe;
 
@@ -92,7 +170,6 @@ recipesController.post  ('/create', function(req, res) {
                 .then(function() {
                     console.log("save successful");
                     res.redirect(303, new_recipe_url);
-                    console.log(recipe);
                 }).catch(function(err) {
                     console.log("error: " + err);
                     res.redirect(303, '/');
@@ -101,99 +178,5 @@ recipesController.post  ('/create', function(req, res) {
         });
     }
 });
-
-recipesController.put('/update', function(req, res) {
-    var recipe_page = '/recipes/'+req.params.name;
-    var processed_name = req.params.name.replace(/_/g, " ");
-
-    if(req.session && req.session.email) {
-        User.findOne({email: req.session.email}).then(function(user) {
-            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
-                
-                recipe.description = req.body.description;
-                recipe.main_image_url = req.body.main_image_url;
-                recipe.video_url = req.body.video_url;
-                recipe.prep_time = req.body.prep_time;
-                recipe.cook_time = req.body.cook_time;
-                
-                });
-
-                console.log(recipe);
-
-                console.log('recipe save');
-                recipe.saveAsync()
-                .then(function() {
-                    console.log("save successful");
-                    res.redirect(303, recipe_page);
-                }).catch(function(err) {
-                    console.log("error: " + err);
-                    res.redirect(303, '/');
-                });
-                });
-            }
-        });
-
-recipesController.put('/updateIngredient', function(req, res) {
-    var recipe_page = '/recipes/'+req.params.name;
-    var processed_name = req.params.name.replace(/_/g, " ");
-
-    if(req.session && req.session.email) {
-        User.findOne({email: req.session.email}).then(function(user) {
-            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
-                
-                recipe.description = req.body.description;
-                recipe.main_image_url = req.body.main_image_url;
-                recipe.video_url = req.body.video_url;
-                recipe.prep_time = req.body.prep_time;
-                recipe.cook_time = req.body.cook_time;
-                
-                });
-
-                console.log(recipe);
-
-                console.log('recipe save');
-                recipe.saveAsync()
-                .then(function() {
-                    console.log("save successful");
-                    res.redirect(303, recipe_page);
-                }).catch(function(err) {
-                    console.log("error: " + err);
-                    res.redirect(303, '/');
-                });
-                });
-            }
-        });
-
-recipesController.put('/updateStep', function(req, res) {
-    var recipe_page = '/recipes/'+req.params.name;
-    var processed_name = req.params.name.replace(/_/g, " ");
-
-    if(req.session && req.session.email) {
-        User.findOne({email: req.session.email}).then(function(user) {
-            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
-                
-                recipe.description = req.body.description;
-                recipe.main_image_url = req.body.main_image_url;
-                recipe.video_url = req.body.video_url;
-                recipe.prep_time = req.body.prep_time;
-                recipe.cook_time = req.body.cook_time;
-                
-                });
-
-                console.log(recipe);
-
-                console.log('recipe save');
-                recipe.saveAsync()
-                .then(function() {
-                    console.log("save successful");
-                    res.redirect(303, recipe_page);
-                }).catch(function(err) {
-                    console.log("error: " + err);
-                    res.redirect(303, '/');
-                });
-                });
-            }
-        });
-
 
 module.exports = recipesController;

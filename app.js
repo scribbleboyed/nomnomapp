@@ -1,6 +1,7 @@
 require('dotenv').load();
 
 var express = require('express');
+var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,16 +11,18 @@ var bodyParser = require('body-parser');
 var dbConfig = require('./db/config.js');
 var Promise = require('bluebird');
 var mongoose = Promise.promisifyAll(require('mongoose'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cookie-parser')(credentials.cookieSecret));
 app.use(require('express-session')({resave: false, saveUninitialized: false, secret: credentials.cookieSecret }));
 app.use(express.static(path.join(__dirname, 'public')));

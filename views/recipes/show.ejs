@@ -1,19 +1,36 @@
 <% include ../partials/header %>
 
+<% var processed_name = recipe.name.replace(/ /g, "_"); %>
 
-<form action="/recipes/update" method="put">
+<form action="/recipes/<%= processed_name %>/update" method="post">
 	<div class="showContainer">
 		<input type="text" class="editable textFieldEdit recipe" id="title" value="<%= recipe.name %>" disabled>
-		<textarea class="editable textFieldEdit recipe" id ="description" disabled><%= recipe.description %></textarea>
-		<input type="text" class="editable textFieldEdit recipe" id="prep_time" value="<%= recipe.prep_time %>" disabled>
-		<input type="text" class="editable textFieldEdit recipe" id="cook_time" value="<%= recipe.cook_time %>" disabled>
+		<textarea class="editable textFieldEdit recipe" id ="description" name="description" disabled><%= recipe.description %></textarea>
+		<input type="text" class="editable textFieldEdit recipe" id="prep_time" name="prep_time" value="<%= recipe.prep_time %>" disabled>
+		<input type="text" class="editable textFieldEdit recipe" id="cook_time" name="cook_time" value="<%= recipe.cook_time %>" disabled>
 		<input type="submit" id="updateButton" value="Update Recipe">
+	</div>
+</form>
+
+<form action="/recipes/<%= processed_name %>/update-ingredient" method="post">
+	<div class="showContainer">
+		<h1>Ingredients</h1>
+		<input type="text" class="editable textFieldEdit recipe" id="title" name="ingredient-name" value="<%= recipe.ingredients.name %>" disabled>
+		<input type="text" class="editable textFieldEdit recipe" id="title" name="ingredient-quantity" value="<%= recipe.ingredients.quantity %>" disabled>
+		<input type="submit" id="updateButton" value="Add Ingredient">
+	</div>
+</form>
+
+<form action="/recipes/<%= processed_name %>/update-step" method="post">
+	<div class="showContainer">
+		<h1>Steps</h1>
+		<input type="text" class="editable textFieldEdit recipe" id="title" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled>
+		<input type="text" class="editable textFieldEdit recipe" id="title" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>
+		<input type="submit" id="updateButton" value="Add Steps">
 	</div>
 </form>
 
 <button id="editButton">Edit Recipe</button>
 <button class="cookbookButton" id-"saveButton">Save to Cookbook</button>
-<button class="cookbookButton" id="ingredientButton">Add Ingredient</button>
-<button class="cookbookButton" id="stepButton">Add Step</button>
 
 </body>
