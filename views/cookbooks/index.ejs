@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+	<form action="/cookbooks/create" method="post">
+
+	    <label name="name">Cookbook Name</label>
+	    <input type="text" name="name" value=""/>
+		</br>
+
+	    <label name="description">Description</label>
+	    <input type="text" name="description" value=""/>    
+	    </br>
+
+	   	<label name="image_url">Image</label>
+	    <input type="text" name="image_url" value=""/>    
+	    </br>
+
+	    <input type="submit" value="Create New Cookbook">
+
+	</form>
+	<br/>
+	<div class="container">
+
+		<% cookbooks.forEach(function(cookbook) { %>
+			<% var name_underscore = cookbook.name.replace(/ /g,"_"); %>
+
+			<a href="/cookbooks/<%= name_underscore %>">
+			<div class="cookbook">
+				<div class="outerDiv" style="background: url('<%= cookbook.image_url %>');">
+					<div class="innerDiv">
+						<h2><%= cookbook.name %></h2>
+						<p><%= cookbook.description %></p>
+						<p>by <%= cookbook.user_name %></p>
+					</div>
+				</div>
+			</div>
+			</a>
+
+		<% }) %>
+
+	</div>
