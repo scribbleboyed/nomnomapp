@@ -10,13 +10,13 @@ $(document).ready(function() {
 
 	$('#editButton').click(function(e) {
 		e.preventDefault();
+		$('#updateButton').toggle();
 		if ($('.editable').attr('disabled')) {
 			$('.editable').removeAttr('disabled');
 			$('.editable').addClass('editMode');
 		} else {
 			$('.editable').attr('disabled', 'disabled');
 			$('.editable').removeClass('editMode');
-			$('#updateButton').toggle();
 		}
 	});
 });
