@@ -45,17 +45,33 @@ recipesController.get('/create', function(req, res) {
     }
 });
 
-recipesController.get('/:id', function(req, res) {
-    Recipe.find({}).execAsync().then(function(recipe) {
-        console.log("recipe: "+ recipe);
+recipesController.get('/:name', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if (req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user){
+            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+                console.log("recipe: "+ recipe);
+                res.render('recipes/show.ejs',{
+                    recipe: recipe,
+                    curr_user: user.username
+                });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
+    } else {
+        Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+            console.log("recipe: "+ recipe);
             res.render('recipes/show.ejs',{
                 recipe: recipe,
+                curr_user: null
             });
-        })
-        .catch(function (err) {
+        }).catch(function (err) {
             console.log(err);
         });
-    });
+    }
+});
 
 recipesController.post('/create', function(req, res) {
     console.log(req);
