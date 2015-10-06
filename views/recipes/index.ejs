@@ -1,1 +1,15 @@
+<% include ../partials/header %>
+
 <h1>ALL RECIPES</h1>
+
+<% if (recipes && recipes.length > 0 ){ %>
+    <table>
+        <tbody>
+            <% for(var i=0; i < recipes.length; i++) { %>
+                <tr>
+                    <td><%= recipes[i].name %></td> 
+                </tr>
+            <% } %>
+        </tbody>
+    </table>    
+<% } %>
