@@ -4,32 +4,46 @@ var User = require('../models/user.js');
 var Recipe = require('../models/recipe.js');
 
 recipesController.get('/', function(req, res) {
-    Recipe.find({}).execAsync().then(function(recipes) {
+    if (req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user){
+            Recipe.find({}).execAsync().then(function(recipes) {
+                res.render('recipes/index.ejs',{
+                    recipes: recipes,
+                    curr_user: user.username
+                });
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        });
+    } else {
+        Recipe.find({}).execAsync().then(function(recipes) {
             res.render('recipes/index.ejs',{
                 recipes: recipes,
+                curr_user: null
             });
         })
         .catch(function (err) {
             console.log(err);
         });
-    });
+    }
+});
 
 recipesController.get('/create', function(req, res) {
 
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
-            user.saveAsync().then(function (recipes) {
-                    res.render('recipes/new.ejs', {
-                        recipes: recipes,
-                        curr_user: user.username
-                    });
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+            res.render('recipes/new.ejs', {
+                    curr_user: user.username
+            }).catch(function (err) {
+                console.log(err);
             });
-        }
-    });
+        });
+    } else {
+        console.log("User must be logged in.");
+        res.redirect('/recipes');
+    }
+});
 
 recipesController.get('/:id', function(req, res) {
     Recipe.find({}).execAsync().then(function(recipe) {
@@ -44,7 +58,7 @@ recipesController.get('/:id', function(req, res) {
     });
 
 recipesController.post('/create', function(req, res) {
-    console.log('hello');
+    console.log(req);
     if(req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
             user.saveAsync().then(function () {
@@ -57,19 +71,13 @@ recipesController.post('/create', function(req, res) {
                     video_url: req.body.video_url,
                     prep_time: req.body.prep_time,
                     cook_time: req.body.cook_time,
-                    categories: req.body.categories
+                    categories: req.body.categories,
+                    // ingredients: req.body.ingredients,
+                    // steps: req.body.steps
                 });
-                
-                    ingredients: [{
-                        name: req.body.ingredients.name,
-                        serving_size: req.body.ingredients.serving_size,
-                    }],
 
-                    steps: [{
-                        instruction: req.body.instruction,
-                        image_url: req.body.image_url
-                    }],
-                    
+                console.log(recipe);
+
                 console.log('recipe save');
                 recipe.saveAsync()
                 .then(function() {
@@ -81,6 +89,8 @@ recipesController.post('/create', function(req, res) {
                 });
             });
         });
+    } else {
+        res.render('/recipes');
     }
 });
 

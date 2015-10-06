@@ -1,3 +1,5 @@
+<% include ../partials/header %>
+
 <h1>ALL RECIPES</h1>
 
 <% if (recipes && recipes.length > 0 ){ %>
@@ -7,8 +9,6 @@
                 <tr>
                     <td><%= recipes[i].name %></td> 
                     <!-- Add link to specific recipe; ahref="'recipes/'+[i]" -->
-                    <td><%= recipes[i].url %></td>
-                    <td><%= recipes[i].details.color %></td>
                 </tr>
             <% } %>
         </tbody>
