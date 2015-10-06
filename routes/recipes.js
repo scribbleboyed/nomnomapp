@@ -55,19 +55,21 @@ recipesController.post('/create', function(req, res) {
                     description: req.body.description,
                     main_image_url: req.body.main_image_url,
                     video_url: req.body.video_url,
-                    ingredients: [{
-                        name: req.body.ingredients[].name,
-                        serving_size: req.body.ingredients[].serving_size,
-                    }],
                     prep_time: req.body.prep_time,
                     cook_time: req.body.cook_time,
+                    categories: req.body.categories
+                });
+                
+                    ingredients: [{
+                        name: req.body.ingredients.name,
+                        serving_size: req.body.ingredients.serving_size,
+                    }],
+
                     steps: [{
                         instruction: req.body.instruction,
                         image_url: req.body.image_url
                     }],
-                    categories: req.body.categories
-                });
-
+                    
                 console.log('recipe save');
                 recipe.saveAsync()
                 .then(function() {

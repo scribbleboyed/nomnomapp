@@ -29,11 +29,11 @@
 		<h2>Ingredients</h2>
 		<div id="ingredient-container">
 			<div id="ingredient-form">
-				<label name="ingredients[i].serving_size">Serving Size</label>
-			    <input type="text" name="ingredients[i].serving_size" value=""/>
+				<label name="ingredients.serving_size">Serving Size</label>
+			    <input type="text" name="ingredients.serving_size" value=""/>
 				</br>
-				<label name="ingredients[i].name">Ingredient</label>
-			    <input type="text" name="ingredients[i].name" value=""/>
+				<label name="ingredients.name">Ingredient</label>
+			    <input type="text" name="ingredients.name" value=""/>
 				</br>
 			</div>
 		</div>
@@ -42,11 +42,11 @@
 		<h2>Steps</h2>
 		<div id="step-container">
 			<div id="step-form">
-	            <label name="steps[s].instruction">Step</label>
-			    <input type="text" name="steps[s].instruction" value=""/>
+	            <label name="steps.instruction">Step</label>
+			    <input type="text" name="steps.instruction" value=""/>
 				</br>
-				<label name="steps[s].image_url">Image_URL</label>
-			    <input type="text" name="steps[s].image_url" value=""/>
+				<label name="steps.image_url">Image_URL</label>
+			    <input type="text" name="steps.image_url" value=""/>
 				</br>
 			</div>
 		</div>
@@ -60,12 +60,14 @@
 
 var i = 0;
 var s = 0;
+var ingredients = [];
+var steps = [];
 
 	$('#ingredients-button').click(function() {
 		console.log(i);
 		i += 1;
 
-		var ingredientForm = $('<div id="ingredient-form"><label name="ingredient[i].serving_size">Serving Size</label><input type="text" name="ingredient[i].serving_size" value=""/></br><label name="ingredient[i].name">Ingredient</label><input type="text" name="ingredient[i].name" value=""/></br></div>');
+		var ingredientForm = $('<div id="ingredient-form"><label name="ingredient.serving_size">Serving Size</label><input type="text" name="ingredient.serving_size" value=""/></br><label name="ingredient.name">Ingredient</label><input type="text" name="ingredient.name" value=""/></br></div>');
 
 		$('#ingredient-container').append(ingredientForm);
 
@@ -76,7 +78,7 @@ var s = 0;
 		console.log(s);
 		s += 1;
 
-		var stepForm = $('<div id="step-form"><label name="steps[s].instruction">Step</label><input type="text" name="steps[s].instruction" value=""/></br><label name="steps[s].image_url">Image_URL</label><input type="text" name="steps[s].image_url" value=""/></br></div>');
+		var stepForm = $('<div id="step-form"><label name="steps.instruction">Step</label><input type="text" name="steps.instruction" value=""/></br><label name="steps.image_url">Image_URL</label><input type="text" name="steps.image_url" value=""/></br></div>');
 		$('#step-container').append(stepForm);
 
 		console.log(s);
