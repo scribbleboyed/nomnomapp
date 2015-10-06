@@ -66,3 +66,22 @@ div.cookbook p {
 textarea {
 	resize: none;
 }
+
+.showContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1000px;
+	text-align: center;
+}
+
+.recipe {
+	text-align: center;
+}
+
+.recipe#title {
+	font-size: 55px;
+}
+
+.recipe#description {
+	height: auto;
+}
