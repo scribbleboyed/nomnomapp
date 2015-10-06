@@ -46,6 +46,7 @@ recipesController.get('/create', function(req, res) {
 });
 
 recipesController.get('/:name', function(req, res) {
+    // var downcase_name = req.params.name.toLowerCase();
     var processed_name = req.params.name.replace(/_/g, " ");
 
     if (req.session && req.session.email) {

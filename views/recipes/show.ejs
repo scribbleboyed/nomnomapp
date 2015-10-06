@@ -1,15 +1,16 @@
 <% include ../partials/header %>
 
-<button class="editButton">Edit</button>
+<button class="editButton">Edit Recipe</button>
+<button class="cookbookButton">Save to Cookbook</button>
 
 <form action="/recipes/update" method="post">
 
 	<div class="container">
-		<input type="text" class="textFieldEdit" value="<%= recipe.name %>" disabled>
-		<textarea class="textFieldEdit" disabled><%= recipe.description %></textarea>
-		<input type="text" class="textFieldEdit" value="<%= recipe.prep_time %>" disabled>
-		<input type="text" class="textFieldEdit" value="<%= recipe.cook_time %>" disabled>
-		<input type="submit" class="updateButton" value="Update Recipe">
+		<input type="text" class="editable textFieldEdit" value="<%= recipe.name %>" disabled>
+		<textarea class="editable textFieldEdit" disabled><%= recipe.description %></textarea>
+		<input type="text" class="editable textFieldEdit" value="<%= recipe.prep_time %>" disabled>
+		<input type="text" class="editable textFieldEdit" value="<%= recipe.cook_time %>" disabled>
+		<input type="submit" id="updateButton" value="Update Recipe">
 	</div>
 </form>
 
