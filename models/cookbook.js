@@ -5,8 +5,8 @@ var cookbookSchema = mongoose.Schema({
 	description: String,
 	image_url: String,
 	user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	username: {type: String, ref: 'User'},
 	recipe_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
-	categories: [{type: String, ref: 'Category'}],
 	tags: [{type: String}]
 });
 

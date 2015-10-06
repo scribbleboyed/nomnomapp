@@ -1,25 +1,35 @@
 <% include ../partials/header %>
 
-<button id="editButton">Edit</button>
+<% var processed_name = cookbook.name.replace(/ /g, "_"); %>
 
-<form action="/cookbooks/update" method="post">
-
-<div class="jumbotron" style="height: 400px; background: url('<%= cookbook.image_url %>'); background-size: cover; ">
-	<h1><input type="text" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled></h1>
+<div class="container" style="height: 400px; background: url('<%= cookbook.image_url %>'); background-size: cover; ">
+	<button id="editButton">Edit</button>
 </div>
 
 <div class="container">
-	<h3><textarea cols="40" rows="5" class="editable textFieldEdit"><%= cookbook.description %></textarea></h3>
-	<p><input type="text" class="editable textFieldEdit" value="<%= cookbook.image_url %>" disabled></p>
-	<input type="submit" id="updateButton" value="Update Cookbook">
+
+<form action="/cookbooks/<%= processed_name %>/update" method="post">
+
+	<h1>
+		<input type="text" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled>
+	</h1>
+
+	<h3><input type="textarea" name="description" class="editable textFieldEdit" value="<%= cookbook.description %>" disabled></h3>
+
+	<p>
+		<input type="text" name="image_url" class="editable textFieldEdit" value="<%= cookbook.image_url %>" disabled>
+	</p>
+	
+	<input type="submit" id="updateButton" value="Update Cookbook" style="display: none;">
+
 </div>
 
-</form>
-
 <% if (curr_user) { %>
+
 	<form action="/cookbooks/add_tag" method="post">
 	    <label name="tag">Tag</label>
 	    <input type="text" name="tag" value=""/>
 	    <input type="submit" value="Add Tag">
 	</form>
+
 <% } %>

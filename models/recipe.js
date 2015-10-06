@@ -8,15 +8,13 @@ var recipeSchema = mongoose.Schema({
 	video_url: String,
 	ingredients: [{
 		name: String,
-		serving_size: String
+		quantity: String
 	}],
 	prep_time: String,
 	cook_time: String,
-	steps: [{
-		instruction: String,
-		image_url: String
-	}],
-	categories: [{type: String, ref: 'Category'}]
+	serving_size: String,
+	steps: [{type: String}],
+	tags: [{type: String}]
 });
 
 var Recipe = mongoose.model('Recipe', recipeSchema);

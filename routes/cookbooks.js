@@ -8,11 +8,7 @@ cookbooksController.get('/', function(req, res) {
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.find({}).execAsync().then(function(cookbooks) {
-                cookbooks.forEach(function(cookbook) {
-                    User.find({id: cookbook.user_id}).then(function(user) {
-                        cookbook.username = user.username;
-                    });
-                });
+                console.log(cookbooks);
                 res.render('cookbooks/index.ejs',{
                     cookbooks: cookbooks,
                     curr_user: user.username
@@ -40,7 +36,6 @@ cookbooksController.get('/:name', function(req, res) {
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.findOne({name: processed_name}).then(function(cookbook){
-                console.log(cookbook);
                 res.render('cookbooks/show.ejs', {
                     cookbook: cookbook,
                     curr_user: user.username
@@ -49,10 +44,11 @@ cookbooksController.get('/:name', function(req, res) {
         });
     } else {
         Cookbook.findOne({name: processed_name}).then(function(cookbook){
-            console.log(cookbook);
-            res.render('cookbooks/show.ejs', {
-                cookbook: cookbook,
-                curr_user: null
+            User.findOne({id: cookbook.user_id}).then(function(author) {
+                res.render('cookbooks/show.ejs', {
+                    cookbook: cookbook,
+                    curr_user: null
+                });
             });
         });
     }
@@ -66,7 +62,8 @@ cookbooksController.post('/create', function(req, res) {
                 name: req.body.name,
                 description: req.body.description,
                 image_url: req.body.image_url,
-                user_id: user.id
+                user_id: user.id,
+                username: user.username
             });
 
             cookbook.saveAsync()
@@ -81,6 +78,32 @@ cookbooksController.post('/create', function(req, res) {
         });
     } else {
         console.log("User must be logged in");
+    }
+});
+
+cookbooksController.post('/:name/update', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+    var redirectURL = "/cookbooks/" + req.params.name;
+    if(req.session && req.session.email) {
+        Cookbook.updateAsync({name: processed_name},
+        {$set:
+            {
+                name: req.body.name,
+                description: req.body.description,
+                image_url: req.body.image_url
+            }
+        }, {multi: true}).then(function() {
+            var processed_url = req.body.name.replace(/ /g, "_");
+            var redirectURL = "/cookbooks/" + processed_url;
+            console.log("Cookbook updated");
+            res.redirect(303, redirectURL);
+        }).catch(function(err) {
+            console.log("error: " + err);
+            res.redirect(303, redirectURL);
+        });
+    } else {
+        console.log("User must be logged in");
+        res.redirect(303, redirectURL);
     }
 });
 

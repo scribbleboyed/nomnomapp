@@ -39,6 +39,10 @@ switch(app.get('env')){
         throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
+require('./db/seed.js').seedUsers();
+require('./db/seed.js').seedRecipes();
+require('./db/seed.js').seedCookbooks();
+
 app.use(require('./routes'));
 
 // catch 404 and forward to error handler

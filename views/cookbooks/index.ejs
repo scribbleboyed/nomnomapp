@@ -21,15 +21,15 @@
 	<div class="container">
 
 		<% cookbooks.forEach(function(cookbook) { %>
-			<% var name_underscore = cookbook.name.replace(/ /g,"_"); %>
+			<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
 
-			<a href="/cookbooks/<%= name_underscore %>">
+			<a href="/cookbooks/<%= processed_name %>">
 			<div class="cookbook">
 				<div class="outerDiv" style="background: url('<%= cookbook.image_url %>');">
 					<div class="innerDiv">
 						<h2><%= cookbook.name %></h2>
 						<p><%= cookbook.description %></p>
-						<p>by <%= cookbook.user_name %></p>
+						<p>by <%= cookbook.username %></p>
 					</div>
 				</div>
 			</div>

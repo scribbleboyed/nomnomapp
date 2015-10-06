@@ -46,12 +46,16 @@ div.cookbook p {
 	text-shadow: 1px 1px 2px #000;
 }
 
-<<<<<<< HEAD
 .textFieldEdit {
-	border: none;
+	border: 1px solid #000;
 	width: 100%;
 	padding: 10px;
 	background: none;
+	text-align: center;
+}
+
+.textFieldEdit h1 {
+	color: #fff;
 }
 
 .editMode {
