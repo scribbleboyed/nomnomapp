@@ -47,28 +47,29 @@ recipesController.get('/create', function(req, res) {
 
 recipesController.get('/:name', function(req, res) {
 
+    // var downcase_name = req.params.name.toLowerCase();
     var processed_name = req.params.name.replace(/_/g, " ");
 
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
-            Recipe.find({name: processed_name}).execAsync().then(function(recipe) {
+            Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+                console.log("recipe: "+ recipe);
                 res.render('recipes/show.ejs',{
                     recipe: recipe,
                     curr_user: user.username
                 });
-            })
-            .catch(function (err) {
+            }).catch(function (err) {
                 console.log(err);
             });
         });
     } else {
-        Recipe.find({name: processed_name}).execAsync().then(function(recipe) {
+        Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
+            console.log("recipe: "+ recipe);
             res.render('recipes/show.ejs',{
                 recipe: recipe,
                 curr_user: null
             });
-        })
-        .catch(function (err) {
+        }).catch(function (err) {
             console.log(err);
         });
     }
