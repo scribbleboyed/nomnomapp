@@ -45,20 +45,36 @@ recipesController.get('/create', function(req, res) {
     }
 });
 
-recipesController.get('/:id', function(req, res) {
-    Recipe.find({}).execAsync().then(function(recipe) {
-        console.log("recipe: "+ recipe);
+recipesController.get('/:name', function(req, res) {
+
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if (req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user){
+            Recipe.find({name: processed_name}).execAsync().then(function(recipe) {
+                res.render('recipes/show.ejs',{
+                    recipe: recipe,
+                    curr_user: user.username
+                });
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        });
+    } else {
+        Recipe.find({name: processed_name}).execAsync().then(function(recipe) {
             res.render('recipes/show.ejs',{
                 recipe: recipe,
+                curr_user: null
             });
         })
         .catch(function (err) {
             console.log(err);
         });
-    });
+    }
+});
 
 recipesController.post('/create', function(req, res) {
-    console.log(req);
     if(req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
             user.saveAsync().then(function () {
@@ -70,10 +86,7 @@ recipesController.post('/create', function(req, res) {
                     main_image_url: req.body.main_image_url,
                     video_url: req.body.video_url,
                     prep_time: req.body.prep_time,
-                    cook_time: req.body.cook_time,
-                    categories: req.body.categories,
-                    // ingredients: req.body.ingredients,
-                    // steps: req.body.steps
+                    cook_time: req.body.cook_time
                 });
 
                 console.log(recipe);
@@ -89,8 +102,6 @@ recipesController.post('/create', function(req, res) {
                 });
             });
         });
-    } else {
-        res.render('/recipes');
     }
 });
 

@@ -1,5 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #888;
+}
+
+#main-nav {
+	opacity: 0.8;
 }
 
 a {
@@ -9,6 +14,7 @@ a {
 video, source {
 	margin: 0px;
 	padding: 0px;
+	border-radius: 10px;
 }
 
 div.cookbook {
@@ -38,4 +44,20 @@ div.cookbook h2 {
 
 div.cookbook p {
 	text-shadow: 1px 1px 2px #000;
+}
+
+.textFieldEdit {
+	border: none;
+	width: 100%;
+	padding: 10px;
+	background: none;
+}
+
+.editMode {
+	border-bottom: 2px dotted red;
+	color: #aaa;
+}
+
+textarea {
+	resize: none;
 }

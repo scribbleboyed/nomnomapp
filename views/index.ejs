@@ -1,36 +1,39 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 	<div class="container">
+
+	<% recipes.forEach(function(recipe) { %>
+
+	<% var processed_name = recipe.name.replace(/ /g, "_"); %>
+
+	<a href="/recipes/<%= processed_name %>">
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-8">
 				<div class="videoDiv">
-					<video class="foodGif" width="100%">
-			  			<source src="http://i.imgur.com/EkiMiVz.webm" type="video/webm">
+					<video class="foodGif" width="100%" loop="true">
+			  			<source src="<%= recipe.main_image_url %>" type="video/webm">
 								Your browser does not support the video tag.
 					</video>		
 				</div>
 			</div>
-			<div class="col-lg-6">
-						<div class="videoDiv">
-				<video class="foodGif" width="100%">
-		  			<source src="http://i.imgur.com/0WPb9Xo.webm" type="video/webm">
-							Your browser does not support the video tag.
-				</video>		
-			</div>
+			<div class="col-lg-4" style="padding: 0px 20px 10px 20px;">
+				<h1><%= recipe.name %></h1>
+				<p style="background: #446688; padding: 10px; color: #fff;"><%= recipe.description %></p>
+				<br/>
+				<p>Prep Time: <%= recipe.prep_time %> min</p>
+				<p>Cook Time: <%= recipe.cook_time %> min</p>
 			</div>
 		</div>
+	</a>
+
+	<% }); %>
+
 	</div>
 	
 <script>
 	$(document).ready(function() {
-		$('.videoDiv').hover(function() {
-			$(this).children("video")[0].play();
-		}, function() {
-			var el = $(this).children("video")[0];
-			el.pause();
-			el.currentTime = 0;
-		});
+
 	});
 </script>
 
-<% include partials/footer %>
+<% include ../partials/footer %>

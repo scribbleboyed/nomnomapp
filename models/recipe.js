@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 var recipeSchema = mongoose.Schema({
 	name: String,
-	user_name: {type: String, ref: 'User'},
 	description: String,
+	user_name: {type: String, ref: 'User'},
 	main_image_url: String,
 	video_url: String,
 	ingredients: [{
