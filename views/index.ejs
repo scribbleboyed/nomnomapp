@@ -1,43 +1,10 @@
 <% include partials/header %>
 
-	<div class="container">
-
-	<% recipes.forEach(function(recipe) { %>
-
-	<% var processed_name = recipe.name.replace(/ /g, "_"); %>
-
-	<a href="/recipes/<%= processed_name %>">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="videoDiv">
-					<video class="foodGif" width="100%" loop="true">
-			  			<source src="<%= recipe.main_image_url %>" type="video/webm">
-								Your browser does not support the video tag.
-					</video>		
-				</div>
-			</div>
-			<div class="col-lg-4" style="padding: 0px 20px 10px 20px;">
-				<h1><%= recipe.name %></h1>
-				<p style="background: #446688; padding: 10px; color: #fff;"><%= recipe.description %></p>
-				<br/>
-				<p>Prep Time: <%= recipe.prep_time %> min</p>
-				<p>Cook Time: <%= recipe.cook_time %> min</p>
-				<h3>Ingredients</h3>
-				<p>
-				<% recipe.ingredients.forEach(function(ingredient) { %>
-					<b><%= ingredient.name %></b> <%= ingredient.quantity %><br/>
-				<% }); %>
-				</p>
-			</div>
-		</div>
-	</a>
-
-	<% }); %>
-
+	<div id="recipes-container" class="container">
 	</div>
-	
-<script>
 
-</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+		<script src="../javascripts/recipe.js"></script>
 
 <% include partials/footer %>
