@@ -36,8 +36,6 @@ recipesController.get('/search', function(req, res) {
         User.findOne({email: req.session.email}).then(function(user){
             res.render('recipes/search.ejs', {
                 curr_user: user.username
-            }).catch(function (err) {
-                console.log(err);
             });
         });
     // } else {
@@ -46,15 +44,15 @@ recipesController.get('/search', function(req, res) {
     }
 });
 
-recipesController.post('/search', function(req, res) {
-    var searchParam = req.body.search.toLowerCase();
-        Recipe.find({}).then(function(recipes) {
-                res.render('recipes/search.ejs',{
-                    recipes: recipes,
-                    searchParam: req.body.search.toLowerCase(),
-                });
-            });
-    });
+// recipesController.post('/search', function(req, res) {
+//     var searchParam = req.body.search.toLowerCase();
+//         Recipe.find({}).then(function(recipes) {
+//                 res.render('recipes/search.ejs',{
+//                     recipes: recipes,
+//                     searchParam: req.body.search.toLowerCase(),
+//                 });
+//             });
+//     });
 
 
                 // if (req.session && req.session.email) {
