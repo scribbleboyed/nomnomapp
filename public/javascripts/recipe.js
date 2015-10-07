@@ -28,39 +28,118 @@ $(document).ready(function() {
 			});
 			recipesContainer.append(compiled);
 		});
-	};
-});
 
-$('#search-button').click(function(e) {
+		$('#search-button').click(function(e) {
 
-	e.preventDefault();
-	var value = $('#search-term').val().toLowerCase().toString();
-	console.log("Search term: " + value);
-	emptyRecipes();
+			e.preventDefault();
+			var value = $('#search-term').val().toLowerCase().toString();
+			console.log("Search term: " + value);
+			emptyRecipes();
 
-	var resultRecipes = RECIPES;
+			var resultRecipes = RECIPES;
 
-	var queryCollection = [];
-		
-	resultRecipes.forEach (function (recipe) {
-		var resultIngredients = recipe.ingredients;
+			var queryCollection = [];
+				
+			resultRecipes.forEach (function (recipe) {
+				var resultIngredients = recipe.ingredients;
 
-		resultIngredients.forEach(function(ingredient) {
-			var ingredientName = ingredient.name.toLowerCase();
-			console.log("Ingredient: " + ingredientName);
-			if (ingredientName.indexOf(value) > -1) {
-				if (queryCollection.indexOf(recipe) == -1) {
-					queryCollection.push(recipe);
-				}
-			}
+				resultIngredients.forEach(function(ingredient) {
+					var ingredientName = ingredient.name.toLowerCase();
+					console.log("Ingredient: " + ingredientName);
+					if (ingredientName.indexOf(value) > -1) {
+						if (queryCollection.indexOf(recipe) == -1) {
+							queryCollection.push(recipe);
+						}
+					}
+				});
+			});
+
+			queryCollection.forEach(function(recipe) {
+				console.log("recipe: " + recipe);
+				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+				var compiled = recipeTemplate({
+				recipe: recipe,
+				url: processed_url
+			});
+				recipesContainer.append(compiled);
+			});
 		});
-	});
 
-	var compiled = queryCollection({
-		recipe: recipe,
-		url: processed_url
-	});
-	
-	recipesContainer.append(compiled);
+		$('#allergy-button').click(function(e) {
 
+			e.preventDefault();
+			var value = $('#search-term').val().toLowerCase().toString();
+			var allergy = $('#allergy-term').val().toLowerCase().toString();
+			console.log("Search term: " + value);
+			console.log("Allergy term: " + allergy);
+
+			emptyRecipes();
+
+			var resultRecipes = RECIPES;
+
+			var queryCollection = [];
+				
+			resultRecipes.forEach (function (recipe) {
+				var resultIngredients = recipe.ingredients;
+
+				resultIngredients.forEach(function(ingredient) {
+					var ingredientName = ingredient.name.toLowerCase();
+					console.log("Ingredient: " + ingredientName);
+					if ((ingredientName.indexOf(value) > -1) && (ingredientName.indexOf(allergy) < -1)){
+						if (queryCollection.indexOf(recipe) == -1) {
+							queryCollection.push(recipe);
+						}
+					}
+				});
+			});
+
+			queryCollection.forEach(function(recipe) {
+				console.log("recipe: " + recipe);
+				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+				var compiled = recipeTemplate({
+				recipe: recipe,
+				url: processed_url
+			});
+				recipesContainer.append(compiled);
+			});
+		});
+
+		$('.top-recipe').click(function(e) {
+
+			e.preventDefault();
+			var value = $(this).attr('id');
+			console.log('ID: ' + value);
+			emptyRecipes();
+
+			var resultRecipes = RECIPES;
+
+			var queryCollection = [];
+				
+			resultRecipes.forEach (function (recipe) {
+				var resultIngredients = recipe.ingredients;
+
+				resultIngredients.forEach(function(ingredient) {
+					var ingredientName = ingredient.name.toLowerCase();
+					console.log("Ingredient: " + ingredientName);
+					if (ingredientName.indexOf(value) > -1) {
+						if (queryCollection.indexOf(recipe) == -1) {
+							queryCollection.push(recipe);
+						}
+					}
+				});
+			});
+
+			queryCollection.forEach(function(recipe) {
+				console.log("recipe: " + recipe);
+				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+				var compiled = recipeTemplate({
+				recipe: recipe,
+				url: processed_url
+			});
+				recipesContainer.append(compiled);
+			});
+		});
+
+
+	};
 });
