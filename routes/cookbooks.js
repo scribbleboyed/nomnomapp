@@ -3,6 +3,7 @@ var cookbooksController = express.Router();
 var User = require('../models/user.js');
 var Recipe = require('../models/recipe.js');
 var Cookbook = require('../models/cookbook.js');
+var ObjectID = require('mongodb').ObjectID;
 
 cookbooksController.get('/', function(req, res) {
     if (req.session && req.session.email) {
@@ -33,24 +34,43 @@ cookbooksController.get('/', function(req, res) {
 
 cookbooksController.get('/:name', function(req, res) {
     var processed_name = req.params.name.replace(/_/g, " ");
+
     if (req.session && req.session.email) {
+
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.findOne({name: processed_name}).then(function(cookbook){
-                res.render('cookbooks/show.ejs', {
-                    cookbook: cookbook,
-                    curr_user: user.username
+                Recipe.findOne({_id: cookbook.recipe_ids[0]}).then(function(recipe) {
+                    res.render('cookbooks/show.ejs', {
+                        recipe: recipe,
+                        cookbook: cookbook,
+                        curr_user: user.username
+                    });
                 });
             });
         });
+
     } else {
         Cookbook.findOne({name: processed_name}).then(function(cookbook){
-            User.findOne({id: cookbook.user_id}).then(function(author) {
-                res.render('cookbooks/show.ejs', {
-                    cookbook: cookbook,
-                    curr_user: null
+            resultCookbook = cookbook;
+            var results = [];
+            cookbook.recipe_ids.forEach(function(recipe_id) {
+                //console.log("recipe_id: " + recipe_id);
+                Recipe.findOne({_id: cookbook.recipe_ids[0]}).then(function(recipe) {
+                    results.push(recipe);
                 });
             });
+            console.log(recipe);
+        }).then(function(result) {
+            console.log(result);
+
+            res.render('cookbooks/show.ejs', {
+                recipes: resultRecipes,
+                cookbook: resultCookbook,
+                curr_user: resultUser.username
+            });
+
         });
+
     }
 });
 

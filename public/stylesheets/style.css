@@ -17,6 +17,10 @@ video, source {
 	border-radius: 10px;
 }
 
+.recipe-item {
+	width: 300px;
+}
+
 div.cookbook {
 	display: inline-block;
 }
@@ -64,6 +68,8 @@ div.cookbook p {
 	border-bottom: 2px dotted red;
 	color: #aaa;
 }
+
+
 
 textarea {
 	resize: none;

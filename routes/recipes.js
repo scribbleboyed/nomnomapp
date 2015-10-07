@@ -2,6 +2,7 @@ var express = require('express');
 var recipesController = express.Router();
 var User = require('../models/user.js');
 var Recipe = require('../models/recipe.js');
+var Cookbook = require('../models/cookbook.js');
 
 recipesController.get('/', function(req, res) {
     if (req.session && req.session.email) {
@@ -52,10 +53,12 @@ recipesController.get('/:name', function(req, res) {
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
             Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
-                console.log("recipe: "+ recipe);
-                res.render('recipes/show.ejs',{
-                    recipe: recipe,
-                    curr_user: user.username
+                Cookbook.find({username: user.username}).then(function(cookbooks) {
+                    res.render('recipes/show.ejs',{
+                        recipe: recipe,
+                        cookbooks: cookbooks,
+                        curr_user: user.username
+                    });
                 });
             }).catch(function (err) {
                 console.log(err);
@@ -63,11 +66,11 @@ recipesController.get('/:name', function(req, res) {
         });
     } else {
         Recipe.findOne({name: processed_name}).execAsync().then(function(recipe) {
-            console.log("recipe: "+ recipe);
-            res.render('recipes/show.ejs',{
-                recipe: recipe,
-                curr_user: null
-            });
+                res.render('recipes/show.ejs',{
+                    recipe: recipe,
+                    cookbooks: null,
+                    curr_user: null
+                });
         }).catch(function (err) {
             console.log(err);
         });
@@ -96,6 +99,20 @@ recipesController.post('/:name/update', function(req, res) {
                 res.redirect(303, '/');
             });
     }
+});
+
+recipesController.post('/:name/:id/addTo', function(req, res) {
+    var processed_name = req.params.name.replace(/ /g, "_");
+    var redirectURL = "/recipes/" + processed_name;
+
+    Cookbook.updateAsync({_id: req.body.cookbook}, {
+        $push: { recipe_ids: req.params.id }
+    }).then(function() {
+        res.redirect(303, redirectURL);
+    }).catch(function(err) {
+        console.log("error: " + err);
+        res.redirect(303, redirectURL);
+    });
 });
 
 

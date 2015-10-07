@@ -24,12 +24,11 @@
 
 </div>
 
-<% if (curr_user) { %>
-
-	<form action="/cookbooks/add_tag" method="post">
-	    <label name="tag">Tag</label>
-	    <input type="text" name="tag" value=""/>
-	    <input type="submit" value="Add Tag">
-	</form>
-
-<% } %>
+	<div class="container">
+	<div class="recipe-item videoDiv">
+		<video class="foodGif" width="100%" loop="true">
+			<source src="<%= recipe.main_image_url %>" type="video/webm">
+				Your browser does not support the video tag.
+		</video>
+	</div>
+</div>
