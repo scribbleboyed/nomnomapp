@@ -79,6 +79,10 @@ div.cookbook p {
 	color: #aaa;
 }
 
+input {
+	width: 100%;
+}
+
 textarea {
 	resize: none;
 }
