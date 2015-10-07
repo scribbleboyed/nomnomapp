@@ -47,16 +47,24 @@ recipesController.get('/search', function(req, res) {
 
 recipesController.post('/search', function(req, res) {
     var searchParam = req.body.search.toLowerCase();
+        Recipe.find({}).then(function(recipes) {
+                res.render('recipes/search.ejs',{
+                    recipes: recipes,
+                    searchParam: req.body.search.toLowerCase(),
+                });
+            });
+    });
 
-    // if (req.session && req.session.email) {
-        Recipe.find({'ingredients.name': searchParam}, function(recipe){
-            console.log('recipe attempt:' + recipe);
-        });
+
+                // if (req.session && req.session.email) {
+        // Recipe.find({'ingredients.name': searchParam}, function(recipe){
+        //     console.log('recipe attempt:' + recipe);
+        // });
             // .catch(function (err) {
             //     console.log(err);
             // });
         // }
-    });
+    
 
 recipesController.get('/create', function(req, res) {
 
