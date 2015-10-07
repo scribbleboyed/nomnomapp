@@ -29,12 +29,41 @@ recipesController.get('/', function(req, res) {
     }
 });
 
+recipesController.get('/search', function(req, res) {
+
+    if (req.session && req.session.email) {
+        User.findOne({email: req.session.email}).then(function(user){
+            res.render('recipes/search.ejs', {
+                curr_user: user.username
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
+    // } else {
+    //     console.log("User must be logged in.");
+    //     res.redirect('/recipes');
+    }
+});
+
+recipesController.post('/search', function(req, res) {
+    var searchParam = req.body.search.toLowerCase();
+
+    // if (req.session && req.session.email) {
+        Recipe.find({'ingredients.name': searchParam}, function(recipe){
+            console.log('recipe attempt:' + recipe);
+        });
+            // .catch(function (err) {
+            //     console.log(err);
+            // });
+        // }
+    });
+
 recipesController.get('/create', function(req, res) {
 
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
             res.render('recipes/new.ejs', {
-                    curr_user: user.username
+                curr_user: user.username
             }).catch(function (err) {
                 console.log(err);
             });
