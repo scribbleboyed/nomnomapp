@@ -1,24 +1,10 @@
 <% include ../partials/header %>
 
-	<form action="/cookbooks/create" method="post">
-
-	    <label name="name">Cookbook Name</label>
-	    <input type="text" name="name" value=""/>
-		</br>
-
-	    <label name="description">Description</label>
-	    <input type="text" name="description" value=""/>    
-	    </br>
-
-	   	<label name="image_url">Image</label>
-	    <input type="text" name="image_url" value=""/>    
-	    </br>
-
-	    <input type="submit" value="Create New Cookbook">
-
-	</form>
-	<br/>
 	<div class="container">
+
+<p>
+<button class="btn btn-danger" data-toggle="modal" data-target="#addCookbookModal">Add Cookbook</button>
+</p>
 
 		<% cookbooks.forEach(function(cookbook) { %>
 			<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
@@ -38,3 +24,37 @@
 		<% }) %>
 
 	</div>
+
+<!-- Add Cookbook Modal -->
+<div id="addCookbookModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Log In</h4>
+      </div>
+      <div class="modal-body">
+		<form action="/cookbooks/create" method="post">
+
+		    <label name="name">Cookbook Name</label>
+		    <input type="text" name="name" value=""/>
+			</br>
+
+		    <label name="description">Description</label>
+		    <input type="text" name="description" value=""/>    
+		    </br>
+
+		   	<label name="image_url">Image</label>
+		    <input type="text" name="image_url" value=""/>    
+		    </br>
+
+		    <input type="submit" value="Create New Cookbook">
+
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
