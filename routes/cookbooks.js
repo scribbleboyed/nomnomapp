@@ -39,34 +39,19 @@ cookbooksController.get('/:name', function(req, res) {
 
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.findOne({name: processed_name}).then(function(cookbook){
-                Recipe.findOne({_id: cookbook.recipe_ids[0]}).then(function(recipe) {
-                    res.render('cookbooks/show.ejs', {
-                        recipe: recipe,
-                        cookbook: cookbook,
-                        curr_user: user.username
-                    });
+                res.render('cookbooks/show.ejs', {
+                    cookbook: cookbook,
+                    curr_user: user.username
                 });
             });
         });
 
     } else {
         Cookbook.findOne({name: processed_name}).then(function(cookbook){
-            resultCookbook = cookbook;
-            var results = [];
-            cookbook.recipe_ids.forEach(function(recipe_id) {
-                //console.log("recipe_id: " + recipe_id);
-                Recipe.findOne({_id: cookbook.recipe_ids[0]}).then(function(recipe) {
-                    results.push(recipe);
-                });
-            });
-            console.log(recipe);
-        }).then(function(result) {
-            console.log(result);
 
             res.render('cookbooks/show.ejs', {
-                recipes: resultRecipes,
-                cookbook: resultCookbook,
-                curr_user: resultUser.username
+                cookbook: cookbook,
+                curr_user: null
             });
 
         });

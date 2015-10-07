@@ -8,21 +8,30 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #000;
+}
+
+a:hover {
+	color: red;
 }
 
 video, source {
 	margin: 0px;
 	padding: 0px;
-	border-radius: 10px;
 }
 
 .recipe-item {
+	display: inline-block;
 	width: 300px;
+	margin: 10px;
 }
 
 div.cookbook {
 	display: inline-block;
+}
+
+#cookbook-heading {
+	padding: 10px;
 }
 
 div.outerDiv {
@@ -54,6 +63,7 @@ div.cookbook p {
 	width: 100%;
 	padding: 10px;
 	border: none;
+	background: none;
 }
 
 .textFieldEdit h1 {
@@ -68,8 +78,6 @@ div.cookbook p {
 	border-bottom: 2px dotted red;
 	color: #aaa;
 }
-
-
 
 textarea {
 	resize: none;

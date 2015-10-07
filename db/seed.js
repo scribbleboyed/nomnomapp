@@ -71,7 +71,7 @@ exports.seedCookbooks = function seedCookbooks () {
 				description: "I want to swim in a pool of pizza",
 				image_url: "http://media-cdn.tripadvisor.com/media/photo-s/02/8f/3b/1c/happy-herb-pizza.jpg",
 				username: "scribbleboyed",
-				recipe_ids: [],
+				recipes: ["Pizza Cones"],
 				tags: ["pizza"]
 			});
 
@@ -80,7 +80,7 @@ exports.seedCookbooks = function seedCookbooks () {
 				description: "What I'm feeling lazy and fat",
 				image_url: "http://www.kumandgo.com/content/uploads/2013/05/Donuts.jpg",
 				username: "scribbleboyed",
-				recipe_ids: [],
+				recipes: [],
 				tags: ["snack"]
 			});
 
@@ -89,7 +89,7 @@ exports.seedCookbooks = function seedCookbooks () {
 				description: "So much organic",
 				image_url: "http://www.mycity-web.com/wp-content/uploads/2015/04/Healthy_Fruit.jpg",
 				username: "scribbleboyed",
-				recipe_ids: [],
+				recipes: [],
 				tags: ["organic", "healthy"]
 			});
 		}

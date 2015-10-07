@@ -59,12 +59,8 @@ usersController.post('/login', function(req, res) {
 });
 
 usersController.get('/logout', function(req, res) {
-	if (req.session && req.session.email) {
-		delete req.session.email;
-		res.redirect(200, '/');
-	} else {
-		res.redirect(200, '/');
-	}
+	delete req.session.email;
+	res.redirect(200, '/');
 });
 
 module.exports = usersController;

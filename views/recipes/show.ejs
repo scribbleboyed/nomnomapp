@@ -6,7 +6,7 @@
 	<button id="editButton">Edit Recipe</button>
 
 	<% if (cookbooks) { %>
-		<form action="/recipes/<%= recipe.name %>/<%= recipe.id %>/addTo" method="post">
+		<form action="/recipes/<%= recipe.name %>/addTo" method="post">
 			<select name="cookbook" onchange="this.form.submit()">
 				<option value="" selected disabled>Add To Cookbook</option>
 				<% cookbooks.forEach(function(cookbook) { %>

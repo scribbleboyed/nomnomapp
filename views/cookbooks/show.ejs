@@ -2,17 +2,21 @@
 
 <% var processed_name = cookbook.name.replace(/ /g, "_"); %>
 
-<div class="container" style="height: 400px; background: url('<%= cookbook.image_url %>'); background-size: cover; ">
-	<button id="editButton">Edit</button>
+<div class="container" id="cookbook-heading" style="background: url('<%= cookbook.image_url %>'); background-size: cover; ">
+
+	<button type="button" class="btn btn-danger" id="editButton">Edit</button>
+	<p><br/>
+
+	<form action="/cookbooks/<%= processed_name %>/update" method="post">
+
+	<h1>
+		<input type="text" id="title" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled>
+	</h1>
+
 </div>
 
 <div class="container">
 
-<form action="/cookbooks/<%= processed_name %>/update" method="post">
-
-	<h1>
-		<input type="text" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled>
-	</h1>
 
 	<h3><input type="text" name="description" class="editable textFieldEdit" value="<%= cookbook.description %>" disabled></h3>
 
@@ -22,13 +26,17 @@
 	
 	<input type="submit" id="updateButton" value="Update Cookbook" style="display: none;">
 
+</form>
+
 </div>
 
-	<div class="container">
-	<div class="recipe-item videoDiv">
-		<video class="foodGif" width="100%" loop="true">
-			<source src="<%= recipe.main_image_url %>" type="video/webm">
-				Your browser does not support the video tag.
-		</video>
+<div class="container">
+	<div id="recipes">
+		
 	</div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+<script src="../javascripts/cookbook.js"></script>
+
