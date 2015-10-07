@@ -3,11 +3,110 @@
 <form action="/recipes/search" method="post">
 
     <label name="search">Recipe Name</label>
-    <input type="text" name="search" value=""/>
+    <input type="text" name="search" id="search-term" value=""/>
 	</br>
 
-	<input type="submit" value="Search">
+	<input type="submit" value="Search" id="search-button">
 </form>
 
+<div class="container">
+    <div class="row" id="results-container"> -->
+      <!-- Eventually we will want to be able to define our templates in our HTML, using the structure below -->
+      
+      <!-- LODASH TEMPLATE -->
+     <script type="text/template" class="recipe-template"> 
+        <div>
+          <h4></h4>
+        </div>
+      </script>
+    </div>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+<script>
+
+var RECIPES = [];
+var recipesTemplate = _.template($('.recipe-template').html());
+
+$(document).ready(function() {
+	// Get dem donuts!
+	$.get('http://localhost:3000/api/recipes', function(response, status) {
+		if (status == 'success') {
+			RECIPES = response;
+			initPage();
+		}
+	});
+
+var initPage = function() {
+	var recipesContainer = $('#results-container');
+
+	var emptyRecipes = function() {
+		recipesContainer.empty();
+	};
+
+	// var showRecipes = function(recipes) {
+	// 	recipes.forEach(function(recipe){
+	// 		showMovie(recipe);
+	// 	});
+	// };
+
+	// var showRecipe = function(recipe) {
+	// 	var compiled = recipesTemplate({
+	// 			ingredient-name: recipe.ingredients.name,
+	// 		});
+
+	// 	recipesContainer.append(compiled);
+	// };
+
+		// WE DO: Click listener that handles event by displaying all donuts.
+		$('#search-button').click(function(e) {
+
+		e.preventDefault();
+		var value = $('#search-term').val().toLowerCase().toString();
+		console.log("Search term: " + value);
+		emptyRecipes();
+
+		var resultRecipes = RECIPES;
+		// console.log(resultRecipes);
+
+		var queryCollection = [];
+			
+		resultRecipes.forEach (function (recipe) {
+			var resultIngredients = recipe.ingredients;
+			if (containsIngredient(value, resultIngredients)) {
+				queryCollection.push(recipe);
+				console.log('true');
+			}
+			else {
+				console.log('false');
+			}
+		});
+
+		console.log(queryCollection);
+
+		});
+
+	// 	$('hello').click(function(e) {
+	// 		e.preventDefault();
+	// 		emptyDonuts();
+
+	// 		var resultRecipes = _.filter(RECIPES, function(recipe) {
+	// 			return _.contains(recipe.ingredients.name, req.body.name);
+	// 		});
+	// });
+	
+};
+
+function containsIngredient(query, ingredients) {
+	ingredients.forEach(function(ingredient) {
+		var ingredientName = ingredient.name.toLowerCase().toString();
+		if (ingredientName.includes(query)) { 
+			return true;
+		}
+	});
+};
+
+
+});
+</script>
 </body>
