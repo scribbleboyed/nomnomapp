@@ -15,22 +15,57 @@
 <form action="/recipes/<%= processed_name %>/update-ingredient" method="post">
 	<div class="showContainer">
 		<h1>Ingredients</h1>
-		<input type="text" class="editable textFieldEdit recipe" id="title" name="ingredient-name" value="<%= recipe.ingredients.name %>" disabled>
-		<input type="text" class="editable textFieldEdit recipe" id="title" name="ingredient-quantity" value="<%= recipe.ingredients.quantity %>" disabled>
-		<input type="submit" id="updateButton" value="Add Ingredient">
+		<div id="ingredientsContainer">
+			<input type="text" class="editable textFieldEdit recipe" name="ingredient-name" value="<%= recipe.ingredients.name %>" disabled>
+			<input type="text" class="editable textFieldEdit recipe" name="ingredient-quantity" value="<%= recipe.ingredients.quantity %>" disabled>
+		</div>
+		<input type="submit" id="ingredientsButton" value="Add Ingredient">
 	</div>
 </form>
 
 <form action="/recipes/<%= processed_name %>/update-step" method="post">
 	<div class="showContainer">
 		<h1>Steps</h1>
-		<input type="text" class="editable textFieldEdit recipe" id="title" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled>
-		<input type="text" class="editable textFieldEdit recipe" id="title" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>
-		<input type="submit" id="updateButton" value="Add Steps">
+		<div id="stepsContainer">
+			<input type="text" class="editable textFieldEdit recipe" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled>
+			<input type="text" class="editable textFieldEdit recipe" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>
+		</div>
+			<input type="submit" id="stepsButton" value="Add Steps">
 	</div>
 </form>
 
 <button id="editButton">Edit Recipe</button>
 <button class="cookbookButton" id-"saveButton">Save to Cookbook</button>
+
+<script>
+
+var i = 0;
+var s = 0;
+var ingredientsArray = [];
+var stepsArray = [];
+
+	$('#ingredientsButton').click(function() {
+		
+		console.log(i);
+		i += 1;
+
+		var ingredientForm = $('<input type="text" class="editable textFieldEdit recipe" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled><input type="text" class="editable textFieldEdit recipe" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>');
+
+		$('#ingredientsContainer').append(ingredientForm);
+
+		console.log(i);
+	});
+
+	$('#stepsButton').click(function() {
+		console.log(s);
+		s += 1;
+
+		var stepForm = $('<input type="text" class="editable textFieldEdit recipe" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled><input type="text" class="editable textFieldEdit recipe" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>');
+		$('#stepsContainer').append(stepForm);
+
+		console.log(s);
+	});
+
+</script>
 
 </body>
