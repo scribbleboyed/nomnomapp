@@ -67,19 +67,21 @@ var initPage = function() {
 		emptyRecipes();
 
 		var resultRecipes = RECIPES;
-		// console.log(resultRecipes);
 
 		var queryCollection = [];
 			
 		resultRecipes.forEach (function (recipe) {
 			var resultIngredients = recipe.ingredients;
-			if (containsIngredient(value, resultIngredients)) {
-				queryCollection.push(recipe);
-				console.log('true');
-			}
-			else {
-				console.log('false');
-			}
+
+			resultIngredients.forEach(function(ingredient) {
+				var ingredientName = ingredient.name.toLowerCase();
+				console.log("Ingredient: " + ingredientName);
+				if (ingredientName.indexOf(value) > -1) { 
+					if (queryCollection.indexOf(recipe) == -1) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
 		});
 
 		console.log(queryCollection);
@@ -98,10 +100,11 @@ var initPage = function() {
 };
 
 function containsIngredient(query, ingredients) {
+	console.log("Query: " + query);
 	ingredients.forEach(function(ingredient) {
-		var ingredientName = ingredient.name.toLowerCase().toString();
-		if (ingredientName.includes(query)) { 
-			return true;
+		var ingredientName = ingredient.name.toLowerCase();
+		console.log("Ingredient: " + ingredientName);
+		if (ingredientName.indexOf(query) > -1) { 
 		}
 	});
 };
