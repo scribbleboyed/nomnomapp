@@ -15,7 +15,15 @@ exports.seedUsers = function seedUsers() {
 					summary: "Professionally Hungry"
 				}
 			});
-
+			User.create({
+				username: "sam",
+				email: "sam@a.com",
+				password: "1234",
+				profile: {
+					image_url: "http://img3.wikia.nocookie.net/__cb20130513005553/glee/images/5/5f/Bloo.jpg",
+					summary: "Professionally Hungry"
+				}
+			});
 		}
 	});
 };
