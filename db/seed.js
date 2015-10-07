@@ -65,13 +65,32 @@ exports.seedCookbooks = function seedCookbooks () {
 	
 	Cookbook.find({}).exec(function (err, collection) {
 		if (collection.length === 0) {
+
 			Cookbook.create({
-				name: "Pizza Pizazz",
+				name: "Pizza Pizzazz",
 				description: "I want to swim in a pool of pizza",
 				image_url: "http://media-cdn.tripadvisor.com/media/photo-s/02/8f/3b/1c/happy-herb-pizza.jpg",
-				user_id: "",
-				recipes_ids: [""],
+				username: "scribbleboyed",
+				recipe_ids: [],
 				tags: ["pizza"]
+			});
+
+			Cookbook.create({
+				name: "Snacks",
+				description: "What I'm feeling lazy and fat",
+				image_url: "http://www.kumandgo.com/content/uploads/2013/05/Donuts.jpg",
+				username: "scribbleboyed",
+				recipe_ids: [],
+				tags: ["snack"]
+			});
+
+			Cookbook.create({
+				name: "Health Nut",
+				description: "So much organic",
+				image_url: "http://www.mycity-web.com/wp-content/uploads/2015/04/Healthy_Fruit.jpg",
+				username: "scribbleboyed",
+				recipe_ids: [],
+				tags: ["organic", "healthy"]
 			});
 		}
 	});

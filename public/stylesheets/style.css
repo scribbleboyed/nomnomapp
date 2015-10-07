@@ -47,15 +47,17 @@ div.cookbook p {
 }
 
 .textFieldEdit {
-	border: 1px solid #000;
 	width: 100%;
 	padding: 10px;
-	background: none;
-	text-align: center;
+	border: none;
 }
 
 .textFieldEdit h1 {
 	color: #fff;
+}
+
+.ingredient, .ingredient-quantity {
+	width: 200px;
 }
 
 .editMode {

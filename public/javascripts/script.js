@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	$('#editButton').click(function(e) {
 		e.preventDefault();
-		$('#updateButton').toggle();
+		$('.hiddenButton').toggle();
 		if ($('.editable').attr('disabled')) {
 			$('.editable').removeAttr('disabled');
 			$('.editable').addClass('editMode');
