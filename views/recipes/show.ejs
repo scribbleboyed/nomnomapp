@@ -36,7 +36,7 @@
 								<input type="text" class="editable textFieldEdit" name="ingredient-name" value="<%= ingredient.name %>" disabled>
 							</div>
 							<div class="col-lg-4" style="background: #eee;">
-								<input type="text" class="editable textFieldEdit" name="ingredient-quantity" value="<%= ingredient.quantity %>" disabled>
+								<input type="text" class="editable textFieldEdit" name="ingredient-quantity" style="font-weight: 300;" value="<%= ingredient.quantity %>" disabled>
 							</div>
 						</div>
 					<% }); %>
@@ -56,8 +56,11 @@
 		<div class="col-lg-6">
 			<div class="container-fluid" style="padding: 0px 10px; border: 1px solid #eee; border-bottom: 3px solid #eee; background: #fff;">
 				<form action="/recipes/<%= processed_name %>/update" method="post">
-					<input type="text" class="editable textFieldEdit" id="title" name="name" value="<%= recipe.name %>" disabled>
-					<textarea rows="4" class="editable textFieldEdit" id ="description" name="description" disabled><%= recipe.description %></textarea>
+
+					<h3><input type="text" class="editable textFieldEdit" id="title" name="name" value="<%= recipe.name %>" disabled></h3>
+
+					<textarea rows="4" class="editable textFieldEdit" id ="description" name="description" style="font-weight: 300;" disabled><%= recipe.description %></textarea>
+
 					<div style="width: 70px; background: #aaa; color: #fff; display: inline-block;">
 						<input type="text" class="editable textFieldEdit" id="prep_time" name="prep_time" value="<%= recipe.prep_time %>" disabled>
 					</div>
@@ -71,12 +74,18 @@
 
 			<div class="container-fluid" style="padding: 0px;">
 				<form action="/recipes/<%= processed_name %>/update" method="post">
-					<% recipe.steps.forEach(function(step) { %>
-					<% console.log(step.index); %>
-						<div style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee; background: #fff;">
-							<input type="text" class="editable textFieldEdit" name="<%= step %>" value="<%= step %>" disabled>
+					<% for (var i=0; i < recipe.steps.length; i++ ) { %>
+						<div class="container-fluid">
+							<div class="row" style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee; background: #fff;">
+								<div class="col-md-1" style="font-weight: 700; font-size: 25px;">
+									<%= i+1 %>
+								</div>
+								<div class="col-md-11" style="font-weight: 300;">
+									<%= recipe.steps[i] %>
+								</div>
+							</div>
 						</div>
-					<% }); %>
+					<% }; %>
 				</form>
 			</div>
 
