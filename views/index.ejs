@@ -29,3 +29,64 @@
 		<script src="../javascripts/recipe.js"></script>
 
 <% include partials/footer %>
+
+
+<div id="all-videos-container">
+	<div id="big-video-container">
+		<a href="<%= url %>">
+			<div class="single-recipe">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="videoDiv">
+							<video class="foodGif" width="100%" loop="true"><source src="<%= recipe.main_image_url %>" type="video/webm">Your browser does not support the video tag.</video>
+						</div>
+					</div>
+						<div class="videoOverlay" id="big-videoOverlay">
+							<h1 id="big-video-title"><%= recipe.name %></h1>
+							<h2 id="big-video-description"><%= recipe.description %></h2>
+							<h2 id="big-video-prep_time"><%= recipe.prep_time %> min</h2>
+							<h2 id="big-video-cook_time"><%= recipe.prep_time %> min</h2>
+						</div>
+				</div>		
+			</div>
+		</a>
+	</div>
+	<div id="small-video-top-container">
+		<a href="<%= url %>">
+			<div class="small-video">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="videoDiv">
+							<video class="foodGif" width="100%" loop="true"><source src="<%= recipe.main_image_url %>" type="video/webm">Your browser does not support the video tag.</video>
+						</div>
+						<div class="videoOverlay" id="big-videoOverlay">
+							<h1 id="big-video-title"><%= recipe.name %></h1>
+							<h2 id="big-video-description"><%= recipe.description %></h2>
+							<h2 id="big-video-prep_time"><%= recipe.prep_time %> min</h2>
+							<h2 id="big-video-cook_time"><%= recipe.prep_time %> min</h2>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</a>
+	</div>
+	<div id="small-video-bot-container">
+		<a href="<%= url %>">
+			<div class="small-video">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="videoDiv">
+							<video class="foodGif" width="100%" loop="true"><source src="<%= recipe.main_image_url %>" type="video/webm">Your browser does not support the video tag.</video>
+						</div>
+						<div class="videoOverlay" id="big-videoOverlay">
+							<h1 id="big-video-title"><%= recipe.name %></h1>
+							<h2 id="big-video-description"><%= recipe.description %></h2>
+							<h2 id="big-video-prep_time"><%= recipe.prep_time %> min</h2>
+							<h2 id="big-video-cook_time"><%= recipe.prep_time %> min</h2>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</a>
+	</div>
+</div>
