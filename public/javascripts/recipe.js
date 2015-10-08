@@ -1,5 +1,6 @@
 var RECIPES = [];
-var recipeTemplate = _.template('<a href="<%= url %>"><div class="single-recipe"><div class="row"><div class="col-lg-8"><div class="videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe.main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div></div><div class="col-lg-4" style="padding: 0px 20px 10px 20px;"><h1><%= recipe.name %></h1><h2 id="recipe-index-description"><%= recipe.description %></h2><br/><p>Prep Time: <%= recipe.prep_time %> min</p><p>Cook Time: <%= recipe.cook_time %> min</p></div></div></div></a>');
+var recipeTemplateOne = _.template('Template One <%= recipe[0].name %>');
+var recipeTemplateTwo = _.template('Template Two <%= recipe %>');
 var recipesContainer = $('#recipes-container');
 var searchBox = $('#search-term');
 var allergyBox = $('#allergy-term');
@@ -168,15 +169,55 @@ function hasAllergy(recipe, allergy) {
 // DISPLAY RESULTS
 function displayRecipes() {
 
-	queryCollection.forEach(function(recipe) {
-		var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
-		var compiled = recipeTemplate({
-		recipe: recipe,
-		url: processed_url
-	});
-		recipesContainer.hide().append(compiled).fadeIn(200);
-	});
+	// queryCollection.forEach(function(recipe) {
+	// 	var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+	// 	var compiled = recipeTemplate({
+	// 	recipe: recipe,
+	// 	url: processed_url
+	// });
+	// 	recipesContainer.hide().append(compiled).fadeIn(200);
+	// });
 
+	recipesContainer.hide();
+
+	var template = true;
+	var temp = [];
+	var count = 0;
+	var compiled;
+
+	while (count < queryCollection.length) {
+
+		for (var i = 0; i < 3; i ++) {
+			if (queryCollection[count]) {
+				temp.push(queryCollection[count]);
+				count++;
+			}
+		}
+
+		if (template) {
+			console.log("template one: " + temp);
+			compiled = recipeTemplateOne({
+				recipe: temp,
+			});
+			
+			recipesContainer.append(compiled);
+
+			template = false;
+
+		} else {
+			console.log("template two: " + temp);
+			compiled = recipeTemplateTwo({
+				recipe: temp,
+			});
+
+			recipesContainer.append(compiled);
+			
+			template = true;
+		}
+
+		temp = [];
+	}
+	recipesContainer.fadeIn(200);
 }
 
 
