@@ -120,10 +120,6 @@ textarea {
 	height: auto;
 }
 
-/*#categories-div {
-	display: none;
-}*/
-
 #search-div {
 	text-align: center;
 	padding: 30px;
@@ -152,10 +148,40 @@ textarea {
 
 .single-recipe {
 	padding-top: 30px;
+}
 
+#categories-div {
+	display: none;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 100%;
+	height: auto;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.5); /*dim the background*/
+	text-align: center;
 }
 
 #stickyDiv.sticky {
      position: fixed;
      top: 50px;
-  }
+}
+
+.dropdown-recipes-container {
+	width: 60%;
+	height: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.top-recipe {
+	background-color: white;
+	display: inline-block;
+	margin: 20px;
+	height: 150px;
+	width: 200px;
+}
+

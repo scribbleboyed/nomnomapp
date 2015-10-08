@@ -10,16 +10,13 @@ var RECIPES = [];
 $(document).ready(function() {
 	
 	// GET ALL RECIPES
+
 	$.get('http://localhost:3000/api/recipes', function(response, status) {
 		if (status == 'success') {
 			RECIPES = response;
 			initPage();
 		}
 	});
-
-});
-
-
 
 // DISPLAY ALL RECIPES
 var initPage = function() {
@@ -159,9 +156,11 @@ function displayRecipes() {
 	});
 		recipesContainer.hide().append(compiled).fadeIn(500);
 	});
+
 }
 
 // TOP RECIPES
+
 $('.top-recipe').click(function(e) {
 
 	e.preventDefault();
@@ -196,4 +195,26 @@ $('.top-recipe').click(function(e) {
 	});
 		recipesContainer.append(compiled);
 	});
+
+	$('.dropdown-recipes').hide();
+});
+// TOP RECIPES DROPDOWN
+
+$('.top-recipe-visibility').click(function(e) {
+	e.preventDefault();
+	$('.dropdown-recipes').slideToggle();
+
+	$(document).mouseup(function (e) {
+    var container = $('.dropdown-recipes');
+
+	    if (!container.is(e.target) // if the target of the click isn't the container...
+	        && container.has(e.target).length === 0) // ... nor a descendant of the container
+	    {
+	        container.hide();
+	    }
+	});
+});
+
+
+
 });
