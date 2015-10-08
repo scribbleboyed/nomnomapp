@@ -4,11 +4,18 @@ body {
   color: #888;
 }
 
+
 #main-nav {
-	opacity: 0.7;
-	margin-bottom: 0;
+	opacity: 0.9;
+	border-bottom: 5px solid #fff;
 	height: 30px;
 	background-color: #fbbd00;
+	color: #fff;
+}
+
+#main-nav a {
+	color: #fff;
+	font-weight: 700;
 }
 
 a {
@@ -37,6 +44,34 @@ button {
 video, source {
 	margin: 0px;
 	padding: 0px;
+}
+
+.big-video-col .videoOverlay {
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	bottom: 0px;
+	background: #000;
+	opacity: 0.7;
+	padding: 10px;
+	margin: 0px;
+	color: #fff;
+}
+
+.small-video-col .videoOverlay {
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	bottom: 0px;
+	background: #000;
+	opacity: 0.7;
+	padding: 10px;
+	margin: 0px;
+	color: #fff;
+}
+
+.videoOverlay h2 {
+	display: inline-block;
 }
 
 .recipe-item {
@@ -122,8 +157,8 @@ textarea {
 
 #search-div {
 	text-align: center;
-	padding: 30px;
-	background-color: #fb9a00;
+	padding: 15px;
+	background-color: #fff;
 }
 
 .search-box {
@@ -146,6 +181,11 @@ textarea {
 	margin-right: 10px;
 }
 
+#stickyDiv.sticky {
+     position: fixed;
+     top: 50px;
+}
+
 .single-recipe {
 	padding-top: 30px;
 }
@@ -153,35 +193,45 @@ textarea {
 #categories-div {
 	display: none;
 	position: absolute;
-	top: 50px;
+	top: 115px;
 	left: 0;
 	width: 100%;
 	height: auto;
 	z-index: 10;
-	background-color: rgba(0,0,0,0.5); /*dim the background*/
-	text-align: center;
-}
-
-#stickyDiv.sticky {
-     position: fixed;
-     top: 50px;
+	background: #fff;
+	opacity: 1;
 }
 
 .dropdown-recipes-container {
-	width: 60%;
 	height: auto;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 10px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
+	text-align: center;
 }
 
-.top-recipe {
-	background-color: white;
+.category {
+	background-color: #ccc;
+	margin-bottom: 5px;
+	padding: 0px;
 	display: inline-block;
-	margin: 20px;
-	height: 150px;
-	width: 200px;
+	height: 120px;
+	width: 230px;
+	border-radius: 0px;
+	text-align: center;
+	cursor: pointer;
+	background-size: cover;
+	opacity: 0.8;
 }
+
+.category h1 {
+	color: #fff;
+	line-height: 120px;
+	vertical-align: middle;
+	font-size: 40px;
+	font-weight: 700;
+	text-shadow: 1px 1px 3px #000;
+}
+
 

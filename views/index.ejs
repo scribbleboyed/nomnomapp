@@ -1,0 +1,172 @@
+<% include partials/header %>
+
+<div id="search-div">
+	<form action="/recipes/search" method="post">
+		<button class="show-categories btn btn-primary">Categories</button>
+	    <input type="text" name="search" class="search-box" id="search-term" placeholder="Search all recipes..."/>
+	    <input type="text" name="search" class="search-box" id="allergy-term" placeholder="Without..."/>
+		<button type="submit" class="btn btn-warning search-button" id="search-button">Search</button>
+	</form>
+</div>
+
+<div class="dropdown-recipes" id="categories-div">
+  <div class="dropdown-recipes-container">
+    <div class="row">
+	    <div class="category" id="breakfast" style="background: url('http://www.conduitchurch.com/wp-content/uploads/2014/11/Pancake-Breakfast.jpg'); background-size: cover;">
+	    	<h1>BREAKFAST</h1>
+	    </div>
+
+		<div class="category" id="lunch" style="background: url('http://www.butterball.com/cache/2ab1a5a0662c94b9/RecipeCategoryHeros_0006_lunch_592_328_s_c1_c_c.jpg'); background-size: cover;">
+			<h1>LUNCH</h1>
+		</div>
+
+		<div class="category" id="dinner" style="background: url('https://ag.purdue.edu/agcomm/PublishingImages/TopStory/Turkey-dinner.jpg'); background-size: cover;">
+			<h1>DINNER</h1>
+		</div>
+
+		<div class="category" id="drinks" style="background: url('http://hdwallpapers.cat/wallpaper/bacardi_rum_drink_macro_alcohol_brands_hd-wallpaper-708533.jpg'); background-size: cover;">
+			<h1>DRINKS</h1>
+		</div>
+
+		<div class="category" id="snacks" style="background: url('http://www.shreeradheybakers.com/wp-content/uploads/2015/04/indian-snacks1.jpg'); background-size: cover;">
+			<h1>SNACKS</h1>
+		</div>
+
+		<div class="category" id="cheesey" style="background: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ7qVSc6N8Jw1dP3Ab5UViWyF_fxUd0dw2Dxgbw1cRruxwr5xZ1'); background-size: cover;">
+			<h1>CHEESEY</h1>
+		</div>
+
+		<div class="category" id="sweets" style="background: url('http://comfortablydomestic.com/wp-content/uploads/2013/02/p2030074edited21.jpg'); background-size: cover;">
+			<h1>SWEETS</h1>
+		</div>
+
+		<div class="category" id="bbq" style="background: url('http://www.irunnewjersey.com/wp-content/uploads/2015/03/bbq1.jpg'); background-size: cover;">
+			<h1>BBQ</h1>
+		</div>
+
+		<div class="category" id="cold" style="background: url('http://www.bettycrocker.com/~/media/Images/Betty-Crocker/Menus-Holidays-Parties/MHPLibrary/Seasonal-Ideas/15-Foolproof-Frozen-Treats/15-Foolproof-Frozen-Treats_hero.jpg'); background-size: cover;">
+			<h1>ICE COLD</h1>
+		</div>
+
+		<div class="category" id="healthy" style="background: url('https://healthyfoodlocalearth.files.wordpress.com/2013/04/variety-of-colorful-vegetables-106968.jpg'); background-size: cover;">
+			<h1>HEALTHY</h1>
+		</div>
+
+		<div class="category" id="quick" style="background: url('http://weelicious.com/wp-content/uploads/2011/10/Banana-Bites.jpg'); background-size: cover;">
+			<h1>EASY</h1>
+		</div>
+
+		<div class="category" id="pizza" style="background: url('http://uncletonysnypizza.com/wp-content/uploads/2012/10/pep_pizza_BIG.jpg'); background-size: cover;">
+			<h1>PIZZA</h1>
+		</div>
+	</div>
+
+  </div>
+</div>
+	
+<div id="recipes-container" class="container">
+
+	<!-- TEMPLATE -->
+	<div class="row template-one-row">
+
+		<!-- // BIG VIDEO 0 -->
+
+		<div class="col-lg-8 big-video-col">
+			<div class="videoDiv">
+				<div class="videoOverlay">
+					<h2 class="bv-title">Recipe 0 name</h2>
+					<h2 class="bv-description">description</h2>
+					<h2 class="bv-prep_time">prep time</h2>
+					<h2 class="bv-cook_time">cook time</h2>
+				</div>
+				<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+			</div>
+		</div>
+
+		<div class="col-lg-4 small-video-col">
+
+			<!-- // SMALL VIDEO 1 TOP --> 
+			<div class="small-video top">
+				<div class="videoDiv">
+					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				</div>
+				<div class="videoOverlay">
+					<h1 class="sv-title">Recipe 1 name</h1>
+				</div>
+			</div>
+
+			<!-- // SMALL VIDEO 2 BOTTOM--> 
+			<div class="small-video bottom">
+				<div class="videoDiv">
+					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				</div>
+				<div class="videoOverlay">
+					<h1 class="sv-title">Recipe 1 name</h1>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- // TEMPLATE TWO -->
+
+		<div class="row template-one-row">
+
+
+		<div class="col-lg-4 small-video-col">
+
+			<!-- // SMALL VIDEO 0 TOP-->
+			<div class="small-video top">
+				<div class="videoDiv">
+					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				</div>
+				<div class="videoOverlay">
+					<h1 class="sv-title">Recipe 1 name</h1>
+				</div>
+			</div>
+
+			<!-- // SMALL VIDEO 1 BOTTOM-->
+			<div class="small-video bottom">
+				<div class="videoDiv">
+					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				</div>
+				<div class="videoOverlay">
+					<h1 class="sv-title">Recipe 1 name</h1>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- // BIG VIDEO 2 -->
+
+		<div class="col-lg-8 big-video-col">
+			<div class="videoDiv">
+				<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+			</div>
+			<div class="videoOverlay">
+				<h1 class="bv-title">Recipe 0 name</h1>
+				<h2 class="bv-description">description</h2>
+				<h2 class="bv-prep_time">prep time</h2>
+				<h2 class="bv-cook_time">cook time</h2>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+		<script src="../javascripts/recipe.js"></script>
+
+<% include partials/footer %>
+
+<!-- Template 1 -->
+
