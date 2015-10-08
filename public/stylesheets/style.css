@@ -154,3 +154,8 @@ textarea {
 	padding-top: 30px;
 
 }
+
+#stickyDiv.sticky {
+     position: fixed;
+     top: 50px;
+  }

@@ -67,8 +67,8 @@ exports.seedUsers = function seedUsers() {
 			});
 
 			User.create({
-				username: "Clair",
-				email: "clair@ga.com",
+				username: "Claire",
+				email: "claire@ga.com",
 				password: "Password1",
 				profile: {
 					image_url: "http://img3.wikia.nocookie.net/__cb20130513005553/glee/images/5/5f/Bloo.jpg",
@@ -121,8 +121,8 @@ exports.seedRecipes = function seedRecipes () {
 					{name: "Cheddar/Pepperjack Cheese", quantity: "8 slices"},
 					{name: "Garlic Clove", quantity: "6"}
 				],
-				prep_time: "20",
-				cook_time: "35",
+				prep_time: "20 min",
+				cook_time: "35 min",
 				serving_size: "6-8",
 				steps: ["Preheat the oven to 350 degrees.",
 						"Line a baking sheet with some aluminum foil and place the loaf of bread in the center. Making sure to cut only 2/3 of the way through the bread.",
@@ -137,7 +137,7 @@ exports.seedRecipes = function seedRecipes () {
 				name: "Homemade Chipotle Guacamole",
 				description: "Holy guacamole!",
 				user_name: "Christine",
-				main_image_url: "",
+				main_image_url: "http://i.imgur.com/fPKIEqq.webm",
 				video_url: "https://www.youtube.com/watch?v=dlBGdtC_0ho",
 				ingredients: [
 					{name: "Ripe Hass Avocados", quantity: "2"},
@@ -147,8 +147,8 @@ exports.seedRecipes = function seedRecipes () {
 					{name: "Jalapeno", quantity: "1/2 including seed"},
 					{name: "Kosher Salt", quantity: "1/4 tsp"}
 				],
-				prep_time: "10",
-				cook_time: "0",
+				prep_time: "10 min",
+				cook_time: "N/A",
 				serving_size: "6",
 				steps: ["Cut the avocados in half and remove the pits (carefully!)",
 						"Scoop the avocados and place in a bowl. ",
@@ -159,29 +159,275 @@ exports.seedRecipes = function seedRecipes () {
 				tags: ["chipotle", "homemade", "guacamole", "appetizer", "bbq", "superbowl", "tailgate"]
 			});
 
-			// Recipe.create({
-			// 	name: "",
-			// 	description: "",
-			// 	user_name: "",
-			// 	main_image_url: "",
-			// 	video_url: "",
-			// 	ingredients: [
-			// 		{name: "", quantity: ""},
-			// 		{name: "", quantity: ""},
-			// 		{name: "", quantity: ""},
-			// 		{name: "", quantity: ""},
-			// 		{name: "", quantity: ""},
-			// 		{name: "", quantity: ""}
-			// 	],
-			// 	prep_time: "",
-			// 	cook_time: "",
-			// 	serving_size: "",
-			// 	steps: ["",
-			// 			"",
-			// 			"",
-			// 			""],
-			// 	tags: [""]
-			// });
+			Recipe.create({
+				name: "Breakfast pizza",
+				description: "The breakfast you'll definitely want to wake up to",
+				user_name: "Aaron",
+				main_image_url: "http://i.imgur.com/tDqok23.webm",
+				video_url: "https://www.youtube.com/watch?v=zj-rb408du8",
+				ingredients: [
+					{name: "Olive Oil", quantity: "5 tsp"},
+					{name: "Shredded Cheddar Cheese", quantity: "2 oz"},
+					{name: "Cooked Bacon Pieces", quantity: "2 oz"},
+					{name: "Eggs", quantity: "3"},
+					{name: "Freshly Chopped Chives", quantity: "2"},
+					{name: "Freshly Ground Black Pepper", quantity: "1 dash"}
+				],
+				prep_time: "30 min",
+				cook_time: "10 min",
+				serving_size: "4",
+				steps: ["Preheat the oven to 450 degrees F / 232 degrees C.",
+						"Roll out your pizza dough (homemade or store bought).",
+						"Drizzle olive oil.",
+						"Spread cheddar cheese, bacon, and hash browns on as toppings.",
+						"Crack three eggs and some black pepper on top in the center.",
+						"Bake the pizza for 10-12 minutes, or until the eggs are cooked to your preference."],
+				tags: ["pizza", "breakfast", "breakfastallday", "runnyyolk", "homemade"]
+			});
+
+			Recipe.create({
+				name: "Mac N' Cheese BLT",
+				description: "Mac 'n' cheese like you wouldn't believe",
+				user_name: "Allison",
+				main_image_url: "http://i.imgur.com/rGa9QQB.webm",
+				video_url: "https://www.youtube.com/watch?v=tL159_eM6Y0",
+				ingredients: [
+					{name: "Macaroni Pasta", quantity: "2 cups"},
+					{name: "Butter", quantity: "2 tbsp"},
+					{name: "Flour", quantity: "1 1/4 tbsp"},
+					{name: "Milk", quantity: "1 cup"},
+					{name: "Cheddar Cheese", quantity: "2 cups"},
+					{name: "Bacon", quantity: "4-5 strips"},
+					{name: "Tomato", quantity: "1 slice"},
+					{name: "Mayo", quantity: "optional"}
+				],
+				prep_time: "15 min",
+				cook_time: "15 min",
+				serving_size: "1-2",
+				steps: ["Cook mac 'n' cheese pasta.",
+						"Melt down butter in a pot and then mix in the flour.",
+						"Pour in milk little by little into the pot and continue to stir.",
+						"Throw in the cheddar cheese and stir until the cheese melts.",
+						"Pour cheese concoction onto pasta and spread all of this mixture into a baking pan evenly.",
+						"Refrigerate mac ‘n’ cheese for one hour and in the meantime, cook your bacon strips.",
+						"Once the bacon strips are cooked, take the mac ‘n’ cheese out of the refrigerator and cut it evenly in 4 squares.",
+						"Fry up the mac ‘n’ cheese squares to solidify mixture into buns.",
+						"Layer ingredients like a sandwich and enjoy!",],
+				tags: ["macaroni", "cheese", "milky", "creamy", "pasta"]
+			});
+
+			Recipe.create({
+				name: "French Toast Grilled Cheese",
+				description: "The perfect marriage of breakfast and lunch.",
+				user_name: "Claire",
+				main_image_url: "http://i.imgur.com/R8n31qV.webm",
+				video_url: "https://www.youtube.com/watch?v=qwHXPD4fzSE",
+				ingredients: [
+					{name: "Bacon", quantity: "1 strip"},
+					{name: "Maple Syrup", quantity: ""},
+					{name: "Eggs", quantity: "2"},
+					{name: "Milk", quantity: "1 cup"},
+					{name: "Ground Cinnamon", quantity: "1 tsp"},
+					{name: "Bread (of your choice)", quantity: "2 slices"},
+					{name: "Shredded Cheddar Cheese", quantity: "1/2 cup"}
+				],
+				prep_time: "5 min",
+				cook_time: "5 min",
+				serving_size: "1-2",
+				steps: ["Chop up a strip of bacon into pieces and fry them in a pan.",
+						"Put the bacon pieces into a small bowl and mix in some maple syrup.",
+						"Grab a medium bowl and crack two eggs. Proceed to mix in the milk and cinnamon.",
+						"Use this mixture to dip only one side of each slice of bread and fry both slices until golden brown. Then, flip to cook the other side.",
+						"Place both slices on a plate and spread cheddar cheese in between, golden brown sides on the inside.",
+						"Re-dip the plain sides back into the mixture and fry those sides on the pan.",
+						"Cut the sandwich in half and serve with bacon-maple syrup."],
+				tags: ["bacon", "syrup", "grilled cheese", "cheese", "french toast", "breakfast", "lunch", "brunch"]
+			});
+
+			Recipe.create({
+				name: "No-Bake Peanut Butter Pie",
+				description: "A peanut butter lover’s dream come true.",
+				user_name: "Bianca",
+				main_image_url: "http://i.imgur.com/PaKlmIs.webm",
+				video_url: "https://www.youtube.com/watch?v=q4b98DfUY9w",
+				ingredients: [
+					{name: "Graham Crackers (crumbled)", quantity: "10 oz"},
+					{name: "Granulated Sugar", quantity: "1/4 cup"},
+					{name: "Butter", quantity: "1 cup"},
+					{name: "Peanut Butter", quantity: "3/4 cup"},
+					{name: "Cream Cheese", quantity: "4 oz"},
+					{name: "Whipped Cream", quantity: "8 oz"},
+					{name: "Powdered Sugar", quantity: "1 cup"}
+				],
+				prep_time: "5-10 min",
+				cook_time: "1-2 hours",
+				serving_size: "4-6",
+				steps: ["To make the crust, pour out crumbled graham crackers, sugar, and melted butter into a med-large bowl. Mix thoroughly. Then, transfer mixture into a pie pan and press it along the bottom and sides. Set the crust aside in the refrigerator.",
+						"To make the filling, combine peanut butter, cream cheese, whipped cream, and powdered sugar. Mix thoroughly with a mixer or fold until mixed.",
+						"Scoop the filling into the crust and refrigerate once again for 1-2 hours.",
+						"Serve with your choice of topping. We suggest whipped cream!"],
+				tags: ["dessert", "easypeasy", "nobake", "homemade", "peanut butter", "pie"]
+			});
+
+			Recipe.create({
+				name: "3-Ingredient Dole Whip",
+				description: "And you don’t even have to go to Disneyland.",
+				user_name: "Christine",
+				main_image_url: "http://i.imgur.com/f3BmUzR.webm",
+				video_url: "https://www.youtube.com/watch?v=Rn2lXzhQeaU",
+				ingredients: [
+					{name: "Coconut Milk", quantity: "1/2 cup"},
+					{name: "Sweetened Condensed Milk", quantity: "1/2 cup"},
+					{name: "Frozen Pineapple", quantity: "4 cups"}
+				],
+				prep_time: "N/A",
+				cook_time: "5 min",
+				serving_size: "3-4",
+				steps: ["Add coconut milk, sweetened condensed milk, and frozen pineapples into a blender and mix.",
+						"Open up blender and stir with spoon to even out mixture.",
+						"Blend again and serve."],
+				tags: ["dole whip", "homemade", "dessert", "summer", "pineapple", "nom"]
+			});
+
+			Recipe.create({
+				name: "3-Ingredient Ice Cream Birthday Cake",
+				description: "We all scream for ice cream… and cake!",
+				user_name: "Sam",
+				main_image_url: "http://i.imgur.com/FAxIzSC.webm",
+				video_url: "https://www.youtube.com/watch?v=Ag2qCzZ5rwM",
+				ingredients: [
+					{name: "Oil or Melted Butter", quantity: ""},
+					{name: "Flour (self-rising)", quantity: "3 cups"},
+					{name: "Birthday Cake Ice Cream", quantity: "1.5 qts"}
+				],
+				prep_time: "5 min",
+				cook_time: "35-40 min",
+				serving_size: "4-6",
+				steps: ["Preheat the oven to 350 degrees F / 177 degrees C.",
+						"Grease bundt pan with butter or oil.",
+						"Add flour and ice cream into a separate bowl. Mix thoroughly with a mixer or whisk.",
+						"Sprinkle the bottom of the bundt pan and pour mixture on top.",
+						"Bake for 35-40 minutes."],
+				tags: ["birthday cake", "cakecakecake", "desserts", "icecream", "homemade", "nom", "3ingredients"]
+			});
+
+			Recipe.create({
+				name: "Nutella and Coffee Milkshake",
+				description: "Nutella AND Coffee?! What more could you ask for?",
+				user_name: "Aaron",
+				main_image_url: "http://i.imgur.com/5XKTUll.webm",
+				video_url: "https://www.youtube.com/watch?v=msrSkTtLqgo",
+				ingredients: [
+					{name: "Vanilla Ice Cream", quantity: "2 cups"},
+					{name: "Coffee", quantity: "1/4 cup"},
+					{name: "Nutella", quantity: "2 tbsp"}
+				],
+				prep_time: "3 min",
+				cook_time: "N/A",
+				serving_size: "1",
+				steps: ["Combine vanilla ice cream, coffee, and Nutella in a blender.",
+						"Pour into a cup and add more ice cream, as desired.",
+						"Enjoy!"],
+				tags: ["ice cream", "nutella", "coffee", "milkshake", "mymilkshakebringsalltheboystotheyard", "win", "nom", "homemade", "beverages"]
+			});
+
+			Recipe.create({
+				name: "Avocado Egg Hack",
+				description: "One eggcellent way to eat an avocado!",
+				user_name: "Edward",
+				main_image_url: "http://i.imgur.com/hAnRlS4.webm",
+				video_url: "https://www.youtube.com/watch?v=gYaeAvLN9Qc",
+				ingredients: [
+					{name: "Avocados", quantity: "2"},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""}
+				],
+				prep_time: "3 min",
+				cook_time: "15-20 min",
+				serving_size: "",
+				steps: ["Preheat oven to 425 degrees F.",
+						"Slice the avocados in half (carefully), and take out the pit. Scoop out about two tablespoons of flesh from the center of the avocado, just enough so the egg will fit snugly in the center.",
+						"Crack an egg into each avocado half. Try your best to crack the yolk in first, and then let the egg whites spill in to fill up the rest of the shell.",
+						"Place in the oven and bake for 15 to 20 minutes. Cooking time will depend on the size of your eggs and avocados. Just make sure the egg whites have enough time to set.",
+						"Remove from oven, season with pepper, chives, and garnish with other toppings of your choice (chives)."],
+				tags: ["breakfast", "avocado", "egg", "runnyyolk", "nom", "homemade", "brunch"]
+			});
+
+			Recipe.create({
+				name: "",
+				description: "",
+				user_name: "",
+				main_image_url: "",
+				video_url: "",
+				ingredients: [
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""}
+				],
+				prep_time: "",
+				cook_time: "",
+				serving_size: "",
+				steps: ["",
+						"",
+						"",
+						""],
+				tags: [""]
+			});
+
+			Recipe.create({
+				name: "",
+				description: "",
+				user_name: "",
+				main_image_url: "",
+				video_url: "",
+				ingredients: [
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""}
+				],
+				prep_time: "",
+				cook_time: "",
+				serving_size: "",
+				steps: ["",
+						"",
+						"",
+						""],
+				tags: [""]
+			});
+
+			Recipe.create({
+				name: "",
+				description: "",
+				user_name: "",
+				main_image_url: "",
+				video_url: "",
+				ingredients: [
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""},
+					{name: "", quantity: ""}
+				],
+				prep_time: "",
+				cook_time: "",
+				serving_size: "",
+				steps: ["",
+						"",
+						"",
+						""],
+				tags: [""]
+			});
+
 
 		}
 	});
