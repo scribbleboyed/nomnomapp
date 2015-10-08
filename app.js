@@ -59,11 +59,12 @@ app.use(require('./routes'));
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/recipes',
-    failureRedirect: '/'
+    passport.authenticate('facebook', {
+      successRedirect: '/',
+      failureRedirect: '/'
   })
 );
+
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
