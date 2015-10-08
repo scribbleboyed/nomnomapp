@@ -11,6 +11,8 @@ $(document).ready(function() {
 		el.currentTime = 0;
 	});
 
+	// EDIT BUTTON
+
 	$('#editButton').click(function(e) {
 		e.preventDefault();
 		$('.hiddenButton').toggle();
@@ -22,4 +24,5 @@ $(document).ready(function() {
 			$('.editable').removeClass('editMode');
 		}
 	});
+
 });

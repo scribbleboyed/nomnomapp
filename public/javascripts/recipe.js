@@ -3,6 +3,7 @@ var recipeTemplate = _.template('<a href="<%= url %>"><div class="single-recipe"
 var recipesContainer = $('#recipes-container');
 var searchBox = $('#search-term');
 var allergyBox = $('#allergy-term');
+var categoriesMenu = $('.dropdown-recipes');
 
 var queryCollection = [];
 var RECIPES = [];
@@ -18,20 +19,16 @@ $(document).ready(function() {
 		}
 	});
 
+});
+
 // DISPLAY ALL RECIPES
 var initPage = function() {
 
 	for (var i=0; i < RECIPES.length; i++ ) {
-
 		queryCollection.push(RECIPES[i]);
-
-		var processed_url = "http://localhost:3000/recipes/" + RECIPES[i].name.replace(/ /g, "_");
-		var compiled = recipeTemplate({
-			recipe: RECIPES[i],
-			url: processed_url
-		});
-		recipesContainer.hide().append(compiled).fadeIn(200*i);
 	}
+
+	displayRecipes();
 };
 
 
@@ -129,6 +126,29 @@ function searchRecipesWithoutAllergies(value, allergy) {
 
 }
 
+function searchByCategory(category) {
+
+	emptyRecipes();
+		
+	RECIPES.forEach(function (recipe) {
+		var recipeName = recipe.name.toLowerCase();
+		var recipeDescription = recipe.name.toLowerCase();
+
+			recipe.tags.forEach(function(tag) {
+				var tagName = tag.toLowerCase();
+				if (tagName.indexOf(category) > -1) {
+					if (queryCollection.indexOf(recipe) < 0) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
+
+	});
+
+	displayRecipes();
+
+}
+
 function hasAllergy(recipe, allergy) {
 	var found = false;
 	recipe.ingredients.forEach(function(ingredient) {
@@ -154,67 +174,33 @@ function displayRecipes() {
 		recipe: recipe,
 		url: processed_url
 	});
-		recipesContainer.hide().append(compiled).fadeIn(500);
+		recipesContainer.hide().append(compiled).fadeIn(200);
 	});
 
 }
 
-// TOP RECIPES
 
-$('.top-recipe').click(function(e) {
+
+// SHOW CATEGORIES FUNCTION
+
+$('.show-categories').click(function(e) {
+	e.preventDefault();
+	categoriesMenu.slideToggle(200);
+});
+
+
+
+// CATEGORY CLICK
+
+$('.category').click(function(e) {
 
 	e.preventDefault();
 	var value = $(this).attr('id');
 	console.log('ID: ' + value);
-	emptyRecipes();
 
-	var resultRecipes = RECIPES;
+	searchByCategory(value);
 
-	var queryCollection = [];
-		
-	resultRecipes.forEach (function (recipe) {
-		var resultIngredients = recipe.ingredients;
-
-		resultIngredients.forEach(function(ingredient) {
-			var ingredientName = ingredient.name.toLowerCase();
-			console.log("Ingredient: " + ingredientName);
-			if (ingredientName.indexOf(value) > -1) {
-				if (queryCollection.indexOf(recipe) == -1) {
-					queryCollection.push(recipe);
-				}
-			}
-		});
-	});
-
-	queryCollection.forEach(function(recipe) {
-		console.log("recipe: " + recipe);
-		var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
-		var compiled = recipeTemplate({
-		recipe: recipe,
-		url: processed_url
-	});
-		recipesContainer.append(compiled);
-	});
-
-	$('.dropdown-recipes').hide();
-});
-// TOP RECIPES DROPDOWN
-
-$('.top-recipe-visibility').click(function(e) {
-	e.preventDefault();
-	$('.dropdown-recipes').slideToggle();
-
-	$(document).mouseup(function (e) {
-    var container = $('.dropdown-recipes');
-
-	    if (!container.is(e.target) // if the target of the click isn't the container...
-	        && container.has(e.target).length === 0) // ... nor a descendant of the container
-	    {
-	        container.hide();
-	    }
-	});
+	categoriesMenu.slideToggle(200);
+	
 });
 
-
-
-});

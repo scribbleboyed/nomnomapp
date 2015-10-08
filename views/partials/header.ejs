@@ -11,7 +11,6 @@
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script src="../javascripts/script.js"></script>
 <script src="javascripts/script.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700' rel='stylesheet' type='text/css'>
@@ -36,7 +35,6 @@
       <ul class="nav navbar-nav">
         <li><a href="/">Recipes </a></li>
         <li><a href="/cookbooks">Cookbooks</a></li>
-        <li><a class="dropdown-toggle top-recipe-visibility" href="#">Categories</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if (curr_user) { %>
@@ -57,6 +55,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
 
 <!-- Create Recipe Modal -->
 <div id="createRecipeModal" class="modal fade" role="dialog">
