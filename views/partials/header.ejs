@@ -32,9 +32,10 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="collapsed-menu">
+    <div class="collapse navbar-collapse dropdown" id="collapsed-menu">
       <ul class="nav navbar-nav">
         <li><a href="/cookbooks">Cookbooks</a></li>
+        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if (curr_user) { %>
@@ -138,4 +139,4 @@
 </div>
 
 
-<div style="margin-bottom: 70px;"></div>
+<div style="margin-bottom: 50px;"></div>

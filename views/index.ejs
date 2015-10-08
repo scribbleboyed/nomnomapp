@@ -1,29 +1,23 @@
 <% include partials/header %>
 
-	<form action="/recipes/search" method="post">
-
-    <label name="search">Recipe Name</label>
-    <input type="text" name="search" id="search-term" value=""/>
-	</br>
-
-	<input type="submit" value="Search" id="search-button">
-
-    <label name="allergy">Allergy Name</label>
-    <input type="text" name="search" id="allergy-term" value=""/>
-	</br>
-
-	<input type="submit" value="Search" id="allergy-button">
-
-
-	</form>
-
+<div class="dropdown-menu" id="categories-div">
 	<ul>
-		<li class="top-recipe" id="pizza">Chicken</li>
+		<li class="top-recipe dropdown-menu" id="pizza">Chicken</li>
 	</ul>
-	
+</div>
 
-	<div id="recipes-container" class="container">
-	</div>
+<div id="search-div">
+	<form action="/recipes/search" method="post">
+	    <input type="text" name="search" class="search-box" id="search-term" placeholder="ingredients with (ie: chicken, spinach, etc.)"/>
+		<input type="submit" value="Search" class="search-button" id="search-button">
+
+	    <input type="text" name="search" class="search-box" id="allergy-term" placeholder="ingredients without (ie: peanuts, dairy, etc.)"/>
+		<input type="submit" value="Search" class="search-button" id="allergy-button">
+	</form>
+</div>
+	
+<div id="recipes-container" class="container">
+</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 
