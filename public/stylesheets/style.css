@@ -6,6 +6,8 @@ body {
 
 #main-nav {
 	opacity: 0.8;
+	margin-bottom: 0;
+	height: 30px;
 }
 
 a {
@@ -100,4 +102,30 @@ textarea {
 
 .recipe#description {
 	height: auto;
+}
+
+/*#categories-div {
+	display: none;
+}*/
+
+#search-div {
+	text-align: center;
+	padding: 30px;
+}
+
+.search-box {
+	width: 25%;
+	height: 35px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.search-button {
+	width: 10%;
+}
+
+.single-recipe {
+	padding-bottom: 30px;
+
 }
