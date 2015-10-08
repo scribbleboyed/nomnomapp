@@ -5,6 +5,7 @@ var searchBox = $('#search-term');
 var allergyBox = $('#allergy-term');
 
 var queryCollection = [];
+var RECIPES = [];
 
 $(document).ready(function() {
 	
@@ -24,6 +25,9 @@ $(document).ready(function() {
 var initPage = function() {
 
 	for (var i=0; i < RECIPES.length; i++ ) {
+
+		queryCollection.push(RECIPES[i]);
+
 		var processed_url = "http://localhost:3000/recipes/" + RECIPES[i].name.replace(/ /g, "_");
 		var compiled = recipeTemplate({
 			recipe: RECIPES[i],
@@ -38,52 +42,124 @@ var initPage = function() {
 // EMPTY RECIPES FUNCTION
 var emptyRecipes = function() {
 	recipesContainer.empty();
+	queryCollection = [];
 };
 
 
 
 // SEARCH FUNCTION
-$('#search-term').keyup(function(e) {
+searchBox.keyup(function(e) {
 
 	e.preventDefault();
-	var value = $('#search-term').val().toLowerCase().toString();
-	var allergy = $('#allergy-term').val().toLowerCase().toString();
-	emptyRecipes();
 
-	var resultRecipes = RECIPES;
+	var value = searchBox.val().toLowerCase().toString();
+	var allergy = allergyBox.val().toLowerCase().toString();
+	if (!allergy) {
+		searchRecipes(value);
+	} else {
+		searchRecipesWithoutAllergies(value, allergy);
+	}
+
+});
+
+
+
+// ALLERGY BOX FUNCTION
+allergyBox.keyup(function(e) {
+	
+	e.preventDefault();
+
+	var value = searchBox.val().toLowerCase().toString();
+	var allergy = allergyBox.val().toLowerCase().toString();
+	if (value) {
+		searchRecipesWithoutAllergies(value, allergy);
+	}
+
+	if (!allergy) {
+		searchRecipes(value);
+	}
+
+});
+
+
+
+// PERFORM SEARCH
+function searchRecipes(value) {
+
+	emptyRecipes();
 		
-	resultRecipes.forEach (function (recipe) {
-		recipe.ingredients.forEach(function(ingredient) {
-			var ingredientName = ingredient.name.toLowerCase();
-			if (!allergy) {
-				if (ingredientName.indexOf(value) > -1) {
-					if (queryCollection.indexOf(recipe) == -1) {
-						queryCollection.push(recipe);
-					}
-				}
-			} else {
-				if ((ingredientName.indexOf(value) > -1) && (ingredientName.indexOf(allergy) < -1)) {
-					if (queryCollection.indexOf(recipe) == -1) {
-						queryCollection.push(recipe);
-					}
+	RECIPES.forEach (function (recipe) {
+		var recipeName = recipe.name.toLowerCase();
+		var recipeDescription = recipe.name.toLowerCase();
+
+			if (recipeName.indexOf(value) > -1 || recipeDescription.indexOf(value) > -1) {
+				if (queryCollection.indexOf(recipe) < 0) {
+					queryCollection.push(recipe);
 				}
 			}
-		});
+			recipe.ingredients.forEach(function(ingredient) {
+				var ingredientName = ingredient.name.toLowerCase();
+				if (ingredientName.indexOf(value) > -1) {
+					if (queryCollection.indexOf(recipe) < 0) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
+
 	});
 
+	displayRecipes();
+
+}
+
+// PERFORM SEARCH
+function searchRecipesWithoutAllergies(value, allergy) {
+
+	emptyRecipes();
+
+	RECIPES.forEach (function (recipe) {
+		var recipeName = recipe.name.toLowerCase();
+		var recipeDescription = recipe.name.toLowerCase();
+			if (recipeName.indexOf(value) > -1 || recipeDescription.indexOf(value) > -1) {
+				if (queryCollection.indexOf(recipe) < 0 && !hasAllergy(recipe, allergy)) {
+					queryCollection.push(recipe);
+				}
+			}
+
+	});
+
+	displayRecipes();
+
+}
+
+function hasAllergy(recipe, allergy) {
+	var found = false;
+	recipe.ingredients.forEach(function(ingredient) {
+		var ingredientName = ingredient.name.toLowerCase();
+		// console.log("ingredientName: "+ ingredientName);
+		// console.log("allergy: " + allergy);
+		if (ingredientName.indexOf(allergy) > -1) {
+			//console.log(ingredientName + "has allergy" + allergy);
+			found =  true;
+		}
+	});
+
+	return found;
+}
+
+
+// DISPLAY RESULTS
+function displayRecipes() {
+
 	queryCollection.forEach(function(recipe) {
-		console.log("recipe: " + recipe);
 		var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
 		var compiled = recipeTemplate({
 		recipe: recipe,
 		url: processed_url
 	});
-		recipesContainer.append(compiled);
+		recipesContainer.hide().append(compiled).fadeIn(500);
 	});
-
-});
-
-
+}
 
 // TOP RECIPES
 $('.top-recipe').click(function(e) {
