@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #F7F7F7;
   color: #888;
 }
 
@@ -66,17 +67,12 @@ div.cookbook p {
 	background: none;
 }
 
-.textFieldEdit h1 {
-	color: #fff;
-}
-
 .ingredient, .ingredient-quantity {
 	width: 200px;
 }
 
 .editMode {
-	border-bottom: 2px dotted red;
-	color: #aaa;
+	color: red;
 }
 
 input {

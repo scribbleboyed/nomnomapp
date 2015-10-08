@@ -136,11 +136,11 @@ recipesController.post('/:name/update', function(req, res) {
     }
 });
 
-recipesController.post('/:name/addTo', function(req, res) {
+recipesController.get('/:name/addTo/:cookbook_id', function(req, res) {
     var processed_name = req.params.name.replace(/ /g, "_");
     var redirectURL = "/recipes/" + processed_name;
 
-    Cookbook.updateAsync({_id: req.body.cookbook}, {
+    Cookbook.updateAsync({_id: req.params.cookbook_id}, {
         $push: { recipes: req.params.name }
     }).then(function() {
         res.redirect(303, redirectURL);

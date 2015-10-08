@@ -1,89 +1,88 @@
 <% include ../partials/header %>
 
 <% var processed_name = recipe.name.replace(/ /g, "_"); %>
+
 <div class="container">
 
-	<button id="editButton">Edit Recipe</button>
+	<div style="margin-bottom: 20px;">
 
-	<% if (cookbooks) { %>
-		<form action="/recipes/<%= recipe.name %>/addTo" method="post">
-			<select name="cookbook" onchange="this.form.submit()">
-				<option value="" selected disabled>Add To Cookbook</option>
-				<% cookbooks.forEach(function(cookbook) { %>
-					<option value="<%= cookbook.id %>"><%= cookbook.name %></option>
-					<% }) %>
-			</select>
-		</form>
-	<% }; %>
+		<button class="btn btn-danger" id="editButton">Edit Recipe</button>
 
+		<% if (cookbooks) { %>
+				<div class="dropdown" style="display: inline-block;">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add to Cookbook
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<% cookbooks.forEach(function(cookbook) { %>
+							 <li><a href="/recipes/<%= recipe.name %>/addTo/<%= cookbook.id %>"><%= cookbook.name %></a></li>
+							<% }); %>
+						</ul>
+				</div>
+		<% }; %>
+
+	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
-			<iframe width="100%" height="400px" src="https://www.youtube.com/embed/shsY7FwcCnw" frameborder="0" allowfullscreen></iframe>
+			
+			<iframe width="560" height="315" style="box-shadow: 0px 7px #ddd;" src="https://www.youtube.com/embed/<%= recipe.video_url.split("=")[1] %>?autoplay=1" frameborder="0"></iframe>
 
 			<form action="/recipes/<%= processed_name %>/update-ingredient" method="post">
-				<div class="container">
-					<h1>Ingredients</h1>
+				<div class="container-fluid" style="padding: 10px;">
+					<p>Ingredients</p>
 					<% recipe.ingredients.forEach(function(ingredient) { %>
-						<input type="text" class="editable ingredient textFieldEdit" name="ingredient-name" value="<%= ingredient.name %>" disabled>
-						<input type="text" class="editable ingredient-quantity textFieldEdit" name="ingredient-quantity" value="<%= ingredient.quantity %>" disabled><br/>
+						<div class="row" style="border: 1px solid #ddd;">
+							<div class="col-lg-8" style="background: #fff;">
+								<input type="text" class="editable textFieldEdit" name="ingredient-name" value="<%= ingredient.name %>" disabled>
+							</div>
+							<div class="col-lg-4" style="background: #eee;">
+								<input type="text" class="editable textFieldEdit" name="ingredient-quantity" value="<%= ingredient.quantity %>" disabled>
+							</div>
+						</div>
 					<% }); %>
-						<input type="text" id="new-ingredient-name" class="editable ingredient textFieldEdit" name="ingredient-name">
-						<input type="text" id="new-ingredient-qty" class="editable ingredient-quantity textFieldEdit" name="ingredient-quantity"><br/>
-					<input type="submit" style="display: none;" id="updateButton" class="hiddenButton" value="Add Ingredient">
+						<div class="row">
+							<div class="col-lg-8">
+								<input type="text" id="new-ingredient-name" class="editable textFieldEdit" name="ingredient-name">
+							</div>
+							<div class="col-lg-4">
+								<input type="text" id="new-ingredient-qty" class="editable textFieldEdit" name="ingredient-quantity">
+							</div>
+						</div>
+						<p></p>
+						<button type="submit" style="display: none;" id="updateButton" class="btn btn-warning hiddenButton">Add Ingredient</button>
 				</div>
 			</form>
 		</div>
 		<div class="col-lg-6">
+			<div class="container-fluid" style="padding: 0px 10px; border: 1px solid #eee; border-bottom: 3px solid #eee; background: #fff;">
+				<form action="/recipes/<%= processed_name %>/update" method="post">
+					<input type="text" class="editable textFieldEdit" id="title" name="name" value="<%= recipe.name %>" disabled>
+					<textarea rows="4" class="editable textFieldEdit" id ="description" name="description" disabled><%= recipe.description %></textarea>
+					<div style="width: 70px; background: #aaa; color: #fff; display: inline-block;">
+						<input type="text" class="editable textFieldEdit" id="prep_time" name="prep_time" value="<%= recipe.prep_time %>" disabled>
+					</div>
+					<div style="width: 70px; background: #aaa; color: #fff; display: inline-block;">
+						<input type="text" class="editable textFieldEdit" id="cook_time" name="cook_time" value="<%= recipe.cook_time %>" disabled>
+					</div>
+					<p>
+					<button type="submit" style="display: none;" id="updateButton" class="btn btn-warning hiddenButton">Save Recipe</button>
+				</form>
+			</div>
 
-			<form action="/recipes/<%= processed_name %>/update" method="post">
-				<input type="text" class="editable textFieldEdit recipe" id="title" name="name" value="<%= recipe.name %>" disabled>
-				<textarea rows="4" class="editable textFieldEdit recipe" id ="description" name="description" disabled><%= recipe.description %></textarea>
-				<input type="text" class="editable textFieldEdit recipe" id="prep_time" name="prep_time" value="<%= recipe.prep_time %>" disabled>
-				<input type="text" class="editable textFieldEdit recipe" id="cook_time" name="cook_time" value="<%= recipe.cook_time %>" disabled>
-				<input type="submit" style="display: none;" id="updateButton" class="hiddenButton" value="Update Recipe">
-			</form>
-
-			<form action="/recipes/<%= processed_name %>/update" method="post">
-				<ol>
+			<div class="container-fluid" style="padding: 0px;">
+				<form action="/recipes/<%= processed_name %>/update" method="post">
 					<% recipe.steps.forEach(function(step) { %>
-						<li><%= step %></li>
+					<% console.log(step.index); %>
+						<div style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee; background: #fff;">
+							<input type="text" class="editable textFieldEdit" name="<%= step %>" value="<%= step %>" disabled>
+						</div>
 					<% }); %>
-				</ol>
-			</form>
+				</form>
+			</div>
 
-			<button class="hiddenButton" style="display: none;" id="saveButton">Save to Cookbook</button>
+			<button type="submit" style="display: none;" id="saveButton" class="btn btn-warning hiddenButton">Save to Cookbook</button>
 		</div>
-
-<script>
-
-// var i = 0;
-// var s = 0;
-// var ingredientsArray = [];
-// var stepsArray = [];
-
-// 	$('#ingredientsButton').click(function() {
-		
-// 		console.log(i);
-// 		i += 1;
-
-// 		var ingredientForm = $('<input type="text" class="editable textFieldEdit recipe" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled><input type="text" class="editable textFieldEdit recipe" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>');
-
-// 		$('#ingredientsContainer').append(ingredientForm);
-
-// 		console.log(i);
-// 	});
-
-// 	$('#stepsButton').click(function() {
-// 		console.log(s);
-// 		s += 1;
-
-// 		var stepForm = $('<input type="text" class="editable textFieldEdit recipe" name="step-instruction" value="<%= recipe.steps.instruction %>" disabled><input type="text" class="editable textFieldEdit recipe" name="step-image_url" value="<%= recipe.steps.image_url %>" disabled>');
-// 		$('#stepsContainer').append(stepForm);
-
-// 		console.log(s);
-// 	});
-
-// </script>
+	</div>
+</div>
 
 </body>

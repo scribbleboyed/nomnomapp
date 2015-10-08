@@ -205,7 +205,7 @@ exports.seedCookbooks = function seedCookbooks () {
 				name: "Snacks",
 				description: "What I'm feeling lazy and fat",
 				image_url: "http://www.kumandgo.com/content/uploads/2013/05/Donuts.jpg",
-				username: "scribbleboyed",
+				username: "Edward",
 				recipes: [],
 				tags: ["snack"]
 			});
@@ -214,7 +214,7 @@ exports.seedCookbooks = function seedCookbooks () {
 				name: "Health Nut",
 				description: "So much organic",
 				image_url: "http://www.mycity-web.com/wp-content/uploads/2015/04/Healthy_Fruit.jpg",
-				username: "scribbleboyed",
+				username: "Edward",
 				recipes: [],
 				tags: ["organic", "healthy"]
 			});
