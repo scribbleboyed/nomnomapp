@@ -5,9 +5,11 @@ body {
 }
 
 #main-nav {
-	opacity: 0.8;
+	opacity: 0.9;
 	margin-bottom: 0;
 	height: 30px;
+	background: #fff;
+	border-bottom: 4px solid #eee;
 }
 
 a {
@@ -15,7 +17,7 @@ a {
 }
 
 a:hover {
-	color: red;
+	color: #000;
 }
 
 button {
@@ -133,3 +135,8 @@ textarea {
 	padding-bottom: 30px;
 
 }
+
+#stickyDiv.sticky {
+     position: fixed;
+     top: 50px;
+  }

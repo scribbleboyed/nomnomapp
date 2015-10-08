@@ -1,5 +1,8 @@
 var RECIPES = [];
 var recipeTemplate = _.template('<a href="<%= url %>"><div class="single-recipe"><div class="row"><div class="col-lg-8"><div class="videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe.main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div></div><div class="col-lg-4" style="padding: 0px 20px 10px 20px;"><h1><%= recipe.name %></h1><p style="background: #446688; padding: 10px; color: #fff;"><%= recipe.description %></p><br/><p>Prep Time: <%= recipe.prep_time %> min</p><p>Cook Time: <%= recipe.cook_time %> min</p></div></div></div></a>');
+var recipesContainer = $('#recipes-container');
+var searchBox = $('#search-term');
+var allergyBox = $('#allergy-term');
 
 $(document).ready(function() {
 	// Get dem donuts!
@@ -11,132 +14,141 @@ $(document).ready(function() {
 	});
 
 	var initPage = function() {
-		var recipesContainer = $('#recipes-container');
 
-		var emptyRecipes = function() {
-			recipesContainer.empty();
+		// RECIPES.forEach(function(recipe) {
+		// 	var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+		// 	var compiled = recipeTemplate({
+		// 		recipe: recipe,
+		// 		url: processed_url
+		// 	});
+		// 	recipesContainer.hide().append(compiled).fadeIn(100);
+		// });
+
+		for (var i=0; i < RECIPES.length; i++ ) {
+			var processed_url = "http://localhost:3000/recipes/" + RECIPES[i].name.replace(/ /g, "_");
+			var compiled = recipeTemplate({
+				recipe: RECIPES[i],
+				url: processed_url
+			});
+			recipesContainer.hide().append(compiled).fadeIn(200*i);
 		};
 
-		RECIPES.forEach(function(recipe) {
+	};
+
+	var emptyRecipes = function() {
+		recipesContainer.empty();
+	};
+
+	$('#search-term').keyup(function(e) {
+
+		e.preventDefault();
+		var value = $('#search-term').val().toLowerCase().toString();
+
+		emptyRecipes();
+
+		var queryCollection = [];
+			
+		RECIPES.forEach (function (recipe) {
+
+			recipe.ingredients.forEach(function(ingredient) {
+				var ingredientName = ingredient.name.toLowerCase();
+				if (ingredientName.indexOf(value) > -1) {
+					if (queryCollection.indexOf(recipe) == -1) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
+		});
+
+		queryCollection.forEach(function(recipe) {
+			console.log("recipe: " + recipe);
 			var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
 			var compiled = recipeTemplate({
 				recipe: recipe,
 				url: processed_url
 			});
+
+			if (recipesContainer.length > 0) {
+				recipesContainer.hide().append(compiled).fadeIn();
+			} else {
+				recipesContainer.hide().append('<p>No Recipes Found</p>').fadeIn(100);
+			}
+		});
+	});
+
+	$('#allergy-button').click(function(e) {
+
+		e.preventDefault();
+		var value = $('#search-term').val().toLowerCase().toString();
+		var allergy = $('#allergy-term').val().toLowerCase().toString();
+		console.log("Search term: " + value);
+		console.log("Allergy term: " + allergy);
+
+		emptyRecipes();
+
+		var resultRecipes = RECIPES;
+
+		var queryCollection = [];
+			
+		resultRecipes.forEach (function (recipe) {
+			var resultIngredients = recipe.ingredients;
+
+			resultIngredients.forEach(function(ingredient) {
+				var ingredientName = ingredient.name.toLowerCase();
+				console.log("Ingredient: " + ingredientName);
+				if ((ingredientName.indexOf(value) > -1) && (ingredientName.indexOf(allergy) < -1)){
+					if (queryCollection.indexOf(recipe) == -1) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
+		});
+
+		queryCollection.forEach(function(recipe) {
+			console.log("recipe: " + recipe);
+			var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+			var compiled = recipeTemplate({
+			recipe: recipe,
+			url: processed_url
+		});
 			recipesContainer.append(compiled);
 		});
+	});
 
-		$('#search-button').click(function(e) {
+	$('.top-recipe').click(function(e) {
 
-			e.preventDefault();
-			var value = $('#search-term').val().toLowerCase().toString();
-			console.log("Search term: " + value);
-			emptyRecipes();
+		e.preventDefault();
+		var value = $(this).attr('id');
+		console.log('ID: ' + value);
+		emptyRecipes();
 
-			var resultRecipes = RECIPES;
+		var resultRecipes = RECIPES;
 
-			var queryCollection = [];
-				
-			resultRecipes.forEach (function (recipe) {
-				var resultIngredients = recipe.ingredients;
+		var queryCollection = [];
+			
+		resultRecipes.forEach (function (recipe) {
+			var resultIngredients = recipe.ingredients;
 
-				resultIngredients.forEach(function(ingredient) {
-					var ingredientName = ingredient.name.toLowerCase();
-					console.log("Ingredient: " + ingredientName);
-					if (ingredientName.indexOf(value) > -1) {
-						if (queryCollection.indexOf(recipe) == -1) {
-							queryCollection.push(recipe);
-						}
+			resultIngredients.forEach(function(ingredient) {
+				var ingredientName = ingredient.name.toLowerCase();
+				console.log("Ingredient: " + ingredientName);
+				if (ingredientName.indexOf(value) > -1) {
+					if (queryCollection.indexOf(recipe) == -1) {
+						queryCollection.push(recipe);
 					}
-				});
-			});
-
-			queryCollection.forEach(function(recipe) {
-				console.log("recipe: " + recipe);
-				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
-				var compiled = recipeTemplate({
-				recipe: recipe,
-				url: processed_url
-			});
-				recipesContainer.append(compiled);
+				}
 			});
 		});
 
-		$('#allergy-button').click(function(e) {
-
-			e.preventDefault();
-			var value = $('#search-term').val().toLowerCase().toString();
-			var allergy = $('#allergy-term').val().toLowerCase().toString();
-			console.log("Search term: " + value);
-			console.log("Allergy term: " + allergy);
-
-			emptyRecipes();
-
-			var resultRecipes = RECIPES;
-
-			var queryCollection = [];
-				
-			resultRecipes.forEach (function (recipe) {
-				var resultIngredients = recipe.ingredients;
-
-				resultIngredients.forEach(function(ingredient) {
-					var ingredientName = ingredient.name.toLowerCase();
-					console.log("Ingredient: " + ingredientName);
-					if ((ingredientName.indexOf(value) > -1) && (ingredientName.indexOf(allergy) < -1)){
-						if (queryCollection.indexOf(recipe) == -1) {
-							queryCollection.push(recipe);
-						}
-					}
-				});
-			});
-
-			queryCollection.forEach(function(recipe) {
-				console.log("recipe: " + recipe);
-				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
-				var compiled = recipeTemplate({
-				recipe: recipe,
-				url: processed_url
-			});
-				recipesContainer.append(compiled);
-			});
+		queryCollection.forEach(function(recipe) {
+			console.log("recipe: " + recipe);
+			var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
+			var compiled = recipeTemplate({
+			recipe: recipe,
+			url: processed_url
 		});
-
-		$('.top-recipe').click(function(e) {
-
-			e.preventDefault();
-			var value = $(this).attr('id');
-			console.log('ID: ' + value);
-			emptyRecipes();
-
-			var resultRecipes = RECIPES;
-
-			var queryCollection = [];
-				
-			resultRecipes.forEach (function (recipe) {
-				var resultIngredients = recipe.ingredients;
-
-				resultIngredients.forEach(function(ingredient) {
-					var ingredientName = ingredient.name.toLowerCase();
-					console.log("Ingredient: " + ingredientName);
-					if (ingredientName.indexOf(value) > -1) {
-						if (queryCollection.indexOf(recipe) == -1) {
-							queryCollection.push(recipe);
-						}
-					}
-				});
-			});
-
-			queryCollection.forEach(function(recipe) {
-				console.log("recipe: " + recipe);
-				var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
-				var compiled = recipeTemplate({
-				recipe: recipe,
-				url: processed_url
-			});
-				recipesContainer.append(compiled);
-			});
+			recipesContainer.append(compiled);
 		});
+	});
 
-
-	};
 });
