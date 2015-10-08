@@ -245,3 +245,13 @@ $('.category').click(function(e) {
 	
 });
 
+
+// HOVER OVER FOOD GIF
+
+$('.foodGif').hover(function(e) {
+
+	e.preventDefault();
+	var videoOverlay = $(this).parent().parent().children('.videoOverlay');
+	videoOverlay.slideToggle(300);
+
+});
