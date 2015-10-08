@@ -17,10 +17,7 @@ $(document).ready(function() {
 			recipesContainer.empty();
 		};
 
-		console.log("RECIPES: " + RECIPES);
-
 		RECIPES.forEach(function(recipe) {
-			console.log("recipe: " + recipe);
 			var processed_url = "http://localhost:3000/recipes/" + recipe.name.replace(/ /g, "_");
 			var compiled = recipeTemplate({
 				recipe: recipe,

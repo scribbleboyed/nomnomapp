@@ -5,7 +5,9 @@ var Recipe = require('../models/recipe.js');
 
 /* GET users listing. */
 usersController.get('/', function(req, res) {
+	console.log(req);
 	if (req.session && req.session.email) {
+
 		User.findOne({email: req.session.email}).then(function(user) {
 			Recipe.find({}).then(function(recipes) {
 				res.render('index.ejs', {
