@@ -46,11 +46,32 @@ video, source {
 	padding: 0px;
 }
 
+#big-video-col {
+	padding: 0;
+}
+
+.template-one-row #small-video-col {
+	padding-right: 0;
+}
+
+.template-two-row #small-video-col {
+	padding-left: 0;
+}
+
+.template-container {
+	margin-bottom: 10px;
+}
+
+.videoDiv {
+	padding: 0px;
+	margin: 0px;
+}
+
 .big-video-col .videoOverlay {
 	width: 100%;
-	height: 100px;
+	height: auto;
 	position: absolute;
-	bottom: 0px;
+	bottom: 5px;
 	background: #000;
 	opacity: 0.7;
 	padding: 10px;
@@ -58,11 +79,32 @@ video, source {
 	color: #fff;
 }
 
-.small-video-col .videoOverlay {
+#small-video-top {
+	position: relative;
+}
+
+#small-video-bot {
+	position: relative;
+	margin-top: 10px;
+}
+
+#sv-top-videoOverlay {
 	width: 100%;
-	height: 100px;
+	height: auto;
 	position: absolute;
-	bottom: 0px;
+	bottom: 5px;
+	background: #000;
+	opacity: 0.7;
+	padding: 10px;
+	margin: 0px;
+	color: #fff;
+}
+
+#sv-bot-videoOverlay {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	bottom: 5px;
 	background: #000;
 	opacity: 0.7;
 	padding: 10px;
