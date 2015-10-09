@@ -53,32 +53,80 @@ video, source {
 	font-size: 14px;
 }
 
+#big-video-col {
+	padding: 0;
+}
+
+.template-one-row #small-video-col {
+	padding-right: 0;
+}
+
+.template-two-row #small-video-col {
+	padding-left: 0;
+}
+
+.template-container {
+	margin-bottom: 10px;
+}
+
+.videoDiv {
+	padding: 0px;
+	margin: 0px;
+}
+
 .big-video-col .videoOverlay {
 	width: 100%;
-	height: 100px;
+	height: auto;
 	position: absolute;
-	bottom: 0px;
-	background: #000;
-	opacity: 0.7;
+	bottom: 5px;
 	padding: 10px;
 	margin: 0px;
+}
+
+#small-video-top {
+	position: relative;
+}
+
+#small-video-bot {
+	position: relative;
+	margin-top: 10px;
+}
+
+.videoOverlay {
+	opacity: 0.5;
+	background: #000;
 	color: #fff;
 }
 
-.small-video-col .videoOverlay {
+#sv-top-videoOverlay {
 	width: 100%;
-	height: 100px;
+	height: auto;
 	position: absolute;
-	bottom: 0px;
-	background: #000;
-	opacity: 0.7;
+	bottom: 5px;
 	padding: 10px;
 	margin: 0px;
-	color: #fff;
+}
+
+#sv-bot-videoOverlay {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	bottom: 5px;
+	padding: 10px;
+	margin: 0px;
+}
+
+.videoOverlay h1 {
+	display: inline-block;
+	font-size: 40px;
 }
 
 .videoOverlay h2 {
 	display: inline-block;
+}
+
+#videoOverlay-timer {
+	float: right;
 }
 
 .recipe-item {

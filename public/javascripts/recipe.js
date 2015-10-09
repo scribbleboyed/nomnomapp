@@ -1,5 +1,5 @@
 var RECIPES = [];
-var recipeTemplateOne = _.template('Template One <%= recipe[0].name %>');
+var recipeTemplateOne = _.template('Template One <%= recipe[0].name %>, <');
 var recipeTemplateTwo = _.template('Template Two <%= recipe %>');
 var recipesContainer = $('#recipes-container');
 var searchBox = $('#search-term');
@@ -245,3 +245,13 @@ $('.category').click(function(e) {
 	
 });
 
+
+// HOVER OVER FOOD GIF
+
+$('.foodGif').hover(function(e) {
+
+	e.preventDefault();
+	var videoOverlay = $(this).parent().parent().children('.videoOverlay');
+	videoOverlay.slideToggle(300);
+
+});
