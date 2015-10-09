@@ -94,17 +94,18 @@
 
 			<label name="username">Username</label>
 			<input type="username" name="username" placeholder="Username"/><br/>
-
+    </br>
 			<label name="email">Email</label>
 			<input type="email" name="email" placeholder="Email Address"/><br/>
-
+    </br>
 			<label name="password">Password</label>
 			<input type="password" name="password" placeholder="Password"/><br/>
-
+    </br>
 			<label name="password_confirmation">Confirm Password</label>
 			<input type="password" name="password_confirmation" placeholder="Password"/>
-
-			<input type="submit" value="Register">
+    </br>
+  </br>
+			<input type="submit" class="btn btn-warning" value="Register">
 		</form>
       </div>
     </div>
@@ -125,11 +126,14 @@
       <div class="modal-body">
         <form action="/login" method="post">
       <label name="email">Email</label>
-      <input type="email" name="email" placeholder="Email Address"/><br/>
+      <input type="email" name="email" placeholder="Email Address"/>
+    </br>
+    </br>
       <label name="password">Password</label>
       <input type="password" name="password" placeholder="Password"/>
-      <br/>
-      <input type="submit" value="Log In">
+    </br>
+    </br>
+      <input type="submit" class="btn btn-warning" value="Log In">
       <br>
       <a class="button" href="/auth/facebook">Log in with FB</a>
     </form>
