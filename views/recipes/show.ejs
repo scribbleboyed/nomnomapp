@@ -65,9 +65,8 @@
 			<div class="container-fluid" style="padding: 0px;">
 				<form action="/recipes/<%= processed_name %>/update" method="post">
 					<% for (var i=0; i < recipe.steps.length; i++ ) { %>
-
 						<div class="container-fluid recipe-step">
-							<div class="row" id="recipeStepBox" style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee; background: #fff;">
+							<div class="row" id="recipeStepBox" style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee;">
 								<div class="col-md-1" style="font-weight: 700; font-size: 25px;">
 									<%= i+1 %>
 								</div>
@@ -109,11 +108,11 @@ var $window = $(window),
 		}
 	});
 
-	$('#recipeStepBox').click(function(e) {
+	$('.recipe-step').click(function(e) {
 		e.preventDefault();
 		console.log('hello');
-		$('#checkmark').toggle();
-	})
+		$(this).children().children('#checkmark').toggle();
+	});
 
 </script>
 
