@@ -13,23 +13,14 @@
 				<h4>Ingredients</h4>
 
 				<% recipe.ingredients.forEach(function(ingredient) { %>
-						<div style="background: #fff; width: 400px; display: inline-block; border: 1px solid #eee;">
+						<div style="background: #fff; width: 400px; display: inline-block; border-bottom: 2px solid #ddd;">
 							<input type="text" class="editable textFieldEdit" name="ingredient-name" value="<%= ingredient.name %>" disabled>
 						</div>
-						<div style="background: #eee; width: 155px; display: inline-block;">
+						<div style="background: #fff; width: 155px; display: inline-block; border-bottom: 2px solid #ddd;">
 							<input type="text" class="editable textFieldEdit" name="ingredient-quantity" style="font-weight: 300;" value="<%= ingredient.quantity %>" disabled>
 						</div><br/>
 				<% }); %>
-
-					<div class="row">
-						<div class="col-lg-8">
-							<input type="text" id="new-ingredient-name" class="editable textFieldEdit" name="ingredient-name">
-						</div>
-						<div class="col-lg-4">
-							<input type="text" id="new-ingredient-qty" class="editable textFieldEdit" name="ingredient-quantity">
-						</div>
-					</div>
-
+					<br/>
 					<button type="submit" style="display: none;" id="updateButton" class="btn btn-warning hiddenButton">Add Ingredient</button>
 			</div>
 		</form>
@@ -45,10 +36,10 @@
 
 					<textarea rows="2" class="editable textFieldEdit" id ="description" name="description" style="font-weight: 300;" disabled><%= recipe.description %></textarea>
 
-					<div style="background: #ddd; color: #000; display: inline-block;">
+					<div style="color: #465154; font-weight: 700; display: inline-block;">
 						<input type="text" class="editable textFieldEdit" id="prep_time" name="prep_time" value="Prep Time: <%= recipe.prep_time %>" disabled>
 					</div>
-					<div style="background: #aaa; color: #fff; display: inline-block;">
+					<div style="color: #465154; font-weight: 700; display: inline-block;">
 						<input type="text" class="editable textFieldEdit" id="cook_time" name="cook_time" value="Cook Time: <%= recipe.cook_time %>" disabled>
 					</div>
 					<p/><br/>
@@ -74,9 +65,9 @@
 			<div class="container-fluid" style="padding: 0px;">
 				<form action="/recipes/<%= processed_name %>/update" method="post">
 					<% for (var i=0; i < recipe.steps.length; i++ ) { %>
-						<div class="container-fluid">
-							<div class="row" style="margin-top: 5px; padding: 10px; border-bottom: 3px solid #eee; background: #fff;">
-								<div class="col-md-1" style="font-weight: 700; font-size: 25px;">
+						<div class="container-fluid recipe-step">
+							<div class="row" style="margin-top: 5px; padding: 10px; color: #465154; border-bottom: 3px solid #ddd;">
+								<div class="col-md-1" style="font-weight: 700; font-size: 25px; color: #fb9a00">
 									<%= i+1 %>
 								</div>
 								<div class="col-md-11" style="font-weight: 300; min-height: 70px;">
@@ -87,7 +78,7 @@
 					<% }; %>
 				</form>
 			</div>
-
+			<br/>
 			<button type="submit" style="display: none;" id="add" class="btn btn-warning hiddenButton">Add Step</button>
 		</div>
 	</div>

@@ -59,7 +59,7 @@
 
 <!-- Create Recipe Modal -->
 <div id="createRecipeModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-md">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -70,8 +70,8 @@
       <div class="modal-body">
         <form action="/recipes/create" method="post">
 			<label name="name">Recipe Name</label>
-			<input type="text" name="name" placeholder="Four Cheese Mac-n-Cheese"/><br/>
-			<input type="submit" value="Create this Recipe">
+			<input type="text" name="name" placeholder="Four Cheese Mac-n-Cheese"/><br/><br/>
+			<button class="btn btn-warning" type="submit">Create Recipe</button>
 		</form>
       </div>
     </div>
