@@ -75,6 +75,8 @@ video, source {
 
 #search-div input {
 	padding: 10px;
+	border: none;
+	border-bottom: 3px solid #ddd;
 }
 
 .template-one-row #small-video-col {
@@ -321,21 +323,20 @@ textarea {
 	width: 10%;
 	margin-left: 10px;
 	margin-right: 10px;
-	background: #03677a;
-	border: none;
-}
-
-.search-button {
-	width: 10%;
-	margin-left: 10px;
-	margin-right: 10px;
 	background: #fbbd00;
 	border: none;
+	border-bottom: 3px solid #e1aa00;
 }
 
 .show-categories { 
 	background: #fb9a00;
 	border: none;
+	border-bottom: 3px solid #e28a00;
+}
+
+.show-categories:hover { 
+	background: #e28a00;
+	border-bottom: 3px solid #c97a00;
 }
 
 #stickyDiv.sticky {
