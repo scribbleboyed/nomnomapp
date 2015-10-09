@@ -109,8 +109,17 @@ video, source {
 	margin: 0px;
 }
 
+.videoOverlay h1 {
+	display: inline-block;
+	font-size: 40px;
+}
+
 .videoOverlay h2 {
 	display: inline-block;
+}
+
+#videoOverlay-timer {
+	float: right;
 }
 
 .recipe-item {
