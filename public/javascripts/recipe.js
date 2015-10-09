@@ -1,6 +1,8 @@
 var RECIPES = [];
-var recipeTemplateOne = _.template('Template One <%= recipe[0].name %>, <');
-var recipeTemplateTwo = _.template('Template Two <%= recipe %>');
+
+var recipeTemplateOne = _.template('<div class="row template-one-row template-container"><% if (recipe[0]) { %><a href="<%= processed_url[0] %>"><div class="col-lg-8 big-video-col" id="big-video-col"><div class="videoDiv"><video class="foodGif" width="100%" loop="true" ><source src="<%= recipe[0].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="big-videoOverlay"><h1 class="bv-title"><%= recipe[0].name %></h1><div id="videoOverlay-timer"><h2 class="bv">Prep Time <b><%= recipe[0].prep_time %></b></h2><h2 class="bv">&nbsp;&nbsp;&nbsp;Cook Time <b><%= recipe[0].cook_time %></b></h2></div></div></div></a><% } %><% if (recipe[1]) { %><a href="<%= processed_url[1] %>"><div class="col-lg-4 small-video-col" id="small-video-col"><div class="small-video top" id="small-video-top"><div class="videoDiv" id="sv-top-videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe[1].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="sv-top-videoOverlay"><h2 class="sv"><%= recipe[1].name %></h2></div></div></a><% } %><% if (recipe[2]) { %><a href="<%= processed_url[2] %>"><div class="small-video bottom" id="small-video-bot"><div class="videoDiv" id="sv-bot-videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe[2].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="sv-bot-videoOverlay"><h2 class="sv"><%= recipe[2].name %></h2></div></div></div></a><% } else { %></div><% } %></div>');
+var recipeTemplateTwo = _.template('<div class="row template-two-row template-container"><% if (recipe[0]) { %><a href="<%= processed_url[0] %>"><div class="col-lg-4 small-video-col" id="small-video-col"><div class="small-video top" id="small-video-top"><div class="videoDiv" id="sv-top-videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe[0].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="sv-top-videoOverlay"><h2 class="sv"><%= recipe[0].name %></h2></div></div></a><% } %><% if (recipe[1]) { %><a href="<%= processed_url[1] %>"><div class="small-video bottom" id="small-video-bot"><div class="videoDiv" id="sv-bot-videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe[1].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="sv-bot-videoOverlay"><h2 class="sv"><%= recipe[1].name %></h2></div></div></div></a><% } else { %></div><% } %><% if (recipe[2]) { %><a href="<%= processed_url[2] %>"><div class="col-lg-8 big-video-col" id="big-video-col"><div class="videoDiv"><video class="foodGif" width="100%" loop="true"><source src="<%= recipe[2].main_image_url %>" type="video/webm">Your browser does not support the video tag.</video></div><div class="videoOverlay" id="big-videoOverlay"><h1 class="bv-title"><%= recipe[2].name %></h1><div id="videoOverlay-timer"><h2 class="bv">Prep Time: <%= recipe[2].prep_time %></h2><h2 class="bv">Cook Time: <%= recipe[2].cook_time %></h2></div></div></div></a><% } %></div>');
+
 var recipesContainer = $('#recipes-container');
 var searchBox = $('#search-term');
 var allergyBox = $('#allergy-term');
@@ -182,6 +184,7 @@ function displayRecipes() {
 
 	var template = true;
 	var temp = [];
+	var temp_url = [];
 	var count = 0;
 	var compiled;
 
@@ -190,34 +193,54 @@ function displayRecipes() {
 		for (var i = 0; i < 3; i ++) {
 			if (queryCollection[count]) {
 				temp.push(queryCollection[count]);
+				temp_url.push("/recipes/" + queryCollection[count].name.replace(/ /g, "_"));
 				count++;
 			}
 		}
 
 		if (template) {
-			console.log("template one: " + temp);
 			compiled = recipeTemplateOne({
 				recipe: temp,
+				processed_url: temp_url
 			});
-			
-			recipesContainer.append(compiled);
 
 			template = false;
 
 		} else {
-			console.log("template two: " + temp);
+
 			compiled = recipeTemplateTwo({
 				recipe: temp,
+				processed_url: temp_url
 			});
-
-			recipesContainer.append(compiled);
 			
 			template = true;
 		}
 
+		recipesContainer.append(compiled);
+
+
 		temp = [];
+		temp_url = [];
 	}
-	recipesContainer.fadeIn(200);
+
+		$('.foodGif').hover(function(e) {
+
+			e.preventDefault();
+			var videoOverlay = $(this).parent().parent().children('.videoOverlay');
+			videoOverlay.fadeToggle("fast", "linear");
+
+		});
+
+		$('.videoDiv').hover(function() {
+			console.log("test");
+			$(this).children("video")[0].play();
+		}, function() {
+			var el = $(this).children("video")[0];
+			el.pause();
+			el.currentTime = 0;
+		});
+
+	recipesContainer.fadeIn(1000);
 }
 
 
@@ -247,11 +270,3 @@ $('.category').click(function(e) {
 
 
 // HOVER OVER FOOD GIF
-
-$('.foodGif').hover(function(e) {
-
-	e.preventDefault();
-	var videoOverlay = $(this).parent().parent().children('.videoOverlay');
-	videoOverlay.slideToggle(300);
-
-});
