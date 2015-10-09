@@ -9,9 +9,12 @@ cookbooksController.get('/', function(req, res) {
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.find({}).execAsync().then(function(cookbooks) {
-                res.render('cookbooks/index.ejs',{
-                    cookbooks: cookbooks,
-                    curr_user: user.username
+                Cookbook.find({username: user.username}).execAsync().then(function(user_cookbooks) {
+                    res.render('cookbooks/index.ejs',{
+                        all_cookbooks: cookbooks,
+                        user_cookbooks: user_cookbooks,
+                        curr_user: user.username
+                    });
                 });
             })
             .catch(function (err) {
@@ -22,7 +25,8 @@ cookbooksController.get('/', function(req, res) {
         Cookbook.find({}).execAsync().then(function(cookbooks) {
             console.log(cookbooks);
             res.render('cookbooks/index.ejs',{
-                cookbooks: cookbooks,
+                user_cookbooks: null,
+                all_cookbooks: cookbooks,
                 curr_user: null
             });
         }).catch(function (err) {

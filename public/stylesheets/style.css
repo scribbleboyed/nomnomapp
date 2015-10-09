@@ -44,7 +44,6 @@ video, source {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	border-bottom: 3px solid #ddd;
 	border-radius: 3px;
 }
 
@@ -72,6 +71,10 @@ video, source {
 .videoDiv {
 	padding: 0px;
 	margin: 0px;
+}
+
+.videoDiv video {
+	border-bottom: 3px solid #ddd;
 }
 
 .big-video-col .videoOverlay {
@@ -131,6 +134,7 @@ video, source {
 
 .recipe-item {
 	display: inline-block;
+	padding: 5px;
 }
 
 div.cookbook {
@@ -142,15 +146,28 @@ div.cookbook {
 	color: #fff;
 }
 
+.cookbook-heading{
+	text-shadow: 1px 1px 5px #666;
+}
+
+.cookbook-heading input{
+	text-shadow: 1px 1px 3px #666;
+}
+
+.cookbook-title {
+	color: #000;
+	font-weight: 300;
+}
+
 div.outerDiv {
 	display: table;
-	width: 300px;
-	height: 200px;
+	width: 100%;
+	height: 600px;
 	text-align: center;
 	padding: 20px;
 	margin: 0px;
 	color: #fff;
-	background-repeat: none;
+	border-radius: 3px;
 }
 
 div.innerDiv {

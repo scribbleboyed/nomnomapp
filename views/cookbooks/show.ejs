@@ -4,11 +4,14 @@
 
 <div class="container" style="padding-top: 40px;">
 
-	<div class="container" id="cookbook-heading" style="background: url('<%= cookbook.image_url %>'); background-size: cover; background-position: center; border-bottom: 5px solid #ddd; border-radius: 3px;">
-		<button type="button" class="btn btn-danger" id="editButton">Edit</button>
+	<div class="cookbook-heading container" id="cookbook-heading" style="background: url('<%= cookbook.image_url %>'); background-size: cover; background-position: center; border-bottom: 5px solid #ddd; border-radius: 3px;">
+		<button type="button" class="btn btn-warning" id="editButton">Edit</button>
 		<form action="/cookbooks/<%= processed_name %>/update" method="post">
 			<h1><input type="text" id="title" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled></h1>
-			<h3><i><input type="text" name="description" class="editable textFieldEdit" value='"<%= cookbook.description %>"' disabled></i></h3>
+			<h3><i><input type="text" name="description" class="editable textFieldEdit" value='"<%= cookbook.description %>"' disabled></i>
+			<br/>
+			- <%= cookbook.username %>
+			</h3>
 			<input type="submit" id="updateButton" value="Update Cookbook" style="display: none;">
 		</form>
 	</div>

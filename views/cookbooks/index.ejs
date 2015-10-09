@@ -2,28 +2,57 @@
 
 <div id="cookbook-heading" class="container" style="padding-top: 50px;">
 
-<p>
-<button class="btn btn-danger" data-toggle="modal" data-target="#addCookbookModal">Add Cookbook</button>
-</p>
-
-		<% cookbooks.forEach(function(cookbook) { %>
-			<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
-
-			<a href="/cookbooks/<%= processed_name %>">
-			<div class="cookbook">
-				<div class="outerDiv" style="background: url('<%= cookbook.image_url %>');">
-					<div class="innerDiv">
-						<h2><%= cookbook.name %></h2>
-						<p><%= cookbook.description %></p>
-						<p>by <%= cookbook.username %></p>
-					</div>
-				</div>
+<% if (user_cookbooks) { %>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12" style="margin-bottom: 10px;">
+				<h2 class="cookbook-title" style="display: inline-block;"> Your Cookbooks </h2>
+				<button class="btn btn-danger" style="float: right;" data-toggle="modal" data-target="#addCookbookModal">Add Cookbook</button>
 			</div>
-			</a>
+		</div>
+		<div class="row"> 
 
-		<% }) %>
+			<% user_cookbooks.forEach(function(cookbook) { %>
+				<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
+				<a href="/cookbooks/<%= processed_name %>">
+					<div class="col-lg-3">
+						<div class="outerDiv" style="background: url('<%= cookbook.image_url %>'); background-position: center;">
+							<div class="innerDiv">
+								<h2><%= cookbook.name %></h2>
+								<p><%= cookbook.description %></p>
+								<p>by <%= cookbook.username %></p>
+							</div>
+						</div>
+					</div>
+				</a>
+			<% }) %>
 
-	</div>
+		</div>
+<% } %>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="cookbook-title"> Browse All Cookbooks </h2>
+			</div>
+		</div>
+		<div class="row"> 
+
+			<% all_cookbooks.forEach(function(cookbook) { %>
+				<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
+				<a href="/cookbooks/<%= processed_name %>">
+					<div class="col-lg-3">
+						<div class="outerDiv" style="background: url('<%= cookbook.image_url %>'); background-position: center;">
+							<div class="innerDiv">
+								<h2><%= cookbook.name %></h2>
+								<p><%= cookbook.description %></p>
+								<p>by <%= cookbook.username %></p>
+							</div>
+						</div>
+					</div>
+				</a>
+			<% }) %>
+
+		</div>
 
 <!-- Add Cookbook Modal -->
 <div id="addCookbookModal" class="modal fade" role="dialog">
