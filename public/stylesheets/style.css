@@ -297,6 +297,9 @@ textarea {
 	height: auto;
 }
 
+.recipe-step {
+	background: #f5f5f5;
+}
 .recipe-step:hover {
 	background: #fff;
 }

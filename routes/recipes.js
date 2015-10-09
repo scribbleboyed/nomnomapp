@@ -169,21 +169,18 @@ recipesController.post('/create', function(req, res) {
 
     if(req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user){
-            user.saveAsync().then(function () {
-            
-                var recipe = new Recipe({
-                    name: req.body.name,
-                    user_name: user.username,
-                });
+            var recipe = new Recipe({
+                name: req.body.name,
+                user_name: user.username,
+            });
 
-                recipe.saveAsync()
-                .then(function() {
-                    console.log("save successful");
-                    res.redirect(303, new_recipe_url);
-                }).catch(function(err) {
-                    console.log("error: " + err);
-                    res.redirect(303, '/');
-                });
+            recipe.saveAsync()
+            .then(function() {
+                console.log("save successful");
+                res.redirect(303, new_recipe_url);
+            }).catch(function(err) {
+                console.log("error: " + err);
+                res.redirect(303, '/');
             });
         });
     }
