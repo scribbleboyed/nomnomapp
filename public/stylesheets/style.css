@@ -94,6 +94,7 @@ video, source {
 .videoDiv {
 	padding: 0px;
 	margin: 0px;
+	margin-top: -2px;
 }
 
 .videoDiv video {
@@ -426,4 +427,8 @@ input#title {
 ul.nav a:hover { 
 	background-color: #ff7300 !important; 
 	color: white !important;
+}
+
+.container-fluid {
+	margin-top: -2px;
 }
