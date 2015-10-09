@@ -4,6 +4,15 @@ body {
   color: #888;
 }
 
+.modal-header {
+	background-color: #fb9a00;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+h4.modal-title {	
+	font-weight: 700;
+}
 
 #main-nav {
 	opacity: 0.7;
@@ -136,8 +145,18 @@ video, source {
 
 .videoOverlay h2 {
 	display: inline-block;
-	font-weight: 300;
+	font-weight: 600;
+	font-size: 20px;
 	position: relative;
+}
+
+.videoOverlay h3 {
+	display: inline-block;
+	font-weight: 300;
+	font-size: 15px;
+	position: relative;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 h2.bv {
@@ -146,12 +165,19 @@ h2.bv {
 }
 
 h2.sv {
-	margin-top: 8px;
-	margin-bottom: 8px;
+	margin: 0;
 }
 
 #videoOverlay-timer {
 	float: right;
+	width: 20%;
+	text-align: right;
+	margin-top: 18px;
+}
+
+#big-videoText {
+	width: 80%;
+	float: left;
 }
 
 .recipe-item {
