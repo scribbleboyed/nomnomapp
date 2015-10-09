@@ -35,6 +35,7 @@ usersController.post('/create', function(req, res) {
 			email: req.body.email,
 			password: req.body.password,
 		});
+		console.log(user);
 		user.saveAsync()
 		.then(function() {
 			console.log("save successful");

@@ -95,7 +95,7 @@ exports.seedRecipes = function seedRecipes () {
 					{name: "Cream Cheese", quantity: "6 oz"},
 					{name: "Mozzarella", quantity: "1/2 cup, shredded"},
 					{name: "Parmesan", quantity: "1/2 cup"},
-					{name: "Mariana", quantity: "3/4 cup"},
+					{name: "Marinara", quantity: "3/4 cup"},
 					{name: "Pepperoni", quantity: "A lot"}
 				],
 				prep_time: "10 min",

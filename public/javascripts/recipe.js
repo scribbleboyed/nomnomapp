@@ -157,11 +157,21 @@ function searchRecipesWithoutAllergies(value, allergy) {
 	RECIPES.forEach (function (recipe) {
 		var recipeName = recipe.name.toLowerCase();
 		var recipeDescription = recipe.name.toLowerCase();
-			if (recipeName.indexOf(value) > -1 || recipeDescription.indexOf(value) > -1) {
+
+		if (recipeName.indexOf(value) > -1 || recipeDescription.indexOf(value) > -1) {
+			if (queryCollection.indexOf(recipe) < 0 && !hasAllergy(recipe, allergy)) {
+				queryCollection.push(recipe);
+			}
+		}
+
+		recipe.tags.forEach(function(tag) {
+			var tagName = tag.toLowerCase();
+			if (tagName.indexOf(value) > -1) {
 				if (queryCollection.indexOf(recipe) < 0 && !hasAllergy(recipe, allergy)) {
 					queryCollection.push(recipe);
 				}
 			}
+		});
 
 	});
 

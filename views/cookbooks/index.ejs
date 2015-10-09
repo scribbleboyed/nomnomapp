@@ -39,7 +39,7 @@
 			<% all_cookbooks.forEach(function(cookbook) { %>
 				<% var processed_name = cookbook.name.replace(/ /g,"_"); %>
 				<a href="/cookbooks/<%= processed_name %>">
-					<div class="col-lg-3">
+					<div class="col-lg-3 all-cookbooks-col">
 						<div class="outerDiv" style="background: url('<%= cookbook.image_url %>'); background-size: cover; background-position: center; border-bottom: 5px solid #ddd;">
 							<div class="innerDiv">
 								<b><h2 style="font-size: 30px; text-shadow: 1px 1px 2px #000;"><%= cookbook.name %></h2></b>

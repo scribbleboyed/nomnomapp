@@ -227,7 +227,8 @@ div.cookbook {
 
 .cookbook-title {
 	color: #000;
-	font-weight: 300;
+	font-weight: 400;
+	font-size: 23px;
 }
 
 div.outerDiv {
@@ -429,6 +430,8 @@ ul.nav a:hover {
 	color: white !important;
 }
 
-.container-fluid {
-	margin-top: -2px;
+
+.all-cookbooks-col .outerDiv {
+	height: 300px;
+	margin-bottom: 20px;
 }
