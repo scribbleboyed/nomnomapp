@@ -92,8 +92,8 @@ video, source {
 }
 
 .videoOverlay {
-	opacity: 0.5;
-	background: #000;
+	opacity: 1;
+  	background: linear-gradient(rgba(0,0,0,0) , rgba(0,0,0,0.7));
 	color: #fff;
 }
 
@@ -109,6 +109,7 @@ video, source {
 	bottom: 5px;
 	padding: 10px;
 	margin: 0px;
+	padding-left: 20px;
 }
 
 #sv-bot-videoOverlay {
@@ -117,19 +118,22 @@ video, source {
 	position: absolute;
 	bottom: 5px;
 	padding: 10px;
+	padding-left: 20px;
 	margin: 0px;
 }
 
 .videoOverlay h1 {
 	display: inline-block;
-	font-size: 32px;
-	font-weight: 500;
+	font-size: 60px;
+	font-weight: 700;
 	margin-bottom: 0;
 	margin-top: 0;
 }
 
 .videoOverlay h2 {
 	display: inline-block;
+	font-weight: 300;
+	position: relative;
 }
 
 h2.bv {
