@@ -42,3 +42,15 @@ var recipeTemplate = _.template('<a class="highlight" href="<%= url %>"><div cla
 	});
 
 
+	$('#editButton').click(function(e) {
+		e.preventDefault();
+		$('.hiddenButton').toggle();
+		if ($('.editable').attr('disabled')) {
+			$('.editable').removeAttr('disabled');
+			$('.editable').addClass('editMode');
+		} else {
+			$('.editable').attr('disabled', 'disabled');
+			$('.editable').removeClass('editMode');
+		}
+	});
+

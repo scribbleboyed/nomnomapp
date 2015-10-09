@@ -43,18 +43,18 @@
 
 					<h3><input type="text" class="editable textFieldEdit" id="title" name="name" value="<%= recipe.name %>" disabled></h3>
 
-					<textarea rows="4" class="editable textFieldEdit" id ="description" name="description" style="font-weight: 300;" disabled><%= recipe.description %></textarea>
+					<textarea rows="2" class="editable textFieldEdit" id ="description" name="description" style="font-weight: 300;" disabled><%= recipe.description %></textarea>
 
-					<div style="width: 70px; background: #aaa; color: #fff; display: inline-block;">
-						<input type="text" class="editable textFieldEdit" id="prep_time" name="prep_time" value="<%= recipe.prep_time %>" disabled>
+					<div style="background: #ddd; color: #000; display: inline-block;">
+						<input type="text" class="editable textFieldEdit" id="prep_time" name="prep_time" value="Prep Time: <%= recipe.prep_time %>" disabled>
 					</div>
-					<div style="width: 70px; background: #aaa; color: #fff; display: inline-block;">
-						<input type="text" class="editable textFieldEdit" id="cook_time" name="cook_time" value="<%= recipe.cook_time %>" disabled>
+					<div style="background: #aaa; color: #fff; display: inline-block;">
+						<input type="text" class="editable textFieldEdit" id="cook_time" name="cook_time" value="Cook Time: <%= recipe.cook_time %>" disabled>
 					</div>
-					<button class="btn btn-danger" id="editButton" style="float: right;">Edit Recipe</button>
+					<p/><br/>
 
 					<% if (cookbooks) { %>
-							<div class="dropdown" style="display: inline-block; float: right;">
+							<div class="dropdown" style="display: inline-block;">
 									<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add to Cookbook
 									<span class="caret"></span></button>
 									<ul class="dropdown-menu">
@@ -64,8 +64,9 @@
 									</ul>
 							</div>
 					<% }; %>
-					<p/>
-					<button type="submit" style="display: none; float: right;" id="updateButton" class="btn btn-warning hiddenButton">Save Recipe</button>
+
+					<button class="btn btn-warning" id="editButton" style="display: inline-block;">Edit Recipe</button>
+					<button type="submit" style="display: none; float: right;" id="updateButton" class="btn btn-danger hiddenButton">Save Recipe</button>
 					<p/>
 				</form>
 			</div>
@@ -87,7 +88,7 @@
 				</form>
 			</div>
 
-			<button type="submit" style="display: none;" id="saveButton" class="btn btn-warning hiddenButton">Save to Cookbook</button>
+			<button type="submit" style="display: none;" id="add" class="btn btn-warning hiddenButton">Add Step</button>
 		</div>
 	</div>
 </div>
@@ -101,6 +102,18 @@ var $window = $(window),
    $window.scroll(function() {
         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
     });
+
+	$('#editButton').click(function(e) {
+		e.preventDefault();
+		$('.hiddenButton').toggle();
+		if ($('.editable').attr('disabled')) {
+			$('.editable').removeAttr('disabled');
+			$('.editable').addClass('editMode');
+		} else {
+			$('.editable').attr('disabled', 'disabled');
+			$('.editable').removeClass('editMode');
+		}
+	});
 
 </script>
 

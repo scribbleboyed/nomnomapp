@@ -501,10 +501,11 @@ exports.seedCookbooks = function seedCookbooks () {
 				name: "Health Nut",
 				description: "So much organic",
 				image_url: "http://www.mycity-web.com/wp-content/uploads/2015/04/Healthy_Fruit.jpg",
-				username: "Edward",
+				username: "Sam",
 				recipes: [],
 				tags: ["organic", "healthy"]
 			});
+
 		}
 	});
 

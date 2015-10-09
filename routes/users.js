@@ -62,7 +62,7 @@ usersController.post('/login', function(req, res) {
 
 usersController.get('/logout', function(req, res) {
 	delete req.session.email;
-	res.redirect(200, '/');
+	res.redirect(303, '/');
 });
 
 module.exports = usersController;

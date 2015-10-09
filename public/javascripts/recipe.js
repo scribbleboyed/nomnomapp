@@ -7,6 +7,7 @@ var recipesContainer = $('#recipes-container');
 var searchBox = $('#search-term');
 var allergyBox = $('#allergy-term');
 var categoriesMenu = $('.dropdown-recipes');
+var searchButton = $('#search-button');
 
 var queryCollection = [];
 var RECIPES = [];
@@ -61,19 +62,50 @@ searchBox.keyup(function(e) {
 
 
 
+searchButton.click(function(e) {
+	console.log("searchbutton clicked");
+	e.preventDefault();
+
+	var value = searchBox.val().toLowerCase();
+	var allergy = allergyBox.val().toLowerCase();
+
+	console.log("value = " + value);
+	console.log("allergy = " + allergy)
+
+	if (value && allergy) {
+		searchRecipesWithoutAllergies(value, allergy);
+	}
+
+	if (value && !allergy) {
+		searchRecipes(value);
+	}
+
+	if (!value && allergy) {
+		searchRecipeWithoutAllergies(" ", allergy);
+	}
+
+});
+
+
+
 // ALLERGY BOX FUNCTION
 allergyBox.keyup(function(e) {
 	
 	e.preventDefault();
 
-	var value = searchBox.val().toLowerCase().toString();
-	var allergy = allergyBox.val().toLowerCase().toString();
-	if (value) {
+	var value = searchBox.val().toLowerCase();
+	var allergy = allergyBox.val().toLowerCase();
+
+	if (value && allergy) {
 		searchRecipesWithoutAllergies(value, allergy);
 	}
 
-	if (!allergy) {
+	if (value && !allergy) {
 		searchRecipes(value);
+	}
+
+	if (!value && allergy) {
+		searchRecipesWithoutAllergies(" ", allergy);
 	}
 
 });
@@ -240,7 +272,7 @@ function displayRecipes() {
 			el.currentTime = 0;
 		});
 
-	recipesContainer.fadeIn(1000);
+	recipesContainer.fadeIn(500);
 }
 
 

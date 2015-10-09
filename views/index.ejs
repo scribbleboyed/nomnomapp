@@ -1,18 +1,16 @@
 <% include partials/header %>
 
 <div id="search-div">
-	<form action="/recipes/search" method="post">
-		<button class="show-categories btn btn-primary">Categories</button>
 	    <input type="text" name="search" class="search-box" id="search-term" placeholder="Search all recipes..."/>
 	    <input type="text" name="search" class="search-box" id="allergy-term" placeholder="Without..."/>
 		<button type="submit" class="btn btn-warning search-button" id="search-button">Search</button>
-	</form>
+		<button class="show-categories btn btn-primary">Browse by Category</button>
 </div>
 
 <div class="dropdown-recipes" id="categories-div">
   <div class="dropdown-recipes-container container">
     <div class="row">
-	    <div class="category col-lg-3" id="appetizer" style="background: url('http://www.conduitchurch.com/wp-content/uploads/2014/11/Pancake-Breakfast.jpg'); background-size: cover;">
+	    <div class="category col-lg-3" id="appetizer" style="background: url('http://www.shreeradheybakers.com/wp-content/uploads/2015/04/indian-snacks1.jpg'); background-size: cover;">
 	    	<h1>appetizers</h1>
 	    </div>
 
@@ -20,7 +18,7 @@
 			<h1>entrees</h1>
 		</div>
 
-		<div class="category col-lg-3" id="dessert" style="background: url('https://ag.purdue.edu/agcomm/PublishingImages/TopStory/Turkey-dinner.jpg'); background-size: cover;">
+		<div class="category col-lg-3" id="dessert" style="background: url('http://images.media-allrecipes.com/images/56562.png'); background-size: cover;">
 			<h1>desserts</h1>
 		</div>
 
@@ -28,15 +26,15 @@
 			<h1>beverages</h1>
 		</div>
 
-		<div class="category col-lg-3" id="breakfast" style="background: url('http://www.shreeradheybakers.com/wp-content/uploads/2015/04/indian-snacks1.jpg'); background-size: cover;">
+		<div class="category col-lg-3" id="breakfast" style="background: url('http://www.conduitchurch.com/wp-content/uploads/2014/11/Pancake-Breakfast.jpg'); background-size: cover;">
 			<h1>breakfast</h1>
 		</div>
 
-		<div class="category col-lg-3" id="sides" style="background: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ7qVSc6N8Jw1dP3Ab5UViWyF_fxUd0dw2Dxgbw1cRruxwr5xZ1'); background-size: cover;">
+		<div class="category col-lg-3" id="sides" style="background: url('http://bluetortillagrille.com/wp-content/uploads/2015/08/gallery-kfc-sides.jpg'); background-size: cover;">
 			<h1>sides</h1>
 		</div>
 
-		<div class="category col-lg-3" id="salad" style="background: url('http://comfortablydomestic.com/wp-content/uploads/2013/02/p2030074edited21.jpg'); background-size: cover;">
+		<div class="category col-lg-3" id="salad" style="background: url('http://bonappetitpizzeria.com/wp-content/uploads/2014/04/Salad.jpg'); background-size: cover;">
 			<h1>salads</h1>
 		</div>
 
@@ -50,7 +48,7 @@
 </div>
 	
 
-<div id="recipes-container" class="container">
+<div id="recipes-container" class="container" style="padding-top: 30px;">
 
 
 
