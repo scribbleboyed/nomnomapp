@@ -134,6 +134,14 @@ function searchRecipes(value) {
 					}
 				}
 			});
+			recipe.tags.forEach(function(tag) {
+				var tagName = tag.toLowerCase();
+				if (tagName.indexOf(value) > -1) {
+					if (queryCollection.indexOf(recipe) < 0) {
+						queryCollection.push(recipe);
+					}
+				}
+			});
 
 	});
 
