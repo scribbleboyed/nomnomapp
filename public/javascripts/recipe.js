@@ -252,6 +252,6 @@ $('.foodGif').hover(function(e) {
 
 	e.preventDefault();
 	var videoOverlay = $(this).parent().parent().children('.videoOverlay');
-	videoOverlay.slideToggle(300);
+	videoOverlay.fadeToggle("fast", "linear");
 
 });

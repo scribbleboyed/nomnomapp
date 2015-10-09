@@ -58,13 +58,15 @@
 
 		<div class="col-lg-8 big-video-col" id="big-video-col">
 			<div class="videoDiv">
-				<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[0].name.replace(/ /g, "_") %>">
+					<source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.
+				</video>
 			</div>
-			<div class="videoOverlay">
-					<h2 class="bv-title">Recipe Title</h2>
+			<div class="videoOverlay" id="big-videoOverlay">
+					<h1 class="bv-title"><%= recipe[0].name %></h1>
 				<div id="videoOverlay-timer">
-					<h2 class="bv-prep_time">Prep Time: </h2>
-					<h2 class="bv-cook_time">Cook Time: </h2>
+					<h2 class="bv">Prep Time: <%= recipe[0].prep_time %></h2>
+					<h2 class="bv">Cook Time: <%= recipe[0].cook_time %></h2>
 				</div>
 			</div>
 		</div>
@@ -74,20 +76,20 @@
 			<!-- // SMALL VIDEO 1 TOP --> 
 			<div class="small-video top" id="small-video-top">
 				<div class="videoDiv" id="sv-top-videoDiv">
-					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+					<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[1].name.replace(/ /g, "_") %>"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
 				</div>
 				<div class="videoOverlay" id="sv-top-videoOverlay">
-					<h2 class="sv-title">Recipe 1 name</h2>
+					<h2 class="sv"><%= recipe[1].name %></h2>
 				</div>
 			</div>
 
 			<!-- // SMALL VIDEO 2 BOTTOM--> 
 			<div class="small-video bottom" id="small-video-bot">
 				<div class="videoDiv" id="sv-bot-videoDiv">
-					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+					<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[2].name.replace(/ /g, "_") %>"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
 				</div>
 				<div class="videoOverlay" id="sv-bot-videoOverlay">
-					<h2 class="sv-title">Recipe 2 name</h2>
+					<h2 class="sv"><%= recipe[2].name %></h2>
 				</div>
 			</div>
 
@@ -103,20 +105,20 @@
 			<!-- // SMALL VIDEO 1 TOP --> 
 			<div class="small-video top" id="small-video-top">
 				<div class="videoDiv" id="sv-top-videoDiv">
-					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+					<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[0].name.replace(/ /g, "_") %>"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
 				</div>
 				<div class="videoOverlay" id="sv-top-videoOverlay">
-					<h2 class="sv-title">Recipe 1 name</h2>
+					<h2 class="sv"><%= recipe[0].name %></h2>
 				</div>
 			</div>
 
 			<!-- // SMALL VIDEO 2 BOTTOM--> 
 			<div class="small-video bottom" id="small-video-bot">
 				<div class="videoDiv" id="sv-bot-videoDiv">
-					<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+					<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[1].name.replace(/ /g, "_") %>"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
 				</div>
 				<div class="videoOverlay" id="sv-bot-videoOverlay">
-					<h2 class="sv-title">Recipe 2 name</h2>
+					<h2 class="sv"><%= recipe[1].name %></h2>
 				</div>
 			</div>
 
@@ -126,13 +128,14 @@
 
 		<div class="col-lg-8 big-video-col" id="big-video-col">
 			<div class="videoDiv">
-				<video class="foodGif" width="100%" loop="true"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
+				<video class="foodGif" width="100%" loop="true" href="'http://localhost:3000/recipes/' + <%= recipe[2].name.replace(/ /g, "_") %>"><source src="http://i.imgur.com/FAxIzSC.webm" type="video/webm">Your browser does not support the video tag.</video>
 			</div>
-			<div class="videoOverlay">
-					<h1 class="bv-title">Recipe Title</h1>
+			<div class="videoOverlay" id="big-videoOverlay">
+					<h1 class="bv-title"><%= recipe[2].name %></h1>
 				<div id="videoOverlay-timer">
-					<h2 class="bv-prep_time">Prep Time: </h2>
-					<h2 class="bv-cook_time">Cook Time: </h2>
+					<h2 class="bv">Prep Time: <%= recipe[2].prep_time %></h2>
+					<h2 class="bv">Cook Time: <%= recipe[2].cook_time %></h2>
+				</div>
 			</div>
 		</div>
 		

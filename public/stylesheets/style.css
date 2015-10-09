@@ -28,7 +28,7 @@ a:hover {
 h1 {
 	font-weight: 700;
 	margin-top: 0;
-	font-size: 45px;
+	font-size: 40px;
 }
 
 h2 {
@@ -44,7 +44,6 @@ video, source {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	border-bottom: 3px solid #ddd;
 	border-radius: 3px;
 }
 
@@ -98,6 +97,11 @@ video, source {
 	color: #fff;
 }
 
+#big-videoOverlay {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
 #sv-top-videoOverlay {
 	width: 100%;
 	height: auto;
@@ -118,11 +122,24 @@ video, source {
 
 .videoOverlay h1 {
 	display: inline-block;
-	font-size: 40px;
+	font-size: 32px;
+	font-weight: 500;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 .videoOverlay h2 {
 	display: inline-block;
+}
+
+h2.bv {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+h2.sv {
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 #videoOverlay-timer {
