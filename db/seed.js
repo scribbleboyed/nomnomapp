@@ -85,6 +85,31 @@ exports.seedRecipes = function seedRecipes () {
 		if (collection.length === 0) {
 
 			Recipe.create({
+				name: "Pizza Dip",
+				description: "Cheese on cheese on cheese, on sauce on cheese. Also pepperoni.",
+				user_name: "Edward",
+				main_image_url: "http://i.imgur.com/HKZtBKi.webm",
+				video_url: "https://www.youtube.com/watch?v=lrIRTs-K0Jg",
+				ingredients: [
+					{name: "Milk", quantity: "1/2 cup"},
+					{name: "Cream Cheese", quantity: "6 oz"},
+					{name: "Mozzarella", quantity: "1/2 cup, shredded"},
+					{name: "Parmesan", quantity: "1/2 cup"},
+					{name: "Mariana", quantity: "3/4 cup"},
+					{name: "Pepperoni", quantity: "A lot"}
+				],
+				prep_time: "10 min",
+				cook_time: "10 min",
+				serving_size: "4-5",
+				steps: ["Preheat oven to 450 degrees F / 230 degrees C.",
+						"On medium heat, combine the milk, cream cheese, mozzarella, and parmesan until it melts down. Stir until it reaches the consistency of a sauce.",
+						"Pour cheese mixture into a serving dish and layer marinara, more shredded mozzarella cheese, and pepperonis on top.",
+						"Stick this in the oven and let it bake until bubbly.",
+						"Dip bread into this cheesy goodness. Enjoy!"],
+				tags: ["sidedish", "appetizer", "pizza", "dip", "superbowl", "potluck", "cheese"]
+			});
+
+			Recipe.create({
 				name: "French Toast Grilled Cheese",
 				description: "The perfect marriage of breakfast and lunch.",
 				user_name: "Claire",
@@ -163,29 +188,29 @@ exports.seedRecipes = function seedRecipes () {
 				tags: ["pizza", "pepperoni", "cheese", "mozzarella", "quick", "bite", "appetizers", "sides"]
 			});
 
-			Recipe.create({
-				name: "Cheesy Garlic Bread",
-				description: "You need this cheesy goodness in your life.",
-				user_name: "Sam",
-				main_image_url: "http://i.imgur.com/hMSiMNN.webm",
-				video_url: "https://www.youtube.com/watch?v=eUgtfnI9NUs",
-				ingredients: [
-					{name: "Bread Loaf", quantity: "1"},
-					{name: "Unsalted Butter", quantity: "2 tbsp"},
-					{name: "Cheddar/Pepperjack Cheese", quantity: "8 slices"},
-					{name: "Garlic Clove", quantity: "6"}
-				],
-				prep_time: "20 min",
-				cook_time: "35 min",
-				serving_size: "6-8",
-				steps: ["Preheat the oven to 350 degrees.",
-						"Line a baking sheet with some aluminum foil and place the loaf of bread in the center. Making sure to cut only 2/3 of the way through the bread.",
-						"Stuff the slits in the bread with pieces of cheese.",
-						"Melt the butter and mix in the garlic (chopped up).",
-						"Using a pastry brush, brush the garlic-butter mixture on top of the loaf of bread.",
-						"Bake at 350 degrees F for 20 minutes."],
-				tags: ["cheese", "bread", "carbs", "garlic", "cheatday", "potluck", "yaaas", "homemade", "appetizer", "sides"]
-			});
+		Recipe.create({
+			name: "Bacon-Wrapped Pesto Chicken",
+			description: "Can you watch this chicken recipe without salivating?",
+			user_name: "Edward",
+			main_image_url: "http://i.imgur.com/qG2D1yw.webm",
+			video_url: "https://www.youtube.com/watch?v=OamKvzFLK7A",
+			ingredients: [
+				{name: "Bacon Strips", quantity: "5"},
+				{name: "Chicken Breast", quantity: "1"},
+				{name: "Pesto", quantity: "Your choice"},
+				{name: "Shredded Cheese", quantity: "Your choice"}
+			],
+			prep_time: "5 min",
+			cook_time: "25 min",
+			serving_size: "1-2",
+			steps: ["Preheat oven to 400 degrees F / 204 degrees C.",
+					"Lie out bacon strips horizontally next to each other and put chicken breast perpendicularly on top of the strips.",
+					"Cut through the center of the chicken breast without cutting through the whole thing, enough to create a pocket. Pour pesto into said pocket.",
+					"Sprinkle shredded cheese on top of pesto and wrap the whole chicken breast with the layers of bacon.",
+					"Place in the oven and bake for 25 minutes (for ½ lb. chicken).",
+					"Remove from oven and serve on a plate. Enjoy!"],
+			tags: ["entree", "bacon", "homemade", "pesto", "nom"]
+		});
 
 			Recipe.create({
 				name: "Homemade Chipotle Guacamole",
@@ -444,53 +469,29 @@ exports.seedRecipes = function seedRecipes () {
 			});
 
 			Recipe.create({
-				name: "Pizza Dip",
-				description: "Cheese on cheese on cheese, on sauce on cheese. Also pepperoni.",
-				user_name: "Edward",
-				main_image_url: "http://i.imgur.com/HKZtBKi.webm",
-				video_url: "https://www.youtube.com/watch?v=lrIRTs-K0Jg",
+				name: "Cheesy Garlic Bread",
+				description: "You need this cheesy goodness in your life.",
+				user_name: "Sam",
+				main_image_url: "http://i.imgur.com/hMSiMNN.webm",
+				video_url: "https://www.youtube.com/watch?v=eUgtfnI9NUs",
 				ingredients: [
-					{name: "Milk", quantity: "1/2 cup"},
-					{name: "Cream Cheese", quantity: "6 oz"},
-					{name: "Mozzarella", quantity: "1/2 cup, shredded"},
-					{name: "Parmesan", quantity: "1/2 cup"},
-					{name: "Mariana", quantity: "3/4 cup"},
-					{name: "Pepperoni", quantity: "A lot"}
+					{name: "Bread Loaf", quantity: "1"},
+					{name: "Unsalted Butter", quantity: "2 tbsp"},
+					{name: "Cheddar/Pepperjack Cheese", quantity: "8 slices"},
+					{name: "Garlic Clove", quantity: "6"}
 				],
-				prep_time: "10 min",
-				cook_time: "10 min",
-				serving_size: "4-5",
-				steps: ["Preheat oven to 450 degrees F / 230 degrees C.",
-						"On medium heat, combine the milk, cream cheese, mozzarella, and parmesan until it melts down. Stir until it reaches the consistency of a sauce.",
-						"Pour cheese mixture into a serving dish and layer marinara, more shredded mozzarella cheese, and pepperonis on top.",
-						"Stick this in the oven and let it bake until bubbly.",
-						"Dip bread into this cheesy goodness. Enjoy!"],
-				tags: ["sidedish", "appetizer", "pizza", "dip", "superbowl", "potluck", "cheese"]
-		});
+				prep_time: "20 min",
+				cook_time: "35 min",
+				serving_size: "6-8",
+				steps: ["Preheat the oven to 350 degrees.",
+						"Line a baking sheet with some aluminum foil and place the loaf of bread in the center. Making sure to cut only 2/3 of the way through the bread.",
+						"Stuff the slits in the bread with pieces of cheese.",
+						"Melt the butter and mix in the garlic (chopped up).",
+						"Using a pastry brush, brush the garlic-butter mixture on top of the loaf of bread.",
+						"Bake at 350 degrees F for 20 minutes."],
+				tags: ["cheese", "bread", "carbs", "garlic", "cheatday", "potluck", "yaaas", "homemade", "appetizer", "sides"]
+			});
 
-		Recipe.create({
-			name: "Bacon-Wrapped Pesto Chicken",
-			description: "Can you watch this chicken recipe without salivating?",
-			user_name: "Edward",
-			main_image_url: "http://i.imgur.com/qG2D1yw.webm",
-			video_url: "https://www.youtube.com/watch?v=OamKvzFLK7A",
-			ingredients: [
-				{name: "Bacon Strips", quantity: "5"},
-				{name: "Chicken Breast", quantity: "1"},
-				{name: "Pesto", quantity: "Your choice"},
-				{name: "Shredded Cheese", quantity: "Your choice"}
-			],
-			prep_time: "5 min",
-			cook_time: "25 min",
-			serving_size: "1-2",
-			steps: ["Preheat oven to 400 degrees F / 204 degrees C.",
-					"Lie out bacon strips horizontally next to each other and put chicken breast perpendicularly on top of the strips.",
-					"Cut through the center of the chicken breast without cutting through the whole thing, enough to create a pocket. Pour pesto into said pocket.",
-					"Sprinkle shredded cheese on top of pesto and wrap the whole chicken breast with the layers of bacon.",
-					"Place in the oven and bake for 25 minutes (for ½ lb. chicken).",
-					"Remove from oven and serve on a plate. Enjoy!"],
-			tags: ["entree", "bacon", "homemade", "pesto", "nom"]
-		});
 
 		Recipe.create({
 			name: "Iced Coffee Popsicle",

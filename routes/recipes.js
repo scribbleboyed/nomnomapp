@@ -82,6 +82,7 @@ recipesController.post('/:name/update', function(req, res) {
     var processed_name = req.params.name.replace(/_/g, " ");
 
     if(req.session && req.session.email) {
+
         Recipe.updateAsync({name: processed_name},
             {$set:
                 {
@@ -96,8 +97,12 @@ recipesController.post('/:name/update', function(req, res) {
                 var redirectURL = "/recipes/" + processedURL;
                 res.redirect(303, redirectURL);
         }).catch(function(err) {
-                res.redirect(303, '/');
+                res.redirect(303, redirectURL);
             });
+    } else {
+        var processed_name = req.params.name.replace(/_/g, " ");
+        var redirectURL = "/recipes/" + processed_name;
+        res.redirect(303, redirectURL);
     }
 });
 
@@ -117,6 +122,29 @@ recipesController.get('/:name/addTo/:cookbook_id', function(req, res) {
 
 
 recipesController.post('/:name/update-ingredient', function(req, res) {
+    var processed_name = req.params.name.replace(/_/g, " ");
+
+    if(req.session && req.session.email) {
+        Recipe.updateAsync({name: processed_name},
+            {$set:
+                {
+                    ingredients: [{
+                        name: req.body.ingredient-name,
+                        quantity: req.body.ingredient-quantity
+                    }]
+                }
+            }, {multi:true})
+            .then(function() {
+                console.log("req.body.description: " + req.body.description);
+                res.redirect(303, '/');
+        }).catch(function(err) {
+                console.log("error: " + err);
+                res.redirect(303, '/');
+            });
+    }
+});
+
+recipesController.post('/:name/add-ingredient', function(req, res) {
     var processed_name = req.params.name.replace(/_/g, " ");
 
     if(req.session && req.session.email) {
