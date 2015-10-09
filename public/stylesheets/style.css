@@ -412,3 +412,10 @@ textarea {
 input#title {
 	font-weight: 600;
 }
+
+#checkmark {
+	float: right;
+	font-size: 25px;
+	visibility: hidden;
+	color: #ff7300;
+}
