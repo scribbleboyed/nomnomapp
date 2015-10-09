@@ -419,6 +419,6 @@ input#title {
 #checkmark {
 	float: right;
 	font-size: 25px;
-	visibility: hidden;
 	color: #ff7300;
+	display: none;
 }
