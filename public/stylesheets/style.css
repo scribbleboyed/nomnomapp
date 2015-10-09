@@ -422,3 +422,8 @@ input#title {
 	color: #ff7300;
 	display: none;
 }
+
+ul.nav a:hover { 
+	background-color: #ff7300 !important; 
+	color: white !important;
+}
