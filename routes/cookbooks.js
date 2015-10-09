@@ -9,7 +9,6 @@ cookbooksController.get('/', function(req, res) {
     if (req.session && req.session.email) {
         User.findOne({email: req.session.email}).then(function(user) {
             Cookbook.find({}).execAsync().then(function(cookbooks) {
-                console.log(cookbooks);
                 res.render('cookbooks/index.ejs',{
                     cookbooks: cookbooks,
                     curr_user: user.username

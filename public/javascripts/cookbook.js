@@ -2,7 +2,7 @@ var cookbookName = $('#title').val();
 
 var recipesContainer = $('#recipes');
 
-var recipeTemplate = _.template('<a href="<%= url %>"><div class="videoDiv recipe-item"><h3><%= name %></h3><video class="foodGif" width="100%" loop="true"><source src="<%= image_url %>" type="video/webm">Your browser does not support the video tag.</video></div></a>');
+var recipeTemplate = _.template('<a class="highlight" href="<%= url %>"><div class="videoDiv col-lg-4 recipe-item"><h4 id="recipe-name"><%= name %></h4><video class="foodGif" width="100%" loop="true"><source src="<%= image_url %>" type="video/webm">Your browser does not support the video tag.</video></div></a>');
 
 	$(document).ready(function() {
 
@@ -25,6 +25,15 @@ var recipeTemplate = _.template('<a href="<%= url %>"><div class="videoDiv recip
 						image_url: result[0].main_image_url
 					});
 					recipesContainer.append(compiled);
+
+						$('.videoDiv').hover(function() {
+							console.log("test");
+							$(this).children("video")[0].play();
+						}, function() {
+							var el = $(this).children("video")[0];
+							el.pause();
+							el.currentTime = 0;
+						});
 					
 				});
 			});

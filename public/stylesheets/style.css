@@ -1,13 +1,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #F7F7F7;
+  background-color: #fff;
   color: #888;
 }
 
 
 #main-nav {
 	opacity: 0.9;
-	border-bottom: 5px solid #fff;
 	height: 30px;
 	background-color: #fbbd00;
 	color: #fff;
@@ -42,8 +41,16 @@ button {
 }
 
 video, source {
+	width: 100%;
 	margin: 0px;
 	padding: 0px;
+	border-bottom: 3px solid #ddd;
+	border-radius: 3px;
+}
+
+#recipe-name {
+	font-weight: 700;
+	font-size: 14px;
 }
 
 .big-video-col .videoOverlay {
@@ -76,8 +83,6 @@ video, source {
 
 .recipe-item {
 	display: inline-block;
-	width: 300px;
-	margin: 10px;
 }
 
 div.cookbook {
@@ -86,6 +91,7 @@ div.cookbook {
 
 #cookbook-heading {
 	padding: 10px;
+	color: #fff;
 }
 
 div.outerDiv {
@@ -199,12 +205,14 @@ textarea {
 	height: auto;
 	z-index: 10;
 	background: #fff;
+	border-bottom: 3px solid #ddd;
 	opacity: 1;
+	padding-bottom: 30px;
 }
 
 .dropdown-recipes-container {
-	height: auto;
-	padding: 10px;
+	height: 100px;
+	padding: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -212,17 +220,13 @@ textarea {
 }
 
 .category {
-	background-color: #ccc;
-	margin-bottom: 5px;
-	padding: 0px;
 	display: inline-block;
-	height: 120px;
-	width: 230px;
+	height: auto;
 	border-radius: 0px;
 	text-align: center;
 	cursor: pointer;
 	background-size: cover;
-	opacity: 0.8;
+	padding: 10px;
 }
 
 .category h1 {

@@ -2,41 +2,23 @@
 
 <% var processed_name = cookbook.name.replace(/ /g, "_"); %>
 
-<div class="container" id="cookbook-heading" style="background: url('<%= cookbook.image_url %>'); background-size: cover; ">
+<div class="container" style="padding-top: 40px;">
 
-	<button type="button" class="btn btn-danger" id="editButton">Edit</button>
-	<p><br/>
-
-	<form action="/cookbooks/<%= processed_name %>/update" method="post">
-
-	<h1>
-		<input type="text" id="title" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled>
-	</h1>
-
-</div>
-
-<div class="container">
-
-
-	<h3><input type="text" name="description" class="editable textFieldEdit" value="<%= cookbook.description %>" disabled></h3>
-
-	<p>
-		<input type="text" name="image_url" class="editable textFieldEdit" value="<%= cookbook.image_url %>" disabled>
-	</p>
-	
-	<input type="submit" id="updateButton" value="Update Cookbook" style="display: none;">
-
-</form>
-
-</div>
-
-<div class="container">
-	<div id="recipes">
-		
+	<div class="container" id="cookbook-heading" style="background: url('<%= cookbook.image_url %>'); background-size: cover; background-position: center; border-bottom: 5px solid #ddd; border-radius: 3px;">
+		<button type="button" class="btn btn-danger" id="editButton">Edit</button>
+		<form action="/cookbooks/<%= processed_name %>/update" method="post">
+			<h1><input type="text" id="title" name="name" class="editable textFieldEdit" value="<%= cookbook.name %>" disabled></h1>
+			<h3><i><input type="text" name="description" class="editable textFieldEdit" value='"<%= cookbook.description %>"' disabled></i></h3>
+			<input type="submit" id="updateButton" value="Update Cookbook" style="display: none;">
+		</form>
 	</div>
+
+	<div class="container">
+		<div id="recipes" class="row"></div>
+	</div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 
 <script src="../javascripts/cookbook.js"></script>
-
