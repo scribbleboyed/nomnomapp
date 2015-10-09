@@ -135,6 +135,10 @@ video, source {
 	margin: 0px;
 }
 
+.videoOverlay {
+	text-shadow: 1px 1px 2px #000;
+}
+
 .videoOverlay h1 {
 	display: inline-block;
 	font-size: 60px;
